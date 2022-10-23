@@ -4,7 +4,7 @@
 <head>
     <title> FoodChive </title>
     <link rel="stylesheet" href="Homepage.css">
-    <script type="module" src="Homepage.js" defer></script>
+    <script type="text/javascript" src="Homepage.js"></script>
 
 </head>
 
@@ -20,8 +20,9 @@
 </div>
 
 <div class="center">
-    <input type="text" id="searchbox" placeholder="Search For Recipes">
-    <input class="button" type="button" onclick="location.href='SearchResults.html';" value="Search" />
+    <input id="searchbar" type="text" name="search" placeholder="Search recipes...">
+    <input class="button" type="button" onclick="search_recipes(); location.href='SearchResults.html'" value="Search" />
+
 </div>
 
 
