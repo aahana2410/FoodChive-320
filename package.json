@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/aahana2410/FoodChive-320#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "realm": "^11.0.0"
   }
 }
