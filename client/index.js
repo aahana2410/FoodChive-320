@@ -4,13 +4,6 @@ import './index.css';
 import App from './App';
 import * as Realm from "realm"
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
 export default function Home() {
     useEffect(async () => {
         const REALM_APP_ID = process.env.NEXT_PUBLIC_REALM_APP_ID;
