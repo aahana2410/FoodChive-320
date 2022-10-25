@@ -7,7 +7,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/', express.static('client'));
+app.use(express.static('client'));
 dotenv.config()
 
 const recipesDB = new RecipesDatabase(process.env.DATABASE_URL);
