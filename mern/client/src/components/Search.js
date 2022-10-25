@@ -1,4 +1,6 @@
 import React from "react";
+import { useState } from "react";
+import Recipe from "./Recipe";
 
 function Search() {
   const [recipes, setRecipes] = useState([]);
