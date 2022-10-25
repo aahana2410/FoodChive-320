@@ -9,9 +9,9 @@ function App() {
 }
 
 function callApi() {
-  fetch('http://localhost:5000/recipes', { method: 'GET' })
-    .then(data => data.json())
-    .then(json => alert(JSON.stringify(json)))
+  fetch("/recipes", { method: "GET" })
+    .then((data) => data.json())
+    .then((json) => alert(JSON.stringify(json)));
 }
 
 export default App;
