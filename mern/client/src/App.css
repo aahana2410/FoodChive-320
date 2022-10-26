@@ -38,3 +38,7 @@ body {
     color: #fff;
     background-color: #3e8e41;
 }
+
+.recipe-img {
+    max-width: 40%;
+}

@@ -14,7 +14,7 @@ dotenv.config();
 const recipesDB = new RecipesDatabase(process.env.DATABASE_URL);
 await recipesDB.connect();
 
-app.get("/recipes", async (req, res) => {
+app.get("/api/recipes", async (req, res) => {
   const recipes = await recipesDB.getAllRecipes();
   res.json(recipes);
 });

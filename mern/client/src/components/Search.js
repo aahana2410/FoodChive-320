@@ -1,40 +1,38 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Recipe from "./Recipe";
 
 function Search() {
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     async function getRecipes() {
-      const response = await fetch("/recipes");
-
+      const response = await fetch(`/api/recipes`, { method: "GET" });
       if (!response.ok) {
-        const message = "GET request failed";
+        const message = `An error occured: ${response.statusText}`;
         window.alert(message);
         return;
       }
-
-      const recipes = await response.json();
-      setRecipes(recipes);
+      const recipesList = await response.json();
+      setRecipes(recipesList);
     }
 
     getRecipes();
 
     return;
-  }, [recipes.length]);
+  }, []);
   return (
-    <div>
+    <center>
       <input type="text" name="search" placeholder="Search Recipes..." />
       <input type="button" value="Search" />
       {recipes.map((recipe) => {
         return (
           <div>
             <h3>{recipe.name}</h3>
-            <img src={recipe.imgs[0]} />
+            <img className="recipe-img" src={recipe.imgs[0]} />
           </div>
         );
       })}
-    </div>
+    </center>
   );
 }
 

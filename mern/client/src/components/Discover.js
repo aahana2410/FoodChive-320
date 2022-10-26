@@ -7,14 +7,13 @@ function Discover() {
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     async function getRecipes() {
-      const response = await fetch(`/recipes/`, { method: "GET" });
+      const response = await fetch(`/api/recipes`, { method: "GET" });
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`;
         window.alert(message);
         return;
       }
       const recipesList = await response.json();
-      console.log(recipesList);
       setRecipes(recipesList);
     }
 
@@ -22,18 +21,14 @@ function Discover() {
 
     return;
   }, []);
-  // async function getRecipes() {
-  //   try {
-  //     const response = await fetch(`/recipes`);
-  //     console.log(response);
-  //     const recipesList = response.json();
-  //     setRecipes(recipesList);
-  //   } catch (err) {
-  //     window.alert(err);
-  //   }
-  // }
-  // getRecipes();
-  return <div>{recipes[0] && <Recipe recipe={recipes[0]}></Recipe>}</div>;
+
+  return (
+    recipes[0] && (
+      <center key={recipes[0]._id}>
+        <Recipe recipe={recipes[0]}></Recipe>
+      </center>
+    )
+  );
 }
 
 export default Discover;
