@@ -1,7 +1,6 @@
 import React from "react";
 import Recipe from "./Recipe";
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 function Discover() {
   const [recipes, setRecipes] = useState([]);
