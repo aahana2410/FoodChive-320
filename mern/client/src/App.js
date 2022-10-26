@@ -7,6 +7,7 @@ import {
 import Discover from "./components/Discover";
 import Search from "./components/Search";
 import Profile from "./components/Profile";
+import Home from "./components/Home";
 import "./App.css";
 
 function App() {
@@ -14,13 +15,15 @@ function App() {
     <div>
       <Router>
         <div className="header">
-          <img
-            src={require("./images/FoodChiveLogo.png")}
-            className="header--logo"
-          />
+          <Link to="/" className="header--logo">
+            <img
+              className="header--logo"
+              src={require("./images/FoodChiveLogo.png")}
+            />
+          </Link>
           <div className="header--tabs">
             <h2 className="tab">
-              <Link to="/">Discover</Link>
+              <Link to="discover">Discover</Link>
             </h2>
             <h2 className="tab">
               <Link to="search">Search</Link>
@@ -34,7 +37,8 @@ function App() {
           </div>
         </div>
         <Switch>
-          <Route exact path="/" element={<Discover />} />
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="discover" element={<Discover />} />
           <Route exact path="search" element={<Search />} />
           <Route exact path="profile" element={<Profile />} />
         </Switch>
