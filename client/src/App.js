@@ -19,6 +19,7 @@ function App() {
             <img
               className="header--logo"
               src={require("./images/FoodChiveLogo.png")}
+              alt="logo"
             />
           </Link>
           <div className="header--tabs">
@@ -32,6 +33,7 @@ function App() {
               <img
                 src={require("./images/profile.png")}
                 className="header--profile"
+                alt="profile"
               />
             </Link>
           </div>

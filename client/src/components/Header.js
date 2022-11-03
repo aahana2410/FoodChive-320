@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 function Header() {
   return (
@@ -6,6 +6,7 @@ function Header() {
       <img 
         src='./images/logo.png'
         className='header--logo'
+        alt="logo"
       />
       <div className='header--tabs'>
         

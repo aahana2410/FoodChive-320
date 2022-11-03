@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Recipe from "./Recipe";
 
 function Search() {
   const [recipes, setRecipes] = useState([]);
@@ -28,7 +27,7 @@ function Search() {
         return (
           <div>
             <h3>{recipe.name}</h3>
-            <img className="recipe-img" src={recipe.imgs[0]} />
+            <img className="recipe-img" src={recipe.imgs[0]} alt="recipe"/>
           </div>
         );
       })}
