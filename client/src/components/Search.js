@@ -6,7 +6,10 @@ function Search() {
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     async function getRecipes() {
-      const response = await fetch(`/api/recipes`, { method: "GET" });
+      const response = await fetch(
+        `https://foodchive-api.onrender.com/api/recipes`,
+        { method: "GET" }
+      );
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`;
         window.alert(message);
