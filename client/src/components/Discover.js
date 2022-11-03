@@ -6,7 +6,7 @@ function Discover() {
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     async function getRecipes() {
-      const response = await fetch(`https://foodchive-api.onrender.com/`, {
+      const response = await fetch(`/api/recipes`, {
         method: "GET",
       });
       if (!response.ok) {
