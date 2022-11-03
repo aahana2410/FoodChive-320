@@ -19,6 +19,7 @@ app.get("/api/recipes", async (req, res) => {
   res.json(recipes);
 });
 
+console.log(process.env.DATABASE_URL);
 app.listen(port, () => {
   console.log(`Server started on http://localhost:${port}`);
 });
