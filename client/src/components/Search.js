@@ -1,39 +1,29 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import './PageStyles.css'
+import RecipeList from "./RecipeList";
+import { useState } from "react";
 
 function Search() {
-  const [recipes, setRecipes] = useState([]);
-  useEffect(() => {
-    async function getRecipes() {
-      const response = await fetch(
-        `https://foodchive-api.onrender.com/api/recipes`,
-        { method: "GET" }
-      );
-      if (!response.ok) {
-        const message = `An error occured: ${response.statusText}`;
-        window.alert(message);
-        return;
-      }
-      const recipesList = await response.json();
-      setRecipes(recipesList);
+  const [inputText, setInputText] = useState([]);
+  const [query, setQuery] = useState([]);
+  let inputHandler = (e) => {
+    setInputText(e.target.value);
+
+    if (e.key === "Enter") {
+      setQuery(inputText);
     }
+  };
 
-    getRecipes();
+  let clickHandler = () => {
+    setQuery(inputText)
+  };
 
-    return;
-  }, []);
+
   return (
     <center>
-      <input type="text" name="search" placeholder="Search Recipes..." />
-      <input type="button" value="Search" />
-      {recipes.map((recipe) => {
-        return (
-          <div>
-            <h3>{recipe.name}</h3>
-            <img className="recipe-img" alt = "recipe" src={recipe.imgs[0]} />
-          </div>
-        );
-      })}
+      <input type="text" name="search" onKeyPress={inputHandler} placeholder="Search Recipes..." />
+      <input className="button" id="searchbutton" type="button" defaultValue="Search" onClick={clickHandler} />
+      <RecipeList input={query} />
     </center>
   );
 }
