@@ -21,7 +21,7 @@ function Search() {
 
   return (
     <center>
-      <input type="text" name="search" onKeyPress={inputHandler} placeholder="Search Recipes..." />
+      <input type="text" name="search" onKeyUp={inputHandler} placeholder="Search Recipes..." />
       <input className="button" id="searchbutton" type="button" defaultValue="Search" onClick={clickHandler} />
       <RecipeList input={query} />
     </center>
