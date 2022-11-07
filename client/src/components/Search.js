@@ -1,12 +1,17 @@
 import React from "react";
 import './PageStyles.css'
 import RecipeList from "./RecipeList";
-import { useState } from "react";
 import Multiselect from "multiselect-react-dropdown"
+import { useState, useEffect } from "react";
 
 function Search() {
   const [inputText, setInputText] = useState([]);
   const [query, setQuery] = useState([]);
+
+  useEffect(() => {
+    setQuery('');
+  }, []);
+
   let inputHandler = (e) => {
     setInputText(e.target.value);
 

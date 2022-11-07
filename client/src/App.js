@@ -7,6 +7,7 @@ import {
 import Discover from "./components/Discover";
 import Search from "./components/Search";
 import Profile from "./components/Profile";
+import Saved from "./components/Saved";
 import Home from "./components/Home";
 import "./App.css";
 
@@ -36,8 +37,14 @@ function App() {
                 </Link>
             </h2>
             <h2 className="tab">
+              <Link to="saved">
+                <img src={require("./images/saved.png")} alt="saved" width="25rem" />
+                Saved
+              </Link>
+            </h2>
+            <h2 className="tab">
             <Link to="profile">
-              <img src={require("./images/profile.png")} alt = "profile" width="30rem" />
+                <img src={require("./images/profile.png")} alt = "profile" width="30rem" />
                 Profile
             </Link>
             </h2>
@@ -45,6 +52,7 @@ function App() {
         </div>
         <Switch>
           <Route exact path="/" element={<Home />} />
+          <Route exact path="saved" element={<Saved />} />
           <Route exact path="discover" element={<Discover />} />
           <Route exact path="search" element={<Search />} />
           <Route exact path="profile" element={<Profile />} />
