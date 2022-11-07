@@ -1,8 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import './PageStyles.css'
-import SavedRecipeList from '../SavedRecipes/SavedRecipeList';
-
 
 function RecipeList(query) {
 
@@ -30,29 +28,18 @@ function RecipeList(query) {
   }, []);
 
   const search = recipes.filter((el) => {
-    if (query.input === '') { return false; }
+    if (query.input == '') { return true; }
     return el.name.toLowerCase().includes(query.input.toLowerCase());
   });
 
-  let save = (recipe) => {
-    /*
+  let save = async (recipe) => {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: 'React PUT Request Example' })
+      body: recipe
     };
-
-    fetch('https://foodchive-api.onrender.com/api/SavedRecipes', requestOptions)
-      .then(response => response.json())
-      .then(data => recipe);
-    */
-    if (SavedRecipeList.list.includes(recipe._id)) {
-      alert("Recipe is already saved.");
-    }
-    else {
-      SavedRecipeList.list.push(recipe._id);
-      alert("Saved " + recipe.name);
-    }
+    const response = await fetch('http://localhost:5000/savedRecipes', requestOptions)
+    console.log(response.json)
   };
 
   return (
@@ -68,7 +55,7 @@ function RecipeList(query) {
             <img className="recipe-img" alt="recipe" src={currRecipe.imgs[0]} width='20%' />
             <h2>
               Save?
-              <input className="savebutton" id="savebutton" type="button" defaultValue=" ✔ " onClick={event => save(currRecipe)} />
+              <input className="savebutton" id="savebutton" type="button" defaultValue=" ✔ " onClick={(event) => save(currRecipe)} />
             </h2>
           </div>
         )

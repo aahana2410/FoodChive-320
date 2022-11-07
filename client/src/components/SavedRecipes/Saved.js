@@ -1,14 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import SavedRecipeList from './SavedRecipeList';
-import Recipe from "../Recipe/Recipe";
 
 function Saved() {
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     async function getRecipes() {
       const response = await fetch(
-        `http://localhost:5000/recipes`,
+        `http://localhost:5000/savedRecipes`,
         {
           method: "GET",
         }
@@ -27,10 +25,6 @@ function Saved() {
     return;
   }, []);
 
-  const search = recipes.filter((el) => {
-    return SavedRecipeList.list.includes(el._id);
-  });
-
   return (
     <ul>
       <h2>
@@ -39,9 +33,14 @@ function Saved() {
         </center>
       </h2>
       <center>
-        {search.map((currRecipe) => (
+        {recipes.map((currRecipe) => (
           <div>
-            <Recipe recipe={currRecipe}></Recipe>
+            <div>
+              <h2>
+                {currRecipe.name}
+              </h2>
+            </div>
+            <img className="recipe-img" alt="recipe" src={currRecipe.imgs[0]} width='20%' />
           </div>
         )
         )
