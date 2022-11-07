@@ -1,16 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import './PageStyles.css'
-import SavedRecipeList from './SavedRecipeList';
+import SavedRecipeList from '../SavedRecipes/SavedRecipeList';
 
 
 function RecipeList(query) {
-  
+
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     async function getRecipes() {
       const response = await fetch(
-        `https://foodchive-api.onrender.com/api/recipes`,
+        `http://localhost:5000/recipes`,
         {
           method: "GET",
         }
@@ -56,24 +56,25 @@ function RecipeList(query) {
   };
 
   return (
-    <ul>
-      {search.map((currRecipe) => (
-        <div>
+    < ul >
+      {
+        search.map((currRecipe) => (
           <div>
+            <div>
+              <h2>
+                {currRecipe.name}
+              </h2>
+            </div>
+            <img className="recipe-img" alt="recipe" src={currRecipe.imgs[0]} width='20%' />
             <h2>
-              {currRecipe.name}
+              Save?
+              <input className="savebutton" id="savebutton" type="button" defaultValue=" ✔ " onClick={event => save(currRecipe)} />
             </h2>
           </div>
-          <img className="recipe-img" alt="recipe" src={currRecipe.imgs[0]} width='20%' />
-          <h2>
-            Save?
-            <input className="savebutton" id="savebutton" type="button" defaultValue=" ✔ " onClick={event => save(currRecipe)} />
-          </h2>
-        </div>
-      )
-      )
+        )
+        )
       }
-    </ul>
+    </ul >
   )
 }
 

@@ -1,5 +1,5 @@
-
 const savedList = {
-  list:[]
+  list: []
 };
+
 export default savedList

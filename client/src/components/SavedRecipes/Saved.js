@@ -1,13 +1,14 @@
 import React from "react";
-import Recipe from "./Recipe";
 import { useState, useEffect } from "react";
+import SavedRecipeList from './SavedRecipeList';
+import Recipe from "../Recipe/Recipe";
 
-function Discover() {
+function Saved() {
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     async function getRecipes() {
       const response = await fetch(
-        `https://foodchive-api.onrender.com/api/recipes`,
+        `http://localhost:5000/recipes`,
         {
           method: "GET",
         }
@@ -26,13 +27,27 @@ function Discover() {
     return;
   }, []);
 
+  const search = recipes.filter((el) => {
+    return SavedRecipeList.list.includes(el._id);
+  });
+
   return (
-    recipes[0] && (
-      <center key={recipes[0]._id}>
-        <Recipe recipe={recipes[0]}></Recipe>
+    <ul>
+      <h2>
+        <center>
+          Your Saved Recipes:
+        </center>
+      </h2>
+      <center>
+        {search.map((currRecipe) => (
+          <div>
+            <Recipe recipe={currRecipe}></Recipe>
+          </div>
+        )
+        )
+        }
       </center>
-    )
+    </ul>
   );
 }
-
-export default Discover;
+export default Saved;

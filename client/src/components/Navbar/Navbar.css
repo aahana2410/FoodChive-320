@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+}
+
+.header {
+  background-color: rgb(250, 250, 18);
+  background-blend-mode: darken;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  height: 100px;
+  padding: 20px;
+}
+
+.header--logo {
+  margin-right: auto;
+  height: 100%;
+}
+
+.header--tabs {
+  margin-right: 24px;
+}
+
+.header--profile {
+  width: 80px;
+}
+
+.tab {
+  text-align: center;
+  cursor: pointer;
+  padding: 5px 5px;
+  border-radius: 12px;
+  border: none;
+  display: inline;
+}
+
+.tab:hover {
+  color: #fff;
+  background-color: #3e8e41;
+}
+
+.recipe-img {
+  max-width: 40%;
+}
+
+.tabText {
+  font-size: 1.5vw;
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+}
