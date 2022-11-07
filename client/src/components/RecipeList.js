@@ -34,9 +34,6 @@ function RecipeList(query) {
   });
 
   let save = (recipe) => {
-
-    alert("Saving " + recipe.name);
-
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -48,7 +45,7 @@ function RecipeList(query) {
       .then(data => recipe);
   
   
-    alert("Saved");
+    alert("Saved" + recipe.name);
   };
   
   return (
