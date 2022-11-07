@@ -1,10 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import './PageStyles.css'
+import SavedRecipeList from './SavedRecipeList';
 
 
 function RecipeList(query) {
-
+  
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     async function getRecipes() {
@@ -34,6 +35,7 @@ function RecipeList(query) {
   });
 
   let save = (recipe) => {
+    /*
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -43,11 +45,16 @@ function RecipeList(query) {
     fetch('https://foodchive-api.onrender.com/api/SavedRecipes', requestOptions)
       .then(response => response.json())
       .then(data => recipe);
-  
-  
-    alert("Saved" + recipe.name);
+    */
+    if (SavedRecipeList.list.includes(recipe._id)) {
+      alert("Recipe is already saved.");
+    }
+    else {
+      SavedRecipeList.list.push(recipe._id);
+      alert("Saved " + recipe.name);
+    }
   };
-  
+
   return (
     <ul>
       {search.map((currRecipe) => (
