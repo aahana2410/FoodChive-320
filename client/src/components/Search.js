@@ -46,6 +46,38 @@ function Search() {
       key: 'Japanese'
     },
     {
+      cat: 'Cuisine',
+      key: 'Korean'
+    },
+    {
+      cat: 'Cuisine',
+      key: 'Mexican'
+    },
+    {
+      cat: 'Cuisine',
+      key: 'Thai'
+    },
+    {
+      cat: 'Cuisine',
+      key: 'French'
+    },
+    {
+      cat: 'Cuisine',
+      key: 'Italian'
+    },
+    {
+      cat: 'Cuisine',
+      key: 'Spanish'
+    },
+    {
+      cat: 'Cuisine',
+      key: 'Latin'
+    },
+    {
+      cat: 'Cuisine',
+      key: 'Mediterranean'
+    },
+    {
       cat: 'Ingredients',
       key: 'Chicken'
     },
@@ -80,6 +112,38 @@ function Search() {
     {
       cat: 'Type',
       key: 'Appetizer & Snack'
+    },
+    {
+      cat: 'Skill Level',
+      key: 'Beginner'
+    },
+    {
+      cat: 'Skill Level',
+      key: 'Intermediate'
+    },
+    {
+      cat: 'Skill Level',
+      key: 'Expert'
+    },
+    {
+      cat: 'Dietary Restrictions',
+      key: 'Vegetarian'
+    },
+    {
+      cat: 'Dietary Restrictions',
+      key: 'Vegan'
+    },
+    {
+      cat: 'Dietary Restrictions',
+      key: 'Gluten-Free'
+    },
+    {
+      cat: 'Dietary Restrictions',
+      key: 'Dairy Free'
+    },
+    {
+      cat: 'Dietary Restrictions',
+      key: 'Nut-Free'
     }
   ]}
   showCheckbox
