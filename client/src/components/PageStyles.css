@@ -1,0 +1,70 @@
+.button {
+  padding: 5px 5px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #04AA6D;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {
+  background-color: #3e8e41 
+}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.xbutton {
+  margin-right: 100px;
+  padding: 5px 5px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #c41515;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.xbutton:hover {
+  background-color: #ca4040
+}
+
+.xbutton:active {
+  background-color: #c41515;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.savebutton {
+  margin-left: 10px;
+  padding: 5px 5px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #04AA6D;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.savebutton:hover {
+  background-color: #3e8e41
+}
+
+.savebutton:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}

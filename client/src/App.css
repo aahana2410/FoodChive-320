@@ -42,3 +42,10 @@ body {
 .recipe-img {
     max-width: 40%;
 }
+
+.tabText{
+    font-size: 1.5vw;
+    text-align: center;
+    color: white;
+    margin: 0 auto;
+}
