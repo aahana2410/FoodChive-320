@@ -19,6 +19,6 @@ app.use("/savedRecipes", savedRecipeRoutes);
 
 dotenv.config();
 
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect("mongodb+srv://foodchive_user:vzhfEeMmvGKtkIoh@cluster0.3fcut4h.mongodb.net/foodchive-app?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => app.listen(port, () => console.log(`Server Running on Port: http://localhost:${port}`)))
   .catch((error) => console.log(`${error} did not connect`));
