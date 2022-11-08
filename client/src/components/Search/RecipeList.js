@@ -8,7 +8,7 @@ function RecipeList(query) {
   useEffect(() => {
     async function getRecipes() {
       const response = await fetch(`${environmentURL}/recipes`, {
-        mode: "no-cors",
+        //mode: "no-cors",
         method: "GET",
       });
       if (!response.ok) {
@@ -26,7 +26,7 @@ function RecipeList(query) {
   }, []);
 
   const search = recipes.filter((el) => {
-    if (query.input == "") {
+    if (query.input === "") {
       return true;
     }
     return el.name.toLowerCase().includes(query.input.toLowerCase());
