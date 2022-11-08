@@ -5,7 +5,6 @@ import { environmentURL } from "../../environementURL";
 
 function Discover() {
   const [recipes, setRecipes] = useState([]);
-  console.log(environmentURL);
   useEffect(() => {
     async function getRecipes() {
       const response = await fetch(`${environmentURL}/recipes`, {
