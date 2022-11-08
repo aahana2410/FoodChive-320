@@ -6,16 +6,13 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
+import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-interface ExpandMoreProps extends IconButtonProps {
-	expand: boolean;
-}
 
-const ExpandMore = styled((props: ExpandMoreProps) => {
+const ExpandMore = styled((props) => {
 	const { expand, ...other } = props;
 	return <IconButton {...other} />;
 })(({ theme, expand }) => ({
@@ -26,7 +23,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 	}),
 }));
 
-export default function RecipeCard({ recipe, handleCardClick, check }) {
+export default function RecipeCard({ recipe, handleCardClick, check, toggleSnackBar }) {
 	const [expanded, setExpanded] = React.useState(false);
 
 	const handleExpandClick = () => {
@@ -35,9 +32,7 @@ export default function RecipeCard({ recipe, handleCardClick, check }) {
 
 	return (
 		<Card sx={{ maxWidth: 450, bgcolor: "#fafafa" }}>
-			<CardHeader
-				title={recipe.name}
-			/>
+			<CardHeader title={recipe.name} />
 			<CardMedia
 				component="img"
 				height="300"
@@ -49,7 +44,14 @@ export default function RecipeCard({ recipe, handleCardClick, check }) {
 					<IconButton
 						title="Save Recipe"
 						aria-label="add to favorites"
-						onClick={async () => handleCardClick(recipe)}
+						onClick={async () => {
+							let valid = await handleCardClick(recipe); 
+							if (valid) {
+								toggleSnackBar("Saved Recipe!");
+							} else {
+								toggleSnackBar("You already saved this recipe!")
+							}
+						}}
 					>
 						<BookmarkBorderIcon></BookmarkBorderIcon>
 					</IconButton>

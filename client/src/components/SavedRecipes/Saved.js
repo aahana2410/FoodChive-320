@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import './PageStyles.css'
-import RecipeCard from "../RecipeCard/RecipeCard.tsx";
+import RecipeCard from "../RecipeCard/RecipeCard.js";
 
 
 function Saved() {

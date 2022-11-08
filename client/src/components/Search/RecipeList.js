@@ -1,9 +1,42 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import './PageStyles.css'
-import RecipeCard from "../RecipeCard/RecipeCard.tsx";
+import RecipeCard from "../RecipeCard/RecipeCard.js";
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 function RecipeList(query) {
+  // FOR SNACKBAR
+  const [open, setOpen] = useState(false);
+  const [snackBarMessage, setSnackBarMessage] = useState();
+
+  const toggleSnackBar = (message) => {
+    setSnackBarMessage(message);
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+  // SNACKBAR ENDS
 
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
@@ -18,7 +51,6 @@ function RecipeList(query) {
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`;
         window.alert(message);
-        return;
       }
       const recipesList = await response.json();
       setRecipes(recipesList);
@@ -43,22 +75,33 @@ function RecipeList(query) {
     let response = await fetch('/savedRecipes', requestOptions)
     if (!response.ok) {
       const message = `You already saved this recipe!`;
-      window.alert(message);
-      return;
+      // window.alert(message);
+      return false;
     }
+    return true;
   };
 
   return (
-    < ul >
-      {
-        search.map((currRecipe) => (
-          <div key={currRecipe.name} className="card">
-            <RecipeCard recipe={currRecipe} handleCardClick={save} check={true}></RecipeCard>
-          </div>
-        )
-        )
-      }
-    </ul >
+    <div>
+      < ul >
+        {
+          search.map((currRecipe) => (
+            <div key={currRecipe.name} className="card">
+              <RecipeCard recipe={currRecipe} handleCardClick={save} check={true} toggleSnackBar={toggleSnackBar}></RecipeCard>
+            </div>
+          )
+          )
+        }
+      </ul >
+      <Snackbar
+        open={open}
+        autoHideDuration={1000}
+        onClose={handleClose}
+        message={snackBarMessage}
+        action={action}
+      />
+    </div>
+
   )
 }
 
