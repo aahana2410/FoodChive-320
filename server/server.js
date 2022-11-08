@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
-import corsOptions from "./config/corsOptions.js";
+//import corsOptions from "./config/corsOptions.js";
 import bodyParser from "body-parser";
 
 import recipeRoutes from "./routes/recipeRoutes.js";
@@ -17,7 +17,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/recipes", recipeRoutes);
 app.use("/savedRecipes", savedRecipeRoutes);
 
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: [
+      "https://foodchive.onrender.com",
+      "http://localhost:3000",
+      "http://localhost:5000",
+    ],
+  })
+);
 dotenv.config();
 
 mongoose

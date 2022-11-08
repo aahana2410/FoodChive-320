@@ -26,7 +26,7 @@ function RecipeList(query) {
   }, []);
 
   const search = recipes.filter((el) => {
-    if (query.input === "") {
+    if (query.input == "") {
       return true;
     }
     return el.name.toLowerCase().includes(query.input.toLowerCase());
