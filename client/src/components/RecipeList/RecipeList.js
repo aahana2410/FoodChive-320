@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import './PageStyles.css'
-import RecipeCard from "../RecipeCard/RecipeCard.js";
+import RecipeCard from "../RecipeCard/RecipeCard";
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
@@ -82,17 +82,13 @@ function RecipeList(query) {
   };
 
   return (
-    <div>
-      < ul >
+    <div data-testid="recipe-list">
         {
           search.map((currRecipe) => (
             <div key={currRecipe.name} className="card">
               <RecipeCard recipe={currRecipe} handleCardClick={save} check={true} toggleSnackBar={toggleSnackBar}></RecipeCard>
-            </div>
-          )
-          )
+            </div>))
         }
-      </ul >
       <Snackbar
         open={open}
         autoHideDuration={1000}
@@ -101,7 +97,6 @@ function RecipeList(query) {
         action={action}
       />
     </div>
-
   )
 }
 

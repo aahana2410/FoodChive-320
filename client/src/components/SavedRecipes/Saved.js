@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import './PageStyles.css'
-import RecipeCard from "../RecipeCard/RecipeCard.js";
+import RecipeCard from "../RecipeCard/RecipeCard";
 
 
 function Saved() {
@@ -37,12 +37,12 @@ function Saved() {
   };
 
   return (
-    <ul>
-      <h2>
-        <center>
-          Your Saved Recipes:
-        </center>
-      </h2>
+    <div data-testid="saved">
+        <h2>
+          <center>
+            Your Saved Recipes:
+          </center>
+        </h2>
       <center>
         {recipes.map((currRecipe) => (
           <div key={currRecipe.name} className="card">
@@ -52,7 +52,7 @@ function Saved() {
         )
         }
       </center>
-    </ul>
+    </div>
   );
 }
 export default Saved;
