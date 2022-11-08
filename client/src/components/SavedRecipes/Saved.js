@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import './PageStyles.css'
+import RecipeCard from "../RecipeCard/RecipeCard";
+
 
 function Saved() {
   const [recipes, setRecipes] = useState([]);
@@ -36,28 +38,20 @@ function Saved() {
 
   return (
     <div data-testid="saved">
-      <ul>
         <h2>
           <center>
             Your Saved Recipes:
           </center>
         </h2>
-        <center>
-          {recipes.map((currRecipe) => (
-            <div key={currRecipe.name}>
-              <div>
-                <h2>
-                  {currRecipe.name}
-                </h2>
-              </div>
-              <img className="recipe-img" alt="recipe" src={currRecipe.imgs[0]} width='20%' />
-              <h2>
-                Delete?
-                <input className="deletebutton" id="deletebutton" type="button" defaultValue=" X " onClick={async (event) => deleteRecipe(currRecipe)} />
-              </h2>
-            </div>))}
-        </center>
-      </ul>
+      <center>
+        {recipes.map((currRecipe) => (
+          <div key={currRecipe.name} className="card">
+            <RecipeCard recipe={currRecipe} handleCardClick={deleteRecipe} check={false}></RecipeCard>
+          </div>
+        )
+        )
+        }
+      </center>
     </div>
   );
 }

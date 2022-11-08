@@ -22,7 +22,6 @@ function Discover() {
     }
 
     getRecipes();
-
     return;
   }, []);
 

@@ -1,6 +1,6 @@
 import React from "react";
-import './RecipeList/PageStyles.css'
-import RecipeList from "./RecipeList/RecipeList";
+import '../RecipeList/PageStyles.css'
+import RecipeList from "../RecipeList/RecipeList";
 import recipeFilters from "./RecipeFilters";
 import { useState, useEffect } from "react";
 import Multiselect from "multiselect-react-dropdown"
