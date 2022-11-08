@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6e45b5a4.css",
+    "main.js": "/static/js/main.ed25dd67.js",
+    "static/media/discover.png": "/static/media/discover.ce264ba98a0efc4603b0.png",
+    "static/media/FoodChiveLogo.png": "/static/media/FoodChiveLogo.f6967eb27a91dbc300f3.png",
+    "static/media/saved.png": "/static/media/saved.a105b4808ecd5646b7e6.png",
+    "static/media/searchicon.png": "/static/media/searchicon.5ba7c615c5316fe4f871.png",
+    "static/media/profile.png": "/static/media/profile.9b163023be62763179a3.png",
+    "index.html": "/index.html",
+    "main.6e45b5a4.css.map": "/static/css/main.6e45b5a4.css.map",
+    "main.ed25dd67.js.map": "/static/js/main.ed25dd67.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6e45b5a4.css",
+    "static/js/main.ed25dd67.js"
+  ]
+}

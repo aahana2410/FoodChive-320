@@ -9,6 +9,7 @@ import savedRecipeRoutes from "./routes/savedRecipeRoutes.js"
 
 const app = express();
 const port = process.env.PORT || 5000;
+app.use(express.static('build'))
 
 app.use(bodyParser.json({ extended: true }))
 app.use(bodyParser.urlencoded({ extended: true }))
