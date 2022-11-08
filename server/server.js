@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: "https://foodchive.onrender.com/",
+    origin: "https://foodchive.onrender.com",
   })
 );
 dotenv.config();
