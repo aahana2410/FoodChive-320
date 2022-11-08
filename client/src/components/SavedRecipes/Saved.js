@@ -35,31 +35,30 @@ function Saved() {
   };
 
   return (
-    <ul>
-      <h2>
+    <div data-testid="saved">
+      <ul>
+        <h2>
+          <center>
+            Your Saved Recipes:
+          </center>
+        </h2>
         <center>
-          Your Saved Recipes:
-        </center>
-      </h2>
-      <center>
-        {recipes.map((currRecipe) => (
-          <div key={currRecipe.name}>
-            <div>
+          {recipes.map((currRecipe) => (
+            <div key={currRecipe.name}>
+              <div>
+                <h2>
+                  {currRecipe.name}
+                </h2>
+              </div>
+              <img className="recipe-img" alt="recipe" src={currRecipe.imgs[0]} width='20%' />
               <h2>
-                {currRecipe.name}
+                Delete?
+                <input className="deletebutton" id="deletebutton" type="button" defaultValue=" X " onClick={async (event) => deleteRecipe(currRecipe)} />
               </h2>
-            </div>
-            <img className="recipe-img" alt="recipe" src={currRecipe.imgs[0]} width='20%' />
-            <h2>
-              Delete?
-              <input className="deletebutton" id="deletebutton" type="button" defaultValue=" X " onClick={async (event) => deleteRecipe(currRecipe)} />
-            </h2>
-          </div>
-        )
-        )
-        }
-      </center>
-    </ul>
+            </div>))}
+        </center>
+      </ul>
+    </div>
   );
 }
 export default Saved;

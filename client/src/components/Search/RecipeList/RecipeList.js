@@ -43,25 +43,27 @@ function RecipeList(query) {
   };
 
   return (
-    < ul >
-      {
-        search.map((currRecipe) => (
-          <div key={currRecipe.name}>
-            <div>
+    <div data-testid="recipe-list">
+      <ul>
+        {
+          search.map((currRecipe) => (
+            <div key={currRecipe.name}>
+              <div>
+                <h2>
+                  {currRecipe.name}
+                </h2>
+              </div>
+              <img className="recipe-img" alt="recipe" src={currRecipe.imgs[0]} width='20%' />
               <h2>
-                {currRecipe.name}
+                Save?
+                <input className="savebutton" id="savebutton" type="button" defaultValue=" ✔ " onClick={async (event) => save(currRecipe)} />
               </h2>
             </div>
-            <img className="recipe-img" alt="recipe" src={currRecipe.imgs[0]} width='20%' />
-            <h2>
-              Save?
-              <input className="savebutton" id="savebutton" type="button" defaultValue=" ✔ " onClick={async (event) => save(currRecipe)} />
-            </h2>
-          </div>
-        )
-        )
-      }
-    </ul >
+          )
+          )
+        }
+      </ul>
+    </div>
   )
 }
 
