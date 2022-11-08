@@ -8,8 +8,9 @@ function RecipeList(query) {
   useEffect(() => {
     async function getRecipes() {
       const response = await fetch(
-        `http://localhost:5000/recipes`,
+        `/recipes`,
         {
+          mode: 'no-cors',
           method: "GET",
         }
       );
@@ -28,25 +29,25 @@ function RecipeList(query) {
   }, []);
 
   const search = recipes.filter((el) => {
-    if (query.input == '') { return true; }
+    if (query.input === '') { return true; }
     return el.name.toLowerCase().includes(query.input.toLowerCase());
   });
 
   let save = async (recipe) => {
+    console.log(recipe);
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: recipe
+      body: JSON.stringify(recipe)
     };
-    const response = await fetch('http://localhost:5000/savedRecipes', requestOptions)
-    console.log(response.json)
+    await fetch('/savedRecipes', requestOptions)
   };
 
   return (
     < ul >
       {
         search.map((currRecipe) => (
-          <div>
+          <div key={currRecipe.name}>
             <div>
               <h2>
                 {currRecipe.name}
@@ -55,7 +56,7 @@ function RecipeList(query) {
             <img className="recipe-img" alt="recipe" src={currRecipe.imgs[0]} width='20%' />
             <h2>
               Save?
-              <input className="savebutton" id="savebutton" type="button" defaultValue=" ✔ " onClick={(event) => save(currRecipe)} />
+              <input className="savebutton" id="savebutton" type="button" defaultValue=" ✔ " onClick={async (event) => save(currRecipe)} />
             </h2>
           </div>
         )

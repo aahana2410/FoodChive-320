@@ -6,7 +6,7 @@ function Saved() {
   useEffect(() => {
     async function getRecipes() {
       const response = await fetch(
-        `http://localhost:5000/savedRecipes`,
+        `/savedRecipes`,
         {
           method: "GET",
         }
@@ -34,7 +34,7 @@ function Saved() {
       </h2>
       <center>
         {recipes.map((currRecipe) => (
-          <div>
+          <div key={currRecipe.name}>
             <div>
               <h2>
                 {currRecipe.name}

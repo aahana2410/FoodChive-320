@@ -7,7 +7,7 @@ function Discover() {
   useEffect(() => {
     async function getRecipes() {
       const response = await fetch(
-        `http://localhost:5000/recipes`,
+        `/recipes`,
         {
           method: "GET",
         }
