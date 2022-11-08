@@ -1,5 +1,5 @@
 import React from "react";
-import Recipe from "./Recipe";
+import Recipe from "../Recipe/Recipe";
 import { useState, useEffect } from "react";
 
 function Discover() {
@@ -7,7 +7,7 @@ function Discover() {
   useEffect(() => {
     async function getRecipes() {
       const response = await fetch(
-        `https://foodchive-api.onrender.com/api/recipes`,
+        `/recipes`,
         {
           method: "GET",
         }

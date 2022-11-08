@@ -12,7 +12,7 @@
 }
 
 .button:hover {
-  background-color: #3e8e41 
+  background-color: #3e8e41
 }
 
 .button:active {
@@ -45,7 +45,7 @@
   transform: translateY(4px);
 }
 
-.savebutton {
+.deletebutton {
   margin-left: 10px;
   padding: 5px 5px;
   font-size: 24px;
@@ -59,11 +59,11 @@
   box-shadow: 0 9px #999;
 }
 
-.savebutton:hover {
+.deletebutton:hover {
   background-color: #3e8e41
 }
 
-.savebutton:active {
+.deletebutton:active {
   background-color: #3e8e41;
   box-shadow: 0 5px #666;
   transform: translateY(4px);

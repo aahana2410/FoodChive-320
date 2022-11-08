@@ -11,12 +11,12 @@ function Recipe({ recipe }) {
       <h2>Servings: {recipe.servings}</h2>
       <h2>Ingredients:</h2>
         {recipe.ingredients.map((ingredient) => {
-          return <li>{ingredient}</li>;
+          return <li key={ingredient}>{ingredient}</li>;
         })}
       <h2>Steps</h2>
       <ol>
         {recipe.steps.map((step) => {
-          return <li>{step}</li>;
+          return <li key={step}>{step}</li>;
         })}
       </ol>
       <h4>

@@ -1,14 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import SavedRecipeList from './SavedRecipeList';
-import Recipe from "./Recipe";
+import './PageStyles.css'
 
 function Saved() {
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     async function getRecipes() {
       const response = await fetch(
-        `https://foodchive-api.onrender.com/api/recipes`,
+        `/savedRecipes`,
         {
           method: "GET",
         }
@@ -25,11 +24,15 @@ function Saved() {
     getRecipes();
 
     return;
-  }, []);
+  }, [recipes]);
 
-  const search = recipes.filter((el) => {
-    return SavedRecipeList.list.includes(el._id);
-  });
+  let deleteRecipe = async (recipe) => {
+    const requestOptions = {
+      method: 'DELETE',
+    };
+    await fetch('/savedRecipes/' + recipe._id, requestOptions)
+
+  };
 
   return (
     <ul>
@@ -39,9 +42,18 @@ function Saved() {
         </center>
       </h2>
       <center>
-        {search.map((currRecipe) => (
-          <div>
-            <Recipe recipe={currRecipe}></Recipe>
+        {recipes.map((currRecipe) => (
+          <div key={currRecipe.name}>
+            <div>
+              <h2>
+                {currRecipe.name}
+              </h2>
+            </div>
+            <img className="recipe-img" alt="recipe" src={currRecipe.imgs[0]} width='20%' />
+            <h2>
+              Delete?
+              <input className="deletebutton" id="deletebutton" type="button" defaultValue=" X " onClick={async (event) => deleteRecipe(currRecipe)} />
+            </h2>
           </div>
         )
         )
