@@ -7,6 +7,8 @@ if (process.env.NODE_ENV === "production") {
   disableReactDevTools();
 } else console.log(process.env.NODE_ENV);
 
+console.log(process.env.NODE_ENV);
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

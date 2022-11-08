@@ -8,7 +8,7 @@ function Discover() {
   console.log(environmentURL);
   useEffect(() => {
     async function getRecipes() {
-      const response = await fetch(`${environmentURL}/recipes`, {
+      const response = await fetch(`/recipes`, {
         method: "GET",
       });
       if (!response.ok) {
