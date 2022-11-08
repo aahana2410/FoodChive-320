@@ -10,6 +10,7 @@ body {
   align-items: center;
   height: 100px;
   padding: 20px;
+  margin-bottom: 20px;
 }
 
 .header--logo {
