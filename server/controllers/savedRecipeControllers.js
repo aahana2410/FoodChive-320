@@ -32,10 +32,7 @@ export const saveRecipe = async (req, res, next) => {
   });
   try {
     await newRecipe.save();
-    res.header(
-      "Access-Control-Allow-Origin",
-      "https://foodchive.onrender.com/"
-    ); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Origin", "https://foodchive.onrender.com"); // update to match the domain you will make the request from
     res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
@@ -50,10 +47,7 @@ export const saveRecipe = async (req, res, next) => {
 export const getSavedRecipes = async (req, res, next) => {
   try {
     const savedRecipes = await SavedRecipe.find();
-    res.header(
-      "Access-Control-Allow-Origin",
-      "https://foodchive.onrender.com/"
-    ); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Origin", "https://foodchive.onrender.com"); // update to match the domain you will make the request from
     res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
@@ -72,7 +66,7 @@ export const deleteSavedRecipe = async (req, res, next) => {
     return res.status(404).send(`No saved recipe with id: ${id}`);
 
   await SavedRecipe.findByIdAndRemove(id);
-  res.header("Access-Control-Allow-Origin", "https://foodchive.onrender.com/"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Origin", "https://foodchive.onrender.com"); // update to match the domain you will make the request from
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
