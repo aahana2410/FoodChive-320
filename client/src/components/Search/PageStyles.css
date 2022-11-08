@@ -1,4 +1,7 @@
 .button {
+  margin-bottom: 15px;
+  margin-left: 5px;
+  margin-top: 5px;
   padding: 5px 5px;
   font-size: 24px;
   text-align: center;
@@ -12,7 +15,7 @@
 }
 
 .button:hover {
-  background-color: #3e8e41 
+  background-color: #3e8e41
 }
 
 .button:active {
@@ -46,6 +49,7 @@
 }
 
 .savebutton {
+
   margin-left: 10px;
   padding: 5px 5px;
   font-size: 24px;
