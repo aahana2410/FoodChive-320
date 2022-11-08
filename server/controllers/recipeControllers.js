@@ -16,6 +16,7 @@ export const getRecipes = async (req, res, next) => {
     next();
   } catch (error) {
     res.status(404).json({ message: error.message });
+    res.send("Not Found");
   }
 };
 
