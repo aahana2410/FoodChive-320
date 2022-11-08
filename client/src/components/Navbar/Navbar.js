@@ -5,7 +5,7 @@ import './Navbar.css'
 
 const Navbar = () => {
   return (
-    <div className="header">
+    <div data-testid="navbar" className="header">
       <Link to="/" className="header--logo">
         <img
           className="header--logo"
