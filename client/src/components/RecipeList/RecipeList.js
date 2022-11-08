@@ -62,7 +62,7 @@ function RecipeList(query) {
   }, []);
 
   const search = recipes.filter((el) => {
-    if (query.input === '') { return true; }
+    if (query.input == '') { return true; }
     return el.name.toLowerCase().includes(query.input.toLowerCase());
   });
 
@@ -83,12 +83,12 @@ function RecipeList(query) {
 
   return (
     <div data-testid="recipe-list">
-        {
-          search.map((currRecipe) => (
-            <div key={currRecipe.name} className="card">
-              <RecipeCard recipe={currRecipe} handleCardClick={save} check={true} toggleSnackBar={toggleSnackBar}></RecipeCard>
-            </div>))
-        }
+      {
+        search.map((currRecipe) => (
+          <div key={currRecipe.name} className="card">
+            <RecipeCard recipe={currRecipe} handleCardClick={save} check={true} toggleSnackBar={toggleSnackBar}></RecipeCard>
+          </div>))
+      }
       <Snackbar
         open={open}
         autoHideDuration={1000}
