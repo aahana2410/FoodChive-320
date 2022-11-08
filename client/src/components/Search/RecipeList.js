@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import './PageStyles.css'
+import RecipeCard from "../RecipeCard/RecipeCard.tsx";
 
 function RecipeList(query) {
 
@@ -46,8 +47,8 @@ function RecipeList(query) {
     < ul >
       {
         search.map((currRecipe) => (
-          <div key={currRecipe.name}>
-            <div>
+          <div key={currRecipe.name} className="card">
+            {/* <div>
               <h2>
                 {currRecipe.name}
               </h2>
@@ -56,7 +57,8 @@ function RecipeList(query) {
             <h2>
               Save?
               <input className="savebutton" id="savebutton" type="button" defaultValue=" ✔ " onClick={async (event) => save(currRecipe)} />
-            </h2>
+            </h2> */}
+            <RecipeCard recipe={currRecipe} handleSave={save}></RecipeCard>
           </div>
         )
         )
