@@ -40,7 +40,12 @@ function RecipeList(query) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(recipe)
     };
-    await fetch('/savedRecipes', requestOptions)
+    let response = await fetch('/savedRecipes', requestOptions)
+    if (!response.ok) {
+      const message = `You already saved this recipe!`;
+      window.alert(message);
+      return;
+    }
   };
 
   return (
@@ -48,17 +53,7 @@ function RecipeList(query) {
       {
         search.map((currRecipe) => (
           <div key={currRecipe.name} className="card">
-            {/* <div>
-              <h2>
-                {currRecipe.name}
-              </h2>
-            </div>
-            <img className="recipe-img" alt="recipe" src={currRecipe.imgs[0]} width='20%' />
-            <h2>
-              Save?
-              <input className="savebutton" id="savebutton" type="button" defaultValue=" ✔ " onClick={async (event) => save(currRecipe)} />
-            </h2> */}
-            <RecipeCard recipe={currRecipe} handleSave={save}></RecipeCard>
+            <RecipeCard recipe={currRecipe} handleCardClick={save} check={true}></RecipeCard>
           </div>
         )
         )

@@ -1,6 +1,5 @@
 import React from "react";
-// import Recipe from "../Recipe/Recipe";
-import RecipeCard from "../RecipeCard/RecipeCard.tsx";
+import Recipe from "../Recipe/Recipe";
 import { useState, useEffect } from "react";
 
 function Discover() {
@@ -23,14 +22,13 @@ function Discover() {
     }
 
     getRecipes();
-
     return;
   }, []);
 
   return (
     recipes[0] && (
       <center key={recipes[0]._id}>
-        <RecipeCard recipe={recipes[0]}></RecipeCard>
+        <Recipe recipe={recipes[0]}></Recipe>
       </center>
     )
   );
