@@ -13,10 +13,8 @@ export const getRecipes = async (req, res, next) => {
       "Origin, X-Requested-With, Content-Type, Accept"
     );
     res.status(200).json(recipes);
-    next();
   } catch (error) {
     res.status(404).json({ message: error.message });
-    res.send("Not Found");
   }
 };
 
