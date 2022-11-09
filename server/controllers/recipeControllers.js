@@ -15,6 +15,7 @@ export const getRecipes = async (req, res, next) => {
     res.status(200).json(recipes);
   } catch (error) {
     res.status(404).json({ message: error.message });
+    return;
   }
 };
 

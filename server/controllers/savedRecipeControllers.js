@@ -79,6 +79,7 @@ export const deleteSavedRecipe = async (req, res, next) => {
     "Origin, X-Requested-With, Content-Type, Accept"
   );
   res.json({ message: "Saved Recipe deleted successfully." });
+  return;
 };
 
 export default router;
