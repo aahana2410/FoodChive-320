@@ -11,7 +11,6 @@ function RecipeList(query) {
         //mode: "no-cors",
         method: "GET",
       });
-      console.log(response);
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`;
         window.alert(message);
