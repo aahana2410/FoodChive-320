@@ -45,9 +45,9 @@ export const saveRecipe = async (req, res) => {
       "Origin, X-Requested-With, Content-Type, Accept"
     );
     res.status(201).json(newRecipe);
-    next();
   } catch (error) {
     res.status(409).json({ message: error.message });
+    return;
   }
 };
 
@@ -60,9 +60,9 @@ export const getSavedRecipes = async (req, res, next) => {
       "Origin, X-Requested-With, Content-Type, Accept"
     );
     res.status(200).json(savedRecipes);
-    next();
   } catch (error) {
     res.status(404).json({ message: error.message });
+    return;
   }
 };
 
@@ -79,7 +79,6 @@ export const deleteSavedRecipe = async (req, res, next) => {
     "Origin, X-Requested-With, Content-Type, Accept"
   );
   res.json({ message: "Saved Recipe deleted successfully." });
-  next();
 };
 
 export default router;
