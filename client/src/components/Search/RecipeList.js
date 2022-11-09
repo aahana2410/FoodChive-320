@@ -8,7 +8,7 @@ function RecipeList(query) {
   useEffect(() => {
     async function getRecipes() {
       const response = await fetch(`${environmentURL}/recipes`, {
-        //mode: "no-cors",
+        mode: "no-cors",
         method: "GET",
       });
       if (!response.ok) {
