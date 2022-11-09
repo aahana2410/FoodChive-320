@@ -5,7 +5,14 @@ import SavedRecipe from "../models/savedRecipeModel.js";
 
 const router = express.Router();
 
-export const saveRecipe = async (req, res, next) => {
+export const saveRecipe = async (req, res) => {
+  const n = req.body.name;
+  let exists = await SavedRecipe.exists({ name: n });
+  console.log(exists);
+  console.log(n);
+  if (exists)
+    return res.status(409).send(`Recipe with id: ${n} is already saved`);
+
   const {
     name,
     src,

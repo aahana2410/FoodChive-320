@@ -1,7 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import "./PageStyles.css";
+import RecipeCard from "../RecipeCard/RecipeCard";
 import { environmentURL } from "../../environementURL";
+
 
 function Saved() {
   const [recipes, setRecipes] = useState([]);
@@ -36,6 +38,12 @@ function Saved() {
       <h2>
         <center>Your Saved Recipes:</center>
       </h2>
+    <div data-testid="saved">
+        <h2>
+          <center>
+            Your Saved Recipes:
+          </center>
+        </h2>
       <center>
         {recipes.map((currRecipe) => (
           <div key={currRecipe.name}>
@@ -58,10 +66,12 @@ function Saved() {
                 onClick={async (event) => deleteRecipe(currRecipe)}
               />
             </h2>
+          <div key={currRecipe.name} className="card">
+            <RecipeCard recipe={currRecipe} handleCardClick={deleteRecipe} check={false}></RecipeCard>
           </div>
         ))}
       </center>
-    </ul>
+    </div>
   );
 }
 export default Saved;
