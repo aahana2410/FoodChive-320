@@ -1,10 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import './PageStyles.css'
+import "./PageStyles.css";
 import RecipeCard from "../RecipeCard/RecipeCard";
-import Snackbar from '@mui/material/Snackbar';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
+import Snackbar from "@mui/material/Snackbar";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import { environmentURL } from "../../environementURL";
 
 function RecipeList(query) {
   // FOR SNACKBAR
@@ -41,13 +42,10 @@ function RecipeList(query) {
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     async function getRecipes() {
-      const response = await fetch(
-        `/recipes`,
-        {
-          mode: 'no-cors',
-          method: "GET",
-        }
-      );
+      const response = await fetch(`${environmentURL}/recipes`, {
+        //mode: "no-cors",
+        method: "GET",
+      });
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`;
         window.alert(message);
@@ -62,17 +60,22 @@ function RecipeList(query) {
   }, []);
 
   const search = recipes.filter((el) => {
-    if (query.input == '') { return true; }
+    if (query.input == "") {
+      return true;
+    }
     return el.name.toLowerCase().includes(query.input.toLowerCase());
   });
 
   let save = async (recipe) => {
     const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(recipe)
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(recipe),
     };
-    let response = await fetch('/savedRecipes', requestOptions)
+    let response = await fetch(
+      `${environmentURL}/savedRecipes`,
+      requestOptions
+    );
     if (!response.ok) {
       const message = `You already saved this recipe!`;
       // window.alert(message);
@@ -83,12 +86,16 @@ function RecipeList(query) {
 
   return (
     <div data-testid="recipe-list">
-      {
-        search.map((currRecipe) => (
-          <div key={currRecipe.name} className="card">
-            <RecipeCard recipe={currRecipe} handleCardClick={save} check={true} toggleSnackBar={toggleSnackBar}></RecipeCard>
-          </div>))
-      }
+      {search.map((currRecipe) => (
+        <div key={currRecipe.name} className="card">
+          <RecipeCard
+            recipe={currRecipe}
+            handleCardClick={save}
+            check={true}
+            toggleSnackBar={toggleSnackBar}
+          ></RecipeCard>
+        </div>
+      ))}
       <Snackbar
         open={open}
         autoHideDuration={1000}
@@ -97,7 +104,7 @@ function RecipeList(query) {
         action={action}
       />
     </div>
-  )
+  );
 }
 
-export default RecipeList
+export default RecipeList;
