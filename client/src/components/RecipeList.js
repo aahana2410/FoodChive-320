@@ -30,7 +30,7 @@ function RecipeList(query) {
   }, []);
 
   const search = recipes.filter((el) => {
-    if (query.input === '') { return false; }
+    if (query.input == '') { return false; }
     return el.name.toLowerCase().includes(query.input.toLowerCase());
   });
 
