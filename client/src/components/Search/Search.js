@@ -18,83 +18,106 @@ function Search() {
   const [skillFitler, setSkillFilter] = useState([]);
   const [DRFilter, setDRFilter] = useState([]);
 
+  // initialize each 
   useEffect(() => {
     setCuisineFilter("");
     setIngredientsFilter("");
     setFoodTypeFilter("");
     setSkillFilter("");
     setDRFilter("");
-    setQuery('');
+    setQuery("");
   }, []);
-
-  let inputHandler = (e) => {
-    setInputText(e.target.value);
-    if (e.key === "Enter") {
+  // handle the search bar
+  let searchBarHandler = (inputKey) => {
+    setInputText(inputKey.target.value);
+    if (inputKey.key === "Enter") {
       let sendQuery = inputText + '\n' + cuisineFilter + '\n' + ingredientsFilter + '\n' + foodTypeFilter + '\n' + skillFitler + '\n' + DRFilter;
       setQuery(sendQuery);
     }
   };
-
+  // handle the search button
   let clickHandler = () => {
     let sendQuery = inputText + '\n' + cuisineFilter + '\n' + ingredientsFilter + '\n' + foodTypeFilter + '\n' + skillFitler + '\n' + DRFilter;
     setQuery(sendQuery);
   };
+  // handle adding a filter
+  let addFilter = (selectedList, selectedItem) => {
+    switch (selectedItem.cat) {
+      case "Cuisine":
+        setCuisineFilter(cuisineFilter + " " + selectedItem.key);
+        break;
 
+      case "Ingredients":
+        setIngredientsFilter(ingredientsFilter + " " + selectedItem.key);
+        break;
 
+      case "Type":
+        setFoodTypeFilter(foodTypeFilter + " " + selectedItem.key);
+        break;
 
+      case "Skill Level":
+        setSkillFilter(skillFitler + " " + selectedItem.key);
+        break;
 
-  let addCuisine = (selectedList, selectedItem) => {
-    setCuisineFilter(cuisineFilter + " " + selectedItem.key);
+      case "Dietary Restrictions":
+        setDRFilter(DRFilter + " " + selectedItem.key);
+        break;
+
+      default:
+        alert("Catagory not recognized.")
+        break;
+    }
   }
-  let addIngredients = (selectedList, selectedItem) => {
-    setIngredientsFilter(ingredientsFilter + " " + selectedItem.key);
-  }
-  let addFoodType = (selectedList, selectedItem) => {
-    setFoodTypeFilter(foodTypeFilter + " " + selectedItem.key);
-  }
-  let addSkill = (selectedList, selectedItem) => {
-    setSkillFilter(skillFitler + " " + selectedItem.key);
-  }
-  let addDR = (selectedList, selectedItem) => {
-    setDRFilter(DRFilter + " " + selectedItem.key);
+  // handle removing a filter 
+  let removeFilter = (selectedList, selectedItem) => {
+    let removed = "";
+    switch (selectedItem.cat) {
+      case "Cuisine":
+        removed = cuisineFilter.replace((" " + selectedItem.key), "");
+        setCuisineFilter(removed);
+        break;
+
+      case "Ingredients":
+        removed = ingredientsFilter.replace((" " + selectedItem.key), "");
+        setIngredientsFilter(removed);
+        break;
+
+      case "Type":
+        removed = foodTypeFilter.replace((" " + selectedItem.key), "");
+        setFoodTypeFilter(removed);
+        break;
+
+      case "Skill Level":
+        removed = skillFitler.replace((" " + selectedItem.key), "");
+        setSkillFilter(removed);
+        break;
+
+      case "Dietary Restrictions":
+        removed = DRFilter.replace((" " + selectedItem.key), "");
+        setDRFilter(removed);
+        break;
+
+      default:
+        alert("Catagory not recognized.")
+        break;
+    }
   }
 
-  let removeCuisine = (selectedList, selectedItem) => {
-    let removed = cuisineFilter.replace((" " + selectedItem.key), "");
-    setCuisineFilter(removed);
-  }
-  let removeIngredients = (selectedList, selectedItem) => {
-    let removed = ingredientsFilter.replace((" " + selectedItem.key), "");
-    setIngredientsFilter(removed);
-  }
-  let removeFoodType = (selectedList, selectedItem) => {
-    let removed = foodTypeFilter.replace((" " + selectedItem.key), "");
-    setFoodTypeFilter(removed);
-  }
-  let removeSkill = (selectedList, selectedItem) => {
-    let removed = skillFitler.replace((" " + selectedItem.key), "");
-    setSkillFilter(removed);
-  }
-  let removeDR = (selectedList, selectedItem) => {
-    let removed = DRFilter.replace((" " + selectedItem.key), "");
-    setDRFilter(removed);
-  }
 
   return (
     <div data-testid="search">
       <center>
-        <input type="text" name="search" onKeyUp={inputHandler} placeholder="Search Recipes..." />
+        <input type="text" name="search" onKeyUp={searchBarHandler} placeholder="Search Recipes..." />
         <input className="button" id="searchbutton" type="button" defaultValue="Search" onClick={clickHandler} />
         <div className="checkbox">
-
           <Multiselect
             placeholder="Cuisine"
             displayValue="key"
             groupBy="cat"
             onKeyPressFn={function noRefCheck() { }}
-            onRemove={removeCuisine}
+            onRemove={removeFilter}
             onSearch={function noRefCheck() { }}
-            onSelect={addCuisine}
+            onSelect={addFilter}
             options={cuisine}
             showCheckbox
           />
@@ -103,9 +126,9 @@ function Search() {
             displayValue="key"
             groupBy="cat"
             onKeyPressFn={function noRefCheck() { }}
-            onRemove={removeIngredients}
+            onRemove={removeFilter}
             onSearch={function noRefCheck() { }}
-            onSelect={addIngredients}
+            onSelect={addFilter}
             options={ingredients}
             showCheckbox
           />
@@ -114,9 +137,9 @@ function Search() {
             displayValue="key"
             groupBy="cat"
             onKeyPressFn={function noRefCheck() { }}
-            onRemove={removeFoodType}
+            onRemove={removeFilter}
             onSearch={function noRefCheck() { }}
-            onSelect={addFoodType}
+            onSelect={addFilter}
             options={foodType}
             showCheckbox
           />
@@ -125,9 +148,9 @@ function Search() {
             displayValue="key"
             groupBy="cat"
             onKeyPressFn={function noRefCheck() { }}
-            onRemove={removeSkill}
+            onRemove={removeFilter}
             onSearch={function noRefCheck() { }}
-            onSelect={addSkill}
+            onSelect={addFilter}
             options={skill}
             showCheckbox
           />
@@ -136,9 +159,9 @@ function Search() {
             displayValue="key"
             groupBy="cat"
             onKeyPressFn={function noRefCheck() { }}
-            onRemove={removeDR}
+            onRemove={removeFilter}
             onSearch={function noRefCheck() { }}
-            onSelect={addDR}
+            onSelect={addFilter}
             options={dietaryRestrictions}
             showCheckbox
           />
@@ -148,5 +171,4 @@ function Search() {
     </div>
   );
 }
-
 export default Search;
