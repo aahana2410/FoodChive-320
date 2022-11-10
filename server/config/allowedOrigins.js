@@ -1,3 +1,7 @@
-const allowedOrigins = ["https://foodchive.onrender.com"];
+const allowedOrigins = [
+  "https://foodchive.onrender.com",
+  "http://localhost:3000",
+  "http://localhost:5000",
+];
 
-module.exports = allowedOrigins;
+export default allowedOrigins;

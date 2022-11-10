@@ -1,10 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import './PageStyles.css'
+import "./PageStyles.css";
 import RecipeCard from "../RecipeCard/RecipeCard";
-import Snackbar from '@mui/material/Snackbar';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
+import Snackbar from "@mui/material/Snackbar";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import { environmentURL } from "../../environementURL";
 
 function RecipeList(fullQuery) {
   // FOR SNACKBAR
@@ -41,13 +42,10 @@ function RecipeList(fullQuery) {
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     async function getRecipes() {
-      const response = await fetch(
-        `/recipes`,
-        {
-          mode: 'no-cors',
-          method: "GET",
-        }
-      );
+      const response = await fetch(`${environmentURL}/recipes`, {
+        //mode: "no-cors",
+        method: "GET",
+      });
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`;
         window.alert(message);
@@ -131,15 +129,19 @@ function RecipeList(fullQuery) {
       }
     }
     return foundSearch && foundCuisine && foundIngredients && foundFoodType && foundSkill && foundDR;
+
   });
 
   let save = async (recipe) => {
     const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(recipe)
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(recipe),
     };
-    let response = await fetch('/savedRecipes', requestOptions)
+    let response = await fetch(
+      `${environmentURL}/savedRecipes`,
+      requestOptions
+    );
     if (!response.ok) {
       const message = `You already saved this recipe!`;
       window.alert(message);
@@ -149,6 +151,7 @@ function RecipeList(fullQuery) {
   };
 
   return (
+
     <div>
       <div data-testid="recipe-list">
         {
@@ -165,8 +168,9 @@ function RecipeList(fullQuery) {
           action={action}
         />
       </div>
+
     </div>
-  )
+  );
 }
 
-export default RecipeList
+export default RecipeList;

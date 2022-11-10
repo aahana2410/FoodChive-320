@@ -1,17 +1,15 @@
 import React from "react";
 import Recipe from "../Recipe/Recipe";
 import { useState, useEffect } from "react";
+import { environmentURL } from "../../environementURL";
 
 function Discover() {
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     async function getRecipes() {
-      const response = await fetch(
-        `/recipes`,
-        {
-          method: "GET",
-        }
-      );
+      const response = await fetch(`${environmentURL}/recipes`, {
+        method: "GET",
+      });
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`;
         window.alert(message);
