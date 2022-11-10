@@ -1,15 +1,18 @@
 const skill = [
   {
     cat: 'Skill Level',
-    key: 'Beginner'
+    key: 'Beginner',
+    display: 'Beginner'
   },
   {
     cat: 'Skill Level',
-    key: 'Intermediate'
+    key: 'Intermediate',
+    display: 'Intermediate'
   },
   {
     cat: 'Skill Level',
-    key: 'Expert'
+    key: 'Expert',
+    display: 'Expert'
   }
 ]
 export default skill

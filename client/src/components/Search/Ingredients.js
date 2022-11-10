@@ -1,51 +1,63 @@
 const ingredients = [
   {
     cat: 'Ingredients',
-    key: 'Chicken'
+    key: 'Chicken',
+    display: 'Chicken'
   },
   {
     cat: 'Ingredients',
-    key: 'Pork'
+    key: 'Pork',
+    display: 'Pork'
   },
   {
     cat: 'Ingredients',
-    key: 'Beef'
+    key: 'Beef',
+    display: 'Beef'
   },
   {
     cat: 'Ingredients',
-    key: 'Fish'
+    key: 'Fish',
+    display: 'Fish'
   },
   {
     cat: 'Ingredients',
-    key: 'Shellfish'
+    key: 'Shellfish',
+    display: 'Shellfish'
   },
   {
     cat: 'Ingredients',
-    key: 'Pasta and Noodles'
+    key: 'Pasta-and-Noodles',
+    display: 'Pasta and Noodles'
   },
   {
     cat: 'Ingredients',
-    key: 'Bread'
+    key: 'Bread',
+    display: 'Bread'
   },
   {
     cat: 'Ingredients',
-    key: 'Broth'
+    key: 'Broth',
+    display: 'Broth'
   },
   {
     cat: 'Ingredients',
-    key: 'Rice'
+    key: 'Rice',
+    display: 'Rice'
   },
   {
     cat: 'Ingredients',
-    key: 'Other Seafood'
+    key: 'Other-Seafood',
+    display: 'Other Seafood'
   },
   {
     cat: 'Ingredients',
-    key: 'Other Poultry'
+    key: 'Other-Poultry',
+    display: 'Other Poultry'
   },
   {
     cat: 'Ingredients',
-    key: 'Other Red Meat'
+    key: 'Other-Red-Meat',
+    display: 'Other Red Meat'
   }
 ]
 

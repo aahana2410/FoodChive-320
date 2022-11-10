@@ -132,7 +132,7 @@ function Search() {
         <div className="checkbox">
           <Multiselect
             placeholder="Cuisine"
-            displayValue="key"
+            displayValue="display"
             groupBy="cat"
             onKeyPressFn={function noRefCheck() { }}
             onRemove={removeFilter}
@@ -143,7 +143,7 @@ function Search() {
           />
           <Multiselect
             placeholder="Ingredients"
-            displayValue="key"
+            displayValue="display"
             groupBy="cat"
             onKeyPressFn={function noRefCheck() { }}
             onRemove={removeFilter}
@@ -154,7 +154,7 @@ function Search() {
           />
           <Multiselect
             placeholder="Type"
-            displayValue="key"
+            displayValue="display"
             groupBy="cat"
             onKeyPressFn={function noRefCheck() { }}
             onRemove={removeFilter}
@@ -165,7 +165,7 @@ function Search() {
           />
           <Multiselect
             placeholder="Skill Level"
-            displayValue="key"
+            displayValue="display"
             groupBy="cat"
             onKeyPressFn={function noRefCheck() { }}
             onRemove={removeFilter}
@@ -176,7 +176,7 @@ function Search() {
           />
           <Multiselect
             placeholder="Dietary Restrictions"
-            displayValue="key"
+            displayValue="display"
             groupBy="cat"
             onKeyPressFn={function noRefCheck() { }}
             onRemove={removeFilter}
