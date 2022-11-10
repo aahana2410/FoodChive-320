@@ -15,7 +15,7 @@ function Search() {
   const [cuisineFilter, setCuisineFilter] = useState([]);
   const [ingredientsFilter, setIngredientsFilter] = useState([]);
   const [foodTypeFilter, setFoodTypeFilter] = useState([]);
-  const [skillFitler, setSkillFilter] = useState([]);
+  const [skillFilter, setSkillFilter] = useState([]);
   const [DRFilter, setDRFilter] = useState([]);
 
   // initialize each 
@@ -31,13 +31,13 @@ function Search() {
   let searchBarHandler = (inputKey) => {
     setInputText(inputKey.target.value);
     if (inputKey.key === "Enter") {
-      let sendQuery = inputText + '\n' + cuisineFilter + '\n' + ingredientsFilter + '\n' + foodTypeFilter + '\n' + skillFitler + '\n' + DRFilter;
+      let sendQuery = inputText + '\n' + cuisineFilter + '\n' + ingredientsFilter + '\n' + foodTypeFilter + '\n' + skillFilter + '\n' + DRFilter;
       setQuery(sendQuery);
     }
   };
   // handle the search button
   let clickHandler = () => {
-    let sendQuery = inputText + '\n' + cuisineFilter + '\n' + ingredientsFilter + '\n' + foodTypeFilter + '\n' + skillFitler + '\n' + DRFilter;
+    let sendQuery = inputText + '\n' + cuisineFilter + '\n' + ingredientsFilter + '\n' + foodTypeFilter + '\n' + skillFilter + '\n' + DRFilter;
     setQuery(sendQuery);
   };
   // handle adding a filter
@@ -56,7 +56,7 @@ function Search() {
         break;
 
       case "Skill Level":
-        setSkillFilter(skillFitler + " " + selectedItem.key);
+        setSkillFilter(skillFilter + " " + selectedItem.key);
         break;
 
       case "Dietary Restrictions":
@@ -88,7 +88,7 @@ function Search() {
         break;
 
       case "Skill Level":
-        removed = skillFitler.replace((" " + selectedItem.key), "");
+        removed = skillFilter.replace((" " + selectedItem.key), "");
         setSkillFilter(removed);
         break;
 
@@ -102,7 +102,27 @@ function Search() {
         break;
     }
   }
-
+  // handles automatically updating the page when a filter is selected or removed
+  // without these weird comments, it has a warning since the clickHandler is outside of useEffect, but this does not affect performance. 
+  useEffect(() => {
+    clickHandler()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cuisineFilter]);
+  useEffect(() => { clickHandler() }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    , [ingredientsFilter]);
+  useEffect(() => {
+    clickHandler()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [foodTypeFilter]);
+  useEffect(() => {
+    clickHandler()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [skillFilter]);
+  useEffect(() => {
+    clickHandler()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [DRFilter]);
 
   return (
     <div data-testid="search">
