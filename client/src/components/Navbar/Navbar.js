@@ -37,6 +37,11 @@ const Navbar = () => {
             Profile
           </Link>
         </h2>
+        <h2 className="tab">
+          <Link to="login">
+            Login
+          </Link>
+        </h2>
       </div>
     </div>
   )
