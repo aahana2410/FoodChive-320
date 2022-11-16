@@ -1,4 +1,4 @@
-const ingredients = [
+export const ingredients = [
   {
     cat: 'Ingredients',
     key: 'Chicken',
@@ -60,5 +60,3 @@ const ingredients = [
     display: 'Other Red Meat'
   }
 ]
-
-export default ingredients

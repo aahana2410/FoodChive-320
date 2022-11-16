@@ -1,4 +1,4 @@
-const dietaryRestrictions = [
+export const dietaryRestrictions = [
   {
     cat: 'Dietary Restrictions',
     key: 'Vegetarian',
@@ -25,5 +25,3 @@ const dietaryRestrictions = [
     display: ' Nut Free'
   }
 ]
-
-export default dietaryRestrictions

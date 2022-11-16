@@ -1,4 +1,4 @@
-const cuisine = [
+export const cuisine = [
   {
     cat: 'Cuisine',
     key: 'American',
@@ -55,5 +55,3 @@ const cuisine = [
     display: 'Mediterranean'
   }
 ]
-
-export default cuisine

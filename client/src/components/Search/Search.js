@@ -1,11 +1,7 @@
 import React from "react";
 import '../RecipeList/PageStyles.css'
 import RecipeList from "../RecipeList/RecipeList";
-import cuisine from "./Cuisine";
-import ingredients from "./Ingredients"
-import foodType from "./Type"
-import skill from "./Skill"
-import dietaryRestrictions from "./DietaryRestrictions";
+import { cuisine, ingredients, type, skill, dietaryRestrictions } from './filters/index.js';
 import { useState, useEffect } from "react";
 import Multiselect from "multiselect-react-dropdown"
 
@@ -14,7 +10,7 @@ function Search() {
   const [query, setQuery] = useState([]);
   const [cuisineFilter, setCuisineFilter] = useState([]);
   const [ingredientsFilter, setIngredientsFilter] = useState([]);
-  const [foodTypeFilter, setFoodTypeFilter] = useState([]);
+  const [typeFilter, setFoodTypeFilter] = useState([]);
   const [skillFilter, setSkillFilter] = useState([]);
   const [DRFilter, setDRFilter] = useState([]);
 
@@ -31,13 +27,13 @@ function Search() {
   let searchBarHandler = (inputKey) => {
     setInputText(inputKey.target.value);
     if (inputKey.key === "Enter") {
-      let sendQuery = inputText + '\n' + cuisineFilter + '\n' + ingredientsFilter + '\n' + foodTypeFilter + '\n' + skillFilter + '\n' + DRFilter;
+      let sendQuery = inputText + '\n' + cuisineFilter + '\n' + ingredientsFilter + '\n' + typeFilter + '\n' + skillFilter + '\n' + DRFilter;
       setQuery(sendQuery);
     }
   };
   // handle the search button
   let clickHandler = () => {
-    let sendQuery = inputText + '\n' + cuisineFilter + '\n' + ingredientsFilter + '\n' + foodTypeFilter + '\n' + skillFilter + '\n' + DRFilter;
+    let sendQuery = inputText + '\n' + cuisineFilter + '\n' + ingredientsFilter + '\n' + typeFilter + '\n' + skillFilter + '\n' + DRFilter;
     setQuery(sendQuery);
   };
   // handle adding a filter
@@ -52,7 +48,7 @@ function Search() {
         break;
 
       case "Type":
-        setFoodTypeFilter(foodTypeFilter + " " + selectedItem.key);
+        setFoodTypeFilter(typeFilter + " " + selectedItem.key);
         break;
 
       case "Skill Level":
@@ -83,7 +79,7 @@ function Search() {
         break;
 
       case "Type":
-        removed = foodTypeFilter.replace((" " + selectedItem.key), "");
+        removed = typeFilter.replace((" " + selectedItem.key), "");
         setFoodTypeFilter(removed);
         break;
 
@@ -114,7 +110,7 @@ function Search() {
   useEffect(() => {
     clickHandler()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [foodTypeFilter]);
+  }, [typeFilter]);
   useEffect(() => {
     clickHandler()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -160,7 +156,7 @@ function Search() {
             onRemove={removeFilter}
             onSearch={function noRefCheck() { }}
             onSelect={addFilter}
-            options={foodType}
+            options={type}
             showCheckbox
           />
           <Multiselect
