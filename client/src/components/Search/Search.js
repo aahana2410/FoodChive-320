@@ -1,11 +1,7 @@
 import React from "react";
 import '../RecipeList/PageStyles.css'
 import RecipeList from "../RecipeList/RecipeList";
-import cuisine from "./Cuisine";
-import ingredients from "./Ingredients"
-import foodType from "./Type"
-import skill from "./Skill"
-import dietaryRestrictions from "./DietaryRestrictions";
+import { cuisine, ingredients, type, skill, dietaryRestrictions } from './filters/index.js';
 import { useState, useEffect } from "react";
 import Multiselect from "multiselect-react-dropdown"
 
@@ -14,131 +10,174 @@ function Search() {
   const [query, setQuery] = useState([]);
   const [cuisineFilter, setCuisineFilter] = useState([]);
   const [ingredientsFilter, setIngredientsFilter] = useState([]);
-  const [foodTypeFilter, setFoodTypeFilter] = useState([]);
-  const [skillFitler, setSkillFilter] = useState([]);
+  const [typeFilter, setFoodTypeFilter] = useState([]);
+  const [skillFilter, setSkillFilter] = useState([]);
   const [DRFilter, setDRFilter] = useState([]);
 
+  // initialize each 
   useEffect(() => {
     setCuisineFilter("");
     setIngredientsFilter("");
     setFoodTypeFilter("");
     setSkillFilter("");
     setDRFilter("");
-    setQuery('');
+    setQuery("");
   }, []);
-
-  let inputHandler = (e) => {
-    setInputText(e.target.value);
-    if (e.key === "Enter") {
-      let sendQuery = inputText + '\n' + cuisineFilter + '\n' + ingredientsFilter + '\n' + foodTypeFilter + '\n' + skillFitler + '\n' + DRFilter;
+  // handle the search bar
+  let searchBarHandler = (inputKey) => {
+    setInputText(inputKey.target.value);
+    if (inputKey.key === "Enter") {
+      let sendQuery = inputText + '\n' + cuisineFilter + '\n' + ingredientsFilter + '\n' + typeFilter + '\n' + skillFilter + '\n' + DRFilter;
       setQuery(sendQuery);
     }
   };
-
+  // handle the search button
   let clickHandler = () => {
-    let sendQuery = inputText + '\n' + cuisineFilter + '\n' + ingredientsFilter + '\n' + foodTypeFilter + '\n' + skillFitler + '\n' + DRFilter;
+    let sendQuery = inputText + '\n' + cuisineFilter + '\n' + ingredientsFilter + '\n' + typeFilter + '\n' + skillFilter + '\n' + DRFilter;
     setQuery(sendQuery);
   };
+  // handle adding a filter
+  let addFilter = (selectedList, selectedItem) => {
+    switch (selectedItem.cat) {
+      case "Cuisine":
+        setCuisineFilter(cuisineFilter + " " + selectedItem.key);
+        break;
 
+      case "Ingredients":
+        setIngredientsFilter(ingredientsFilter + " " + selectedItem.key);
+        break;
 
+      case "Type":
+        setFoodTypeFilter(typeFilter + " " + selectedItem.key);
+        break;
 
+      case "Skill Level":
+        setSkillFilter(skillFilter + " " + selectedItem.key);
+        break;
 
-  let addCuisine = (selectedList, selectedItem) => {
-    setCuisineFilter(cuisineFilter + " " + selectedItem.key);
-  }
-  let addIngredients = (selectedList, selectedItem) => {
-    setIngredientsFilter(ingredientsFilter + " " + selectedItem.key);
-  }
-  let addFoodType = (selectedList, selectedItem) => {
-    setFoodTypeFilter(foodTypeFilter + " " + selectedItem.key);
-  }
-  let addSkill = (selectedList, selectedItem) => {
-    setSkillFilter(skillFitler + " " + selectedItem.key);
-  }
-  let addDR = (selectedList, selectedItem) => {
-    setDRFilter(DRFilter + " " + selectedItem.key);
-  }
+      case "Dietary Restrictions":
+        setDRFilter(DRFilter + " " + selectedItem.key);
+        break;
 
-  let removeCuisine = (selectedList, selectedItem) => {
-    let removed = cuisineFilter.replace((" " + selectedItem.key), "");
-    setCuisineFilter(removed);
+      default:
+        alert("Catagory not recognized.")
+        break;
+    }
   }
-  let removeIngredients = (selectedList, selectedItem) => {
-    let removed = ingredientsFilter.replace((" " + selectedItem.key), "");
-    setIngredientsFilter(removed);
+  // handle removing a filter 
+  let removeFilter = (selectedList, selectedItem) => {
+    let removed = "";
+    switch (selectedItem.cat) {
+      case "Cuisine":
+        removed = cuisineFilter.replace((" " + selectedItem.key), "");
+        setCuisineFilter(removed);
+        break;
+
+      case "Ingredients":
+        removed = ingredientsFilter.replace((" " + selectedItem.key), "");
+        setIngredientsFilter(removed);
+        break;
+
+      case "Type":
+        removed = typeFilter.replace((" " + selectedItem.key), "");
+        setFoodTypeFilter(removed);
+        break;
+
+      case "Skill Level":
+        removed = skillFilter.replace((" " + selectedItem.key), "");
+        setSkillFilter(removed);
+        break;
+
+      case "Dietary Restrictions":
+        removed = DRFilter.replace((" " + selectedItem.key), "");
+        setDRFilter(removed);
+        break;
+
+      default:
+        alert("Catagory not recognized.")
+        break;
+    }
   }
-  let removeFoodType = (selectedList, selectedItem) => {
-    let removed = foodTypeFilter.replace((" " + selectedItem.key), "");
-    setFoodTypeFilter(removed);
-  }
-  let removeSkill = (selectedList, selectedItem) => {
-    let removed = skillFitler.replace((" " + selectedItem.key), "");
-    setSkillFilter(removed);
-  }
-  let removeDR = (selectedList, selectedItem) => {
-    let removed = DRFilter.replace((" " + selectedItem.key), "");
-    setDRFilter(removed);
-  }
+  // handles automatically updating the page when a filter is selected or removed
+  // without these weird comments, it has a warning since the clickHandler is outside of useEffect, but this does not affect performance. 
+  useEffect(() => {
+    clickHandler()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cuisineFilter]);
+  useEffect(() => { clickHandler() }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    , [ingredientsFilter]);
+  useEffect(() => {
+    clickHandler()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [typeFilter]);
+  useEffect(() => {
+    clickHandler()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [skillFilter]);
+  useEffect(() => {
+    clickHandler()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [DRFilter]);
 
   return (
     <div data-testid="search">
       <center>
-        <input type="text" name="search" onKeyUp={inputHandler} placeholder="Search Recipes..." />
+        <input type="text" name="search" onKeyUp={searchBarHandler} placeholder="Search Recipes..." />
         <input className="button" id="searchbutton" type="button" defaultValue="Search" onClick={clickHandler} />
         <div className="checkbox">
-
           <Multiselect
             placeholder="Cuisine"
-            displayValue="key"
+            displayValue="display"
             groupBy="cat"
             onKeyPressFn={function noRefCheck() { }}
-            onRemove={removeCuisine}
+            onRemove={removeFilter}
             onSearch={function noRefCheck() { }}
-            onSelect={addCuisine}
+            onSelect={addFilter}
             options={cuisine}
             showCheckbox
           />
           <Multiselect
             placeholder="Ingredients"
-            displayValue="key"
+            displayValue="display"
             groupBy="cat"
             onKeyPressFn={function noRefCheck() { }}
-            onRemove={removeIngredients}
+            onRemove={removeFilter}
             onSearch={function noRefCheck() { }}
-            onSelect={addIngredients}
+            onSelect={addFilter}
             options={ingredients}
             showCheckbox
           />
           <Multiselect
             placeholder="Type"
-            displayValue="key"
+            displayValue="display"
             groupBy="cat"
             onKeyPressFn={function noRefCheck() { }}
-            onRemove={removeFoodType}
+            onRemove={removeFilter}
             onSearch={function noRefCheck() { }}
-            onSelect={addFoodType}
-            options={foodType}
+            onSelect={addFilter}
+            options={type}
             showCheckbox
           />
           <Multiselect
             placeholder="Skill Level"
-            displayValue="key"
+            displayValue="display"
             groupBy="cat"
             onKeyPressFn={function noRefCheck() { }}
-            onRemove={removeSkill}
+            onRemove={removeFilter}
             onSearch={function noRefCheck() { }}
-            onSelect={addSkill}
+            onSelect={addFilter}
             options={skill}
             showCheckbox
           />
           <Multiselect
             placeholder="Dietary Restrictions"
-            displayValue="key"
+            displayValue="display"
             groupBy="cat"
             onKeyPressFn={function noRefCheck() { }}
-            onRemove={removeDR}
+            onRemove={removeFilter}
             onSearch={function noRefCheck() { }}
-            onSelect={addDR}
+            onSelect={addFilter}
             options={dietaryRestrictions}
             showCheckbox
           />
@@ -148,5 +187,4 @@ function Search() {
     </div>
   );
 }
-
 export default Search;
