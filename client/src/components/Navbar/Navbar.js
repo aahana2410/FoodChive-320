@@ -23,7 +23,7 @@ function Navbar() {
     alignItems: "center",
   };
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, marginBottom: 2 }}>
       <AppBar position="static">
         <Toolbar variant="dense" style={{ minHeight: 32, height: 96 }}>
           <Link to="/" style={linkText}>
@@ -36,7 +36,7 @@ function Navbar() {
           </Link>
           <Stack sx={{ marginLeft: "auto" }} spacing={6} direction="row">
             {navTabs.map((tab) => (
-              <Link to={tab} style={linkText}>
+              <Link to={tab.toLowerCase()} style={linkText}>
                 <Button variant="h4">
                   <Stack justifyContent="center" alignItems="center">
                     {tabIcons[navTabs.indexOf(tab)]} {tab}

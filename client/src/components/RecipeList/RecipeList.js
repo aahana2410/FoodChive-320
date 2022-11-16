@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "./PageStyles.css";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import CloseIcon from "@mui/icons-material/Close";
-import { Snackbar, IconButton, Grid } from "@mui/material";
+import { Snackbar, IconButton, Grid, Typography } from "@mui/material";
 import { environmentURL } from "../../environementURL";
 
 function RecipeList(fullQuery) {
@@ -170,10 +170,10 @@ function RecipeList(fullQuery) {
 
   return (
     <div>
-      <h2>Your Search: {fullQuery.input}</h2>
-      <Grid container spacing={6}>
+      <Typography variant="h3">Results: {fullQuery.input}</Typography>
+      <Grid container spacing={2}>
         {search.map((currRecipe) => (
-          <Grid key={currRecipe.name} xs={4}>
+          <Grid key={currRecipe.name.toLowerCase()} item xs={4}>
             <RecipeCard
               recipe={currRecipe}
               handleCardClick={save}
