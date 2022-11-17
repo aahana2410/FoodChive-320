@@ -1,46 +1,54 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
+import { Box, Stack, AppBar, Toolbar, Typography, Button } from "@mui/material";
+import ExploreIcon from "@mui/icons-material/Explore";
+import SearchIcon from "@mui/icons-material/Search";
+import BookmarksIcon from "@mui/icons-material/Bookmarks";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-import './Navbar.css'
+import "./Navbar.css";
 
-const Navbar = () => {
+function Navbar() {
+  const navTabs = ["Discover", "Search", "Saved", "Profile"];
+  const tabIcons = [
+    <ExploreIcon />,
+    <SearchIcon />,
+    <BookmarksIcon />,
+    <AccountCircleIcon />,
+  ];
+  const linkText = {
+    textDecoration: "none",
+    color: "inherit",
+    display: "flex",
+    alignItems: "center",
+  };
   return (
-    <div data-testid="navbar" className="header">
-      <Link to="/" className="header--logo">
-        <img
-          className="header--logo"
-          src={require("../../images/FoodChiveLogo.png")} alt="logo"
-        />
-      </Link>
-      <div className="header--tabs">
-        <h2 className="tab">
-          <Link to="discover">
-            <img src={require("../../images/discover.png")} alt="discover" width="25rem" />
-            Discover
+    <Box sx={{ flexGrow: 1, marginBottom: 2 }}>
+      <AppBar position="static">
+        <Toolbar variant="dense" style={{ minHeight: 32, height: 96 }}>
+          <Link to="/" style={linkText}>
+            <img
+              src={require("../../images/FoodChive192.png")}
+              alt="Foodchive logo"
+              style={{ minHeight: 32, maxHeight: 64 }}
+            />
+            <Typography variant="h3">Foodchive</Typography>
           </Link>
-        </h2>
-        <h2 className="tab">
-          <Link to="search">
-            <img src={require("../../images/searchicon.png")} alt="search" width="25rem" />
-            Search
-          </Link>
-        </h2>
-        <h2 className="tab">
-          <Link to="saved">
-            <img src={require("../../images/saved.png")} alt="saved" width="25rem" />
-            Saved
-          </Link>
-        </h2>
-        <h2 className="tab">
-          <Link to="profile">
-            <img src={require("../../images/profile.png")} alt="profile" width="30rem" />
-            Profile
-          </Link>
-        </h2>
-      </div>
-    </div>
-  )
+          <Stack sx={{ marginLeft: "auto" }} spacing={6} direction="row">
+            {navTabs.map((tab) => (
+              <Link to={tab.toLowerCase()} style={linkText}>
+                <Button variant="h4">
+                  <Stack justifyContent="center" alignItems="center">
+                    {tabIcons[navTabs.indexOf(tab)]} {tab}
+                  </Stack>
+                </Button>
+              </Link>
+            ))}
+          </Stack>
+        </Toolbar>
+      </AppBar>
+    </Box>
+  );
 }
 
-export default Navbar
-
+export default Navbar;
