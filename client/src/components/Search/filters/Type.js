@@ -1,4 +1,4 @@
-const type = [
+export const type = [
   {
     cat: 'Type',
     key: 'Breakfast',
@@ -25,5 +25,3 @@ const type = [
     display: 'Appetizer & Snack'
   }
 ];
-
-export default type

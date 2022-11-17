@@ -76,6 +76,7 @@ function RecipeList(fullQuery) {
     let foundSkill = true;
     let foundDR = true;
     let firstLoad = false;
+
     // this handles when the page first loads.
     if (splitQuery.length === 1) {
       firstLoad = true;
@@ -87,6 +88,7 @@ function RecipeList(fullQuery) {
       foundFoodType = false;
       foundSkill = false;
       foundDR = true;
+
       // Filter Cuisine
       let cuisineFilters = splitQuery[1].split(" ");
       if (cuisineFilters.length === 1) {
@@ -129,6 +131,7 @@ function RecipeList(fullQuery) {
           foundSkill = true;
         }
       }
+
       // Filter dietary restrictions
       let DRFilter = splitQuery[5].split(" ");
       if (DRFilter.length === 1) {

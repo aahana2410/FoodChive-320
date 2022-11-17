@@ -23,7 +23,7 @@ function Search() {
   const [query, setQuery] = useState([]);
   const [cuisineFilter, setCuisineFilter] = useState([]);
   const [ingredientsFilter, setIngredientsFilter] = useState([]);
-  const [foodTypeFilter, setFoodTypeFilter] = useState([]);
+  const [typeFilter, setFoodTypeFilter] = useState([]);
   const [skillFilter, setSkillFilter] = useState([]);
   const [DRFilter, setDRFilter] = useState([]);
 
@@ -61,10 +61,12 @@ function Search() {
   let enterHandler = (event) => {
     if (event.key === "Enter") changeQuery();
   };
+  
   // handle the search button
   let clickHandler = () => {
     changeQuery();
   };
+  
   // handle adding a filter
   let addFilter = (selectedList, selectedItem) => {
     switch (selectedItem.cat) {
@@ -77,7 +79,7 @@ function Search() {
         break;
 
       case "Type":
-        setFoodTypeFilter(foodTypeFilter + " " + selectedItem.key);
+        setFoodTypeFilter(typeFilter + " " + selectedItem.key);
         break;
 
       case "Skill Level":
@@ -143,7 +145,7 @@ function Search() {
   useEffect(() => {
     clickHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [foodTypeFilter]);
+  }, [typeFilter]);
   useEffect(() => {
     clickHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
