@@ -1,12 +1,8 @@
 import React from "react";
-import "../RecipeList/PageStyles.css";
+import '../RecipeList/PageStyles.css'
 import RecipeList from "../RecipeList/RecipeList";
 import SearchBar from "./SearchBar";
-import cuisine from "./Cuisine";
-import ingredients from "./Ingredients";
-import foodType from "./Type";
-import skill from "./Skill";
-import dietaryRestrictions from "./DietaryRestrictions";
+import { cuisine, ingredients, type, skill, dietaryRestrictions } from './filters/index.js';
 import { useState, useEffect } from "react";
 import Multiselect from "multiselect-react-dropdown";
 import {
@@ -23,7 +19,7 @@ function Search() {
   const [query, setQuery] = useState([]);
   const [cuisineFilter, setCuisineFilter] = useState([]);
   const [ingredientsFilter, setIngredientsFilter] = useState([]);
-  const [typeFilter, setFoodTypeFilter] = useState([]);
+  const [foodTypeFilter, setFoodTypeFilter] = useState([]);
   const [skillFilter, setSkillFilter] = useState([]);
   const [DRFilter, setDRFilter] = useState([]);
 
@@ -61,12 +57,10 @@ function Search() {
   let enterHandler = (event) => {
     if (event.key === "Enter") changeQuery();
   };
-  
   // handle the search button
   let clickHandler = () => {
     changeQuery();
   };
-  
   // handle adding a filter
   let addFilter = (selectedList, selectedItem) => {
     switch (selectedItem.cat) {
@@ -79,7 +73,7 @@ function Search() {
         break;
 
       case "Type":
-        setFoodTypeFilter(typeFilter + " " + selectedItem.key);
+        setFoodTypeFilter(foodTypeFilter + " " + selectedItem.key);
         break;
 
       case "Skill Level":
@@ -145,7 +139,7 @@ function Search() {
   useEffect(() => {
     clickHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [typeFilter]);
+  }, [foodTypeFilter]);
   useEffect(() => {
     clickHandler();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -165,19 +159,6 @@ function Search() {
             handleEnter={enterHandler}
             inputValue={inputText}
           />
-          {/* <input
-          type="text"
-          name="search"
-          onKeyUp={searchBarHandler}
-          placeholder="Search Recipes..."
-        />
-        <input
-          className="button"
-          id="searchbutton"
-          type="button"
-          defaultValue="Search"
-          onClick={clickHandler}
-        /> */}
           <Accordion>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -192,9 +173,9 @@ function Search() {
                   placeholder="Cuisine"
                   displayValue="display"
                   groupBy="cat"
-                  onKeyPressFn={function noRefCheck() {}}
+                  onKeyPressFn={function noRefCheck() { }}
                   onRemove={removeFilter}
-                  onSearch={function noRefCheck() {}}
+                  onSearch={function noRefCheck() { }}
                   onSelect={addFilter}
                   options={cuisine}
                   showCheckbox
@@ -203,9 +184,9 @@ function Search() {
                   placeholder="Ingredients"
                   displayValue="display"
                   groupBy="cat"
-                  onKeyPressFn={function noRefCheck() {}}
+                  onKeyPressFn={function noRefCheck() { }}
                   onRemove={removeFilter}
-                  onSearch={function noRefCheck() {}}
+                  onSearch={function noRefCheck() { }}
                   onSelect={addFilter}
                   options={ingredients}
                   showCheckbox
@@ -214,20 +195,20 @@ function Search() {
                   placeholder="Type"
                   displayValue="display"
                   groupBy="cat"
-                  onKeyPressFn={function noRefCheck() {}}
+                  onKeyPressFn={function noRefCheck() { }}
                   onRemove={removeFilter}
-                  onSearch={function noRefCheck() {}}
+                  onSearch={function noRefCheck() { }}
                   onSelect={addFilter}
-                  options={foodType}
+                  options={type}
                   showCheckbox
                 />
                 <Multiselect
                   placeholder="Skill Level"
                   displayValue="display"
                   groupBy="cat"
-                  onKeyPressFn={function noRefCheck() {}}
+                  onKeyPressFn={function noRefCheck() { }}
                   onRemove={removeFilter}
-                  onSearch={function noRefCheck() {}}
+                  onSearch={function noRefCheck() { }}
                   onSelect={addFilter}
                   options={skill}
                   showCheckbox
@@ -236,9 +217,9 @@ function Search() {
                   placeholder="Dietary Restrictions"
                   displayValue="display"
                   groupBy="cat"
-                  onKeyPressFn={function noRefCheck() {}}
+                  onKeyPressFn={function noRefCheck() { }}
                   onRemove={removeFilter}
-                  onSearch={function noRefCheck() {}}
+                  onSearch={function noRefCheck() { }}
                   onSelect={addFilter}
                   options={dietaryRestrictions}
                   showCheckbox
