@@ -26,15 +26,27 @@ To start, in the server directory, create a .env file. Open the file and add the
 Navigate to the client folder and create another .env file in the client directory. Open the file and add the following code:
 NODE_ENV="development"
 
-Next, open up the terminal and run the following commands from the root directory of the repository: 
-<mark> cd .\server\ </mark>
-<mark> npm install </mark>
-<mark> npm start </mark>
+Next, open up the terminal and run the following commands from the root directory of the repository:
+
+```console
+cd .\server\
+
+npm install 
+
+npm start
+
+```
 
 After, open a second terminal and run the following commands:
-<mark> cd .\client\ </mark>
-<mark> npm install </mark>
-<mark> npm start </mark>
+
+```console
+cd .\client\
+
+npm install
+
+npm start
+```
+
 
 npm install is used to install all the necessary packages for the build. After this, the app should be in development mode. Open http://localhost:3000 to view it in your browser. The page will reload when you make changes. You may also see temporary lint errors in the console.
 
