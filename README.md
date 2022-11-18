@@ -21,20 +21,20 @@ In the zipped beta release, we have provided a folder named ‘FoodChive-320-dep
 
 ### Development Environment
 To start, in the server directory, create a .env file. Open the file and add the following code:
-DATABASE_URL="mongodb+srv://foodchive_user:vzhfEeMmvGKtkIoh@cluster0.3fcut4h.mongodb.net/foodchive-app?retryWrites=true&w=majority"
+**Contact one of the team members for the link to the database**
 
 Navigate to the client folder and create another .env file in the client directory. Open the file and add the following code:
 NODE_ENV="development"
 
 Next, open up the terminal and run the following commands from the root directory of the repository: 
-% cd .\server\
-% npm install 
-% npm start
+<mark> cd .\server\ </mark>
+<mark> npm install </mark>
+<mark> npm start </mark>
 
 After, open a second terminal and run the following commands:
-% cd .\client\
-% npm install 
-% npm start
+<mark> cd .\client\ </mark>
+<mark> npm install </mark>
+<mark> npm start </mark>
 
 npm install is used to install all the necessary packages for the build. After this, the app should be in development mode. Open http://localhost:3000 to view it in your browser. The page will reload when you make changes. You may also see temporary lint errors in the console.
 
