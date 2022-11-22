@@ -37,7 +37,14 @@ export default function RecipeCard({
 
   return (
     <Card sx={{ maxWidth: 450, bgcolor: "#fafafa" }}>
-      <CardHeader title={recipe.name} />
+      <CardHeader
+        sx={{ textOverflow: "ellipsis", overflow: "hidden", display: "block" }}
+        title={
+          <Typography variant="h6" noWrap gutterBottom>
+            {recipe.name}
+          </Typography>
+        }
+      />
       <CardMedia
         component="img"
         height="300"
