@@ -1,5 +1,5 @@
 import React from "react";
-import Recipe from "../Recipe/Recipe";
+import Recipe from "./Recipe/Recipe";
 import { useState, useEffect } from "react";
 import { environmentURL } from "../../environementURL";
 

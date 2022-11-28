@@ -13,3 +13,4 @@ const corsOptions = {
 };
 
 export default corsOptions;
+  

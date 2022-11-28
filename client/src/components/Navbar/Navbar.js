@@ -1,4 +1,7 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { logout, reset } from '../../features/auth/authSlice'
 import { Link } from "react-router-dom";
 import { Box, Stack, AppBar, Toolbar, Typography, Button } from "@mui/material";
 import ExploreIcon from "@mui/icons-material/Explore";
@@ -9,6 +12,16 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "./Navbar.css";
 
 function Navbar() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { user } = useSelector((state) => state.auth)
+
+  const onLogout = () => {
+    dispatch(logout())
+    dispatch(reset())
+    navigate('/')
+  }
+
   const navTabs = ["Discover", "Search", "Saved", "Profile"];
   const tabIcons = [
     <ExploreIcon />,
@@ -44,6 +57,18 @@ function Navbar() {
                 </Button>
               </Link>
             ))}
+            {user ? (
+              <Button variant="h4" onClick={onLogout}>Logout</Button>
+            ) :
+              <>
+                <Link to="/Login" style={linkText}>
+                  <Button variant="h4">Login</Button>
+                </Link>
+                <Link to="/Register" style={linkText}>
+                  <Button variant="h4">Register</Button>
+                </Link>
+              </>
+            }
           </Stack>
         </Toolbar>
       </AppBar>
