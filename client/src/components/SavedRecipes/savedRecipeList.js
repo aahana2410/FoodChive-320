@@ -42,11 +42,11 @@ function RecipeList(fullQuery) {
 
     // Check if the recipe is in the users saved list
     let isSaved = false;
-    if (user !== null) { 
-    if(user.recipes.indexOf(recipe._id) !== -1){
-      isSaved = true;
+    if (user !== null) {
+      if (user.recipes.indexOf(recipe._id) !== -1) {
+        isSaved = true;
+      }
     }
-  }
     let foundCuisine = true;
     let foundIngredients = true;
     let foundFoodType = true;
@@ -136,11 +136,11 @@ function RecipeList(fullQuery) {
     // TODO 
     let newSaved = [...user.recipes]; // Clones the saved recipe list
     let index = newSaved.indexOf(recipe._id);
-    if(index !== -1){
+    if (index !== -1) {
       newSaved.splice(index, 1);   // Deletes the recipe id from the saved recipe list
     }
     // UPDATERECIPES WITH NEWSAVED
-   alert("not set up yet");
+    alert("not set up yet");
   };
 
   return (
