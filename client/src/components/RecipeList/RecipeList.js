@@ -157,6 +157,10 @@ function RecipeList(fullQuery) {
 
   const state = useSelector((state) => state);
   let save = async (recipe) => {
+    if(state.auth.user === null){
+      alert("You are not logged in");
+    }
+    else{
     const savedRecipes = state.auth.user.recipes;
     if (savedRecipes.indexOf(recipe._id) !== -1) {
       //already been saved 
@@ -167,9 +171,9 @@ function RecipeList(fullQuery) {
     newSaved.push(recipe._id); 
     // UPDATERECIPES WITH NEWSAVED
     alert("not set up yet");
-
     return true;
-  };
+  }
+};
 
 
   return (
