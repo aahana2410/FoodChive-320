@@ -2,44 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "./PageStyles.css";
 import RecipeCard from "../RecipeCard/RecipeCard";
-import CloseIcon from "@mui/icons-material/Close";
-import { Snackbar, IconButton, Grid, Typography } from "@mui/material";
 import { environmentURL } from "../../environementURL";
 import { useSelector } from "react-redux";
 
 
 function RecipeList(fullQuery) {
-  // FOR SNACKBAR
-  const [open, setOpen] = useState(false);
-  const [snackBarMessage, setSnackBarMessage] = useState();
-
-  const toggleSnackBar = (message) => {
-    setSnackBarMessage(message);
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  const action = (
-    <React.Fragment>
-      <IconButton
-        size="small"
-        aria-label="close"
-        color="inherit"
-        onClick={handleClose}
-      >
-        <CloseIcon fontSize="small" />
-      </IconButton>
-    </React.Fragment>
-  );
-  // SNACKBAR ENDS
-
+  const savedRecipes = useSelector((state) => state.auth.user.recipes);
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     async function getRecipes() {
@@ -72,6 +40,11 @@ function RecipeList(fullQuery) {
       foundSearch = recipe.name.toLowerCase().includes(query.toLowerCase());
     }
 
+    // Check if the recipe is in the users saved list
+    let isSaved = false;
+    if(savedRecipes.indexOf(recipe._id) !== -1){
+      isSaved = true;
+    }
     let foundCuisine = true;
     let foundIngredients = true;
     let foundFoodType = true;
@@ -151,49 +124,41 @@ function RecipeList(fullQuery) {
       foundIngredients &&
       foundFoodType &&
       foundSkill &&
-      foundDR
+      foundDR &&
+      isSaved
     );
   });
 
-  const state = useSelector((state) => state);
-  let save = async (recipe) => {
-    const savedRecipes = state.auth.user.recipes;
-    if (savedRecipes.indexOf(recipe._id) !== -1) {
-      //already been saved 
-      return false;
-    }
 
+  let deleteRecipe = async (recipe) => {
+    // TODO 
     let newSaved = [...savedRecipes]; // Clones the saved recipe list
-    newSaved.push(recipe._id); 
+    let index = newSaved.indexOf(recipe._id);
+    if(index !== -1){
+      newSaved.splice(index, 1);   // Deletes the recipe id from the saved recipe list
+    }
     // UPDATERECIPES WITH NEWSAVED
-    alert("not set up yet");
-
-    return true;
+   alert("not set up yet");
   };
-
 
   return (
     <div>
-      <Typography variant="h3">Results: {fullQuery.input}</Typography>
-      <Grid container spacing={2}>
-        {search.map((currRecipe) => (
-          <Grid key={currRecipe.name.toLowerCase()} item xs={4}>
-            <RecipeCard
-              recipe={currRecipe}
-              handleCardClick={save}
-              check={true}
-              toggleSnackBar={toggleSnackBar}
-            ></RecipeCard>
-          </Grid>
-        ))}
-        <Snackbar
-          open={open}
-          autoHideDuration={1000}
-          onClose={handleClose}
-          message={snackBarMessage}
-          action={action}
-        />
-      </Grid>
+      <div data-testid="saved">
+        <h2>
+          <center>Your Saved Recipes:</center>
+        </h2>
+        <center>
+          {search.map((currRecipe) => (
+            <div key={currRecipe.name} className="card">
+              <RecipeCard
+                recipe={currRecipe}
+                handleCardClick={deleteRecipe}
+                check={false}
+              ></RecipeCard>
+            </div>
+          ))}
+        </center>
+      </div>
     </div>
   );
 }
