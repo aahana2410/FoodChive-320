@@ -152,6 +152,9 @@ function Search() {
   return (
     <div data-testid="search">
       <center>
+        <div>
+          <h2>Your Saved Recipes: </h2>
+        </div>
         <Container>
           <SearchBar
             handleKeyUp={searchBarHandler}

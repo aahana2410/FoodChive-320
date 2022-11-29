@@ -144,9 +144,6 @@ function RecipeList(fullQuery) {
   return (
     <div>
       <div data-testid="saved">
-        <h2>
-          <center>Your Saved Recipes:</center>
-        </h2>
         <center>
           {search.map((currRecipe) => (
             <div key={currRecipe.name} className="card">

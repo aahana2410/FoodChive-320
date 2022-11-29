@@ -26,7 +26,7 @@ function SearchBar({ handleKeyUp, handleClick, handleEnter, inputValue }) {
       </Button>
       <TextField
         className="inputRounded"
-        placeholder="Search for Recipes"
+        placeholder="Search Through Recipes"
         inputProps={{ "aria-label": "search" }}
         onChange={handleKeyUp}
         onKeyUp={handleEnter}
