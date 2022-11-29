@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 
 function Profile() {
   const user = useSelector((state) => state.auth.user);
-  const email = user.email;
+if(user !== null)  {
+const email = user.email;
   const name = user.name;
   const savedRecipes = user.recipes;
   return <div>
@@ -22,6 +23,16 @@ function Profile() {
       </h2>
     </center>
   </div>;
+}
+else{
+  return <div>
+    <center>
+      <h2>
+        Not Logged In.
+      </h2>
+    </center>
+  </div>;
+}
 }
 
 export default Profile;

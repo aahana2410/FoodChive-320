@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 
 function RecipeList(fullQuery) {
-  const savedRecipes = useSelector((state) => state.auth.user.recipes);
+  const user = useSelector((state) => state.auth.user);
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     async function getRecipes() {
@@ -42,9 +42,11 @@ function RecipeList(fullQuery) {
 
     // Check if the recipe is in the users saved list
     let isSaved = false;
-    if(savedRecipes.indexOf(recipe._id) !== -1){
+    if (user !== null) { 
+    if(user.recipes.indexOf(recipe._id) !== -1){
       isSaved = true;
     }
+  }
     let foundCuisine = true;
     let foundIngredients = true;
     let foundFoodType = true;
@@ -132,7 +134,7 @@ function RecipeList(fullQuery) {
 
   let deleteRecipe = async (recipe) => {
     // TODO 
-    let newSaved = [...savedRecipes]; // Clones the saved recipe list
+    let newSaved = [...user.recipes]; // Clones the saved recipe list
     let index = newSaved.indexOf(recipe._id);
     if(index !== -1){
       newSaved.splice(index, 1);   // Deletes the recipe id from the saved recipe list
