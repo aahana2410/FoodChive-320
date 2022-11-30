@@ -1,4 +1,4 @@
-const skill = [
+export const skill = [
   {
     cat: 'Skill Level',
     key: 'Beginner',
@@ -15,4 +15,3 @@ const skill = [
     display: 'Expert'
   }
 ]
-export default skill

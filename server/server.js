@@ -3,10 +3,10 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import cors from "cors";
-import corsOptions from "./config/corsOptions.js";
 
+import errorHandler from "./middleware/errorMiddleware.js";
 import recipeRoutes from "./routes/recipeRoutes.js";
-import savedRecipeRoutes from "./routes/savedRecipeRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -18,7 +18,9 @@ app.use(cors({ origin: ["https://foodchive.onrender.com"] }));
 dotenv.config();
 
 app.use("/recipes", recipeRoutes);
-app.use("/savedRecipes", savedRecipeRoutes);
+app.use("/users", userRoutes);
+
+app.use(errorHandler);
 
 mongoose
   .connect(process.env.DATABASE_URL, {
