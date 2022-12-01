@@ -4,10 +4,12 @@ import RecipeCard from "../RecipeCard/RecipeCard";
 import CloseIcon from "@mui/icons-material/Close";
 import { Snackbar, IconButton, Grid, Typography } from "@mui/material";
 import { environmentURL } from "../../environementURL";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser } from "../../features/auth/authSlice";
 
 function RecipeList(fullQuery) {
+  const dispatch = useDispatch();
+
   // FOR SNACKBAR
   const [open, setOpen] = useState(false);
   const [snackBarMessage, setSnackBarMessage] = useState();
@@ -165,11 +167,13 @@ function RecipeList(fullQuery) {
       //already been saved 
       return false;
     }
-
-    let newSaved = [...savedRecipes]; // Clones the saved recipe list
+    
+    let newUser = {...state.auth.user}; // Clones the user 
+    let newSaved = [...newUser.recipes];
     newSaved.push(recipe._id); 
-    // UPDATERECIPES WITH NEWSAVED
-    alert("not set up yet");
+    newUser.recipes = newSaved;
+    await(dispatch(updateUser(newUser)));
+    window.location.reload(false);
     return true;
   }
 };

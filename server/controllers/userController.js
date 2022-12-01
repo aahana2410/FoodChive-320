@@ -77,18 +77,11 @@ export const getUser = asyncHandler(async (req, res) => {
 });
 
 export const updateUser = asyncHandler(async (req, res) => {
-  const updatedUser = await User.findByIdAndUpdate(req.user._id, req.body, {
+  const updatedUser = await User.findByIdAndUpdate(req.body._id, req.body, {
     new: true,
   });
 
   res.status(200).json(updatedUser);
-});
-
-export const updateRecipes = asyncHandler(async (req, res) => {
-  const updatedRecipes = await User.findByIdAndUpdate(req.user._id, {recipes: req.body}, {
-    new: true,
-  });
-  res.status(200).json(updatedRecipes);
 });
 
 // Generate JWT

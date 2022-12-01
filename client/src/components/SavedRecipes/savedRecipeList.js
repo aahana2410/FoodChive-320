@@ -2,10 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import { environmentURL } from "../../environementURL";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser } from "../../features/auth/authSlice";
 
 
 function RecipeList(fullQuery) {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
@@ -138,8 +140,11 @@ function RecipeList(fullQuery) {
     if (index !== -1) {
       newSaved.splice(index, 1);   // Deletes the recipe id from the saved recipe list
     }
-    // UPDATERECIPES WITH NEWSAVED
-    alert("not set up yet");
+    let newUser = { ...user };
+    newUser.recipes = newSaved;
+    // update user to newuser
+    await(dispatch(updateUser(newUser)));
+    window.location.reload(false);
   };
 
   return (

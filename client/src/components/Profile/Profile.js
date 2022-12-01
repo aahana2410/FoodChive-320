@@ -1,28 +1,39 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser } from "../../features/auth/authSlice";
 import { dietaryRestrictions } from '../Search/filters/index.js';
 import Multiselect from "multiselect-react-dropdown";
 import { Container } from "@mui/material";
 
+
 function Profile() {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
 
-  let removeFilter = (selectedList, selectedItem) => {
+  const removeFilter = async (selectedList, selectedItem) => {
 
     let key = selectedItem.key.toLowerCase();
     let index = user.dietaryRestrictions.indexOf(key);
     let newDR = [...user.dietaryRestrictions];
     newDR.splice(index, 1);
+    let newUser = {...user};
+    newUser.dietaryRestrictions = newDR;
+    await(dispatch(updateUser(newUser)));
+    window.location.reload(false);
 
-    // UPDATE USER WITH NEWDR
+    // UPDATE USER to newuser
   }
 
-  let addFilter = (selectedList, selectedItem) => {
+  const addFilter = async (selectedList, selectedItem) => {
     let key = selectedItem.key.toLowerCase();
     let newDR = [...user.dietaryRestrictions];
     newDR.push(key);
+    let newUser = { ...user };
+    newUser.dietaryRestrictions = newDR;
+    await(dispatch(updateUser(newUser)));
+    window.location.reload(false);
 
-    // UPDATE USER WITH NEWDR
+    // UPDATE USER to newuser
   }
 
   if (user !== null) {
