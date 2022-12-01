@@ -8,10 +8,50 @@ import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Navbar from "./components/Navbar/Navbar";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 function App() {
+  const theme1 = createTheme({
+    palette: {
+      primary: {
+        main: "#436A27",
+        contrastText: "#EAEBED",
+      },
+      secondary: {
+        main: "#D9B953",
+        contrastText: "#EAEBED",
+      },
+    },
+  });
+
+  const theme2 = createTheme({
+    palette: {
+      primary: {
+        main: "#5D781B",
+        contrastText: "#EAEBED",
+      },
+      secondary: {
+        main: "#FBCA6B",
+        contrastText: "#EAEBED",
+      },
+    },
+  });
+
+  const theme3 = createTheme({
+    palette: {
+      primary: {
+        main: "#ffcd29",
+        contrastText: "#333333",
+      },
+      secondary: {
+        main: "#FBCA6B",
+        contrastText: "#333333",
+      },
+    },
+  });
+
   return (
-    <div>
+    <ThemeProvider theme={theme2}>
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -24,7 +64,7 @@ function App() {
           <Route exact path="register" element={<Register />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </ThemeProvider>
   );
 }
 

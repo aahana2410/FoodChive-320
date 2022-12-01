@@ -1,8 +1,14 @@
 import React from "react";
-import '../RecipeList/PageStyles.css'
+import "../RecipeList/PageStyles.css";
 import RecipeList from "../RecipeList/RecipeList";
 import SearchBar from "./SearchBar";
-import { cuisine, ingredients, type, skill, dietaryRestrictions } from './filters/index.js';
+import {
+  cuisine,
+  ingredients,
+  type,
+  skill,
+  dietaryRestrictions,
+} from "./filters/index.js";
 import { useState, useEffect } from "react";
 import Multiselect from "multiselect-react-dropdown";
 import {
@@ -15,23 +21,13 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 function Search() {
-  const [inputText, setInputText] = useState([]);
-  const [query, setQuery] = useState([]);
-  const [cuisineFilter, setCuisineFilter] = useState([]);
-  const [ingredientsFilter, setIngredientsFilter] = useState([]);
-  const [foodTypeFilter, setFoodTypeFilter] = useState([]);
-  const [skillFilter, setSkillFilter] = useState([]);
-  const [DRFilter, setDRFilter] = useState([]);
-
-  // initialize each
-  useEffect(() => {
-    setCuisineFilter("");
-    setIngredientsFilter("");
-    setFoodTypeFilter("");
-    setSkillFilter("");
-    setDRFilter("");
-    setQuery("");
-  }, []);
+  const [inputText, setInputText] = useState("");
+  const [query, setQuery] = useState("");
+  const [cuisineFilter, setCuisineFilter] = useState("");
+  const [ingredientsFilter, setIngredientsFilter] = useState("");
+  const [foodTypeFilter, setFoodTypeFilter] = useState("");
+  const [skillFilter, setSkillFilter] = useState("");
+  const [DRFilter, setDRFilter] = useState("");
 
   const changeQuery = () => {
     let sendQuery =
@@ -167,15 +163,17 @@ function Search() {
             >
               <Typography>Filters</Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails
+              sx={{ paddingTop: 0, paddingLeft: 4, paddingRight: 4 }}
+            >
               <div className="checkbox">
                 <Multiselect
                   placeholder="Cuisine"
                   displayValue="display"
                   groupBy="cat"
-                  onKeyPressFn={function noRefCheck() { }}
+                  onKeyPressFn={function noRefCheck() {}}
                   onRemove={removeFilter}
-                  onSearch={function noRefCheck() { }}
+                  onSearch={function noRefCheck() {}}
                   onSelect={addFilter}
                   options={cuisine}
                   showCheckbox
@@ -184,9 +182,9 @@ function Search() {
                   placeholder="Ingredients"
                   displayValue="display"
                   groupBy="cat"
-                  onKeyPressFn={function noRefCheck() { }}
+                  onKeyPressFn={function noRefCheck() {}}
                   onRemove={removeFilter}
-                  onSearch={function noRefCheck() { }}
+                  onSearch={function noRefCheck() {}}
                   onSelect={addFilter}
                   options={ingredients}
                   showCheckbox
@@ -195,9 +193,9 @@ function Search() {
                   placeholder="Type"
                   displayValue="display"
                   groupBy="cat"
-                  onKeyPressFn={function noRefCheck() { }}
+                  onKeyPressFn={function noRefCheck() {}}
                   onRemove={removeFilter}
-                  onSearch={function noRefCheck() { }}
+                  onSearch={function noRefCheck() {}}
                   onSelect={addFilter}
                   options={type}
                   showCheckbox
@@ -206,9 +204,9 @@ function Search() {
                   placeholder="Skill Level"
                   displayValue="display"
                   groupBy="cat"
-                  onKeyPressFn={function noRefCheck() { }}
+                  onKeyPressFn={function noRefCheck() {}}
                   onRemove={removeFilter}
-                  onSearch={function noRefCheck() { }}
+                  onSearch={function noRefCheck() {}}
                   onSelect={addFilter}
                   options={skill}
                   showCheckbox
@@ -217,9 +215,9 @@ function Search() {
                   placeholder="Dietary Restrictions"
                   displayValue="display"
                   groupBy="cat"
-                  onKeyPressFn={function noRefCheck() { }}
+                  onKeyPressFn={function noRefCheck() {}}
                   onRemove={removeFilter}
-                  onSearch={function noRefCheck() { }}
+                  onSearch={function noRefCheck() {}}
                   onSelect={addFilter}
                   options={dietaryRestrictions}
                   showCheckbox
