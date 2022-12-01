@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import "./PageStyles.css";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import CloseIcon from "@mui/icons-material/Close";
 import { Snackbar, IconButton, Grid, Typography } from "@mui/material";

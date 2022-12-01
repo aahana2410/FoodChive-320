@@ -30,6 +30,8 @@ export const registerUser = asyncHandler(async (req, res) => {
     email,
     password: hashedPassword,
     recipes: [],
+    dietaryRestrictions: [],
+    image: "",
   });
 
   if (user) {
@@ -38,6 +40,8 @@ export const registerUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       recipes: user.recipes,
+      dietaryRestrictions: user.dietaryRestrictions,
+      image: user.image,
       token: generateToken(user._id),
     });
   } else {
@@ -58,6 +62,8 @@ export const loginUser = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       recipes: user.recipes,
+      dietaryRestrictions: user.dietaryRestrictions,
+      image: user.image,
       token: generateToken(user._id),
     })
   } else {

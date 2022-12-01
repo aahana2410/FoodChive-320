@@ -1,5 +1,4 @@
 import React from "react";
-import '../RecipeList/PageStyles.css'
 import RecipeList from "../RecipeList/RecipeList";
 import SearchBar from "./SearchBar";
 import { cuisine, ingredients, type, skill, dietaryRestrictions } from './filters/index.js';

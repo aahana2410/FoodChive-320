@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import "./PageStyles.css";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import { environmentURL } from "../../environementURL";
 import { useSelector } from "react-redux";
@@ -149,6 +148,7 @@ function RecipeList(fullQuery) {
         <center>
           {search.map((currRecipe) => (
             <div key={currRecipe.name} className="card">
+              <br></br>
               <RecipeCard
                 recipe={currRecipe}
                 handleCardClick={deleteRecipe}
