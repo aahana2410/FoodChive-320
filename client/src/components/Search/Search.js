@@ -1,5 +1,4 @@
 import React from "react";
-import "../RecipeList/PageStyles.css";
 import RecipeList from "../RecipeList/RecipeList";
 import SearchBar from "./SearchBar";
 import {
@@ -171,9 +170,9 @@ function Search() {
                   placeholder="Cuisine"
                   displayValue="display"
                   groupBy="cat"
-                  onKeyPressFn={function noRefCheck() {}}
+                  onKeyPressFn={function noRefCheck() { }}
                   onRemove={removeFilter}
-                  onSearch={function noRefCheck() {}}
+                  onSearch={function noRefCheck() { }}
                   onSelect={addFilter}
                   options={cuisine}
                   showCheckbox
@@ -182,9 +181,9 @@ function Search() {
                   placeholder="Ingredients"
                   displayValue="display"
                   groupBy="cat"
-                  onKeyPressFn={function noRefCheck() {}}
+                  onKeyPressFn={function noRefCheck() { }}
                   onRemove={removeFilter}
-                  onSearch={function noRefCheck() {}}
+                  onSearch={function noRefCheck() { }}
                   onSelect={addFilter}
                   options={ingredients}
                   showCheckbox
@@ -193,9 +192,9 @@ function Search() {
                   placeholder="Type"
                   displayValue="display"
                   groupBy="cat"
-                  onKeyPressFn={function noRefCheck() {}}
+                  onKeyPressFn={function noRefCheck() { }}
                   onRemove={removeFilter}
-                  onSearch={function noRefCheck() {}}
+                  onSearch={function noRefCheck() { }}
                   onSelect={addFilter}
                   options={type}
                   showCheckbox
@@ -204,9 +203,9 @@ function Search() {
                   placeholder="Skill Level"
                   displayValue="display"
                   groupBy="cat"
-                  onKeyPressFn={function noRefCheck() {}}
+                  onKeyPressFn={function noRefCheck() { }}
                   onRemove={removeFilter}
-                  onSearch={function noRefCheck() {}}
+                  onSearch={function noRefCheck() { }}
                   onSelect={addFilter}
                   options={skill}
                   showCheckbox
@@ -215,9 +214,9 @@ function Search() {
                   placeholder="Dietary Restrictions"
                   displayValue="display"
                   groupBy="cat"
-                  onKeyPressFn={function noRefCheck() {}}
+                  onKeyPressFn={function noRefCheck() { }}
                   onRemove={removeFilter}
-                  onSearch={function noRefCheck() {}}
+                  onSearch={function noRefCheck() { }}
                   onSelect={addFilter}
                   options={dietaryRestrictions}
                   showCheckbox

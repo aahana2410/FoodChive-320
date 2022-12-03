@@ -1,15 +1,10 @@
 import React from "react";
 import {
   TextField,
-  Autocomplete,
-  createFilterOptions,
   Button,
 } from "@mui/material";
-import { styled, alpha } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import { Container, Box, Stack } from "@mui/system";
-import { ClassNames } from "@emotion/react";
+import { Stack } from "@mui/system";
 
 function SearchBar({ handleKeyUp, handleClick, handleEnter, inputValue }) {
   return (
@@ -32,7 +27,7 @@ function SearchBar({ handleKeyUp, handleClick, handleEnter, inputValue }) {
       </Button>
       <TextField
         className="inputRounded"
-        placeholder="Search for Recipes"
+        placeholder="Search Through Recipes"
         inputProps={{ "aria-label": "search" }}
         onChange={handleKeyUp}
         onKeyUp={handleEnter}

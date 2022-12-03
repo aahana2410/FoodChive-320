@@ -42,7 +42,7 @@ const Register = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      console.log('Passwords do not match');
+      alert('Passwords do not match');
     } else {
       const userData = {
         name,
@@ -60,6 +60,20 @@ const Register = () => {
       [e.target.name]: e.target.value,
     }));
   };
+  let handleEnter = (event) => {
+    if (event.key === "Enter") {
+      if (password !== confirmPassword) {
+        alert('Passwords do not match');
+      } else {
+        const userData = {
+          name,
+          email,
+          password,
+        };
+        dispatch(register(userData));
+      }
+    }
+  };
 
   return (
     <div data-testid="register">
@@ -72,7 +86,7 @@ const Register = () => {
           <TextField name='name' placeholder='Enter name' variant="outlined" onChange={handleChange} fullWidth required />
           <TextField name='email' placeholder='Enter email' variant="outlined" onChange={handleChange} fullWidth required />
           <TextField name='password' placeholder='Enter password' type='password' variant="outlined" onChange={handleChange} fullWidth required />
-          <TextField name='confirmPassword' placeholder='Confirm Password' type='password' variant="outlined" onChange={handleChange} fullWidth required />
+          <TextField name='confirmPassword' placeholder='Confirm Password' type='password' variant="outlined" onChange={handleChange} onKeyUp={handleEnter} fullWidth required />
           <Button type='submit' color='primary' variant="contained" onClick={handleClick} style={btnstyle} fullWidth>Sign Up</Button>
         </Paper>
       </Grid>

@@ -53,6 +53,16 @@ const Login = () => {
             [e.target.name]: e.target.value,
         }))
     }
+    let handleEnter = (event) => {
+        if (event.key === "Enter") {
+            const userData = {
+                email,
+                password,
+            }
+
+            dispatch(login(userData))
+        }
+    };
 
     return (
         <div data-testid="login">
@@ -63,8 +73,8 @@ const Login = () => {
                         <h2>Sign In</h2>
                     </Grid>
                     <TextField name='email' placeholder='Enter email' variant="outlined" onChange={handleChange} fullWidth required />
-                    <TextField name='password' placeholder='Enter password' type='password' variant="outlined" onChange={handleChange} fullWidth required />
-                    <Button type='submit' color='primary' variant="contained" onClick={handleClick} style={btnstyle} fullWidth>Sign In'</Button>
+                    <TextField name='password' placeholder='Enter password' type='password' variant="outlined" onChange={handleChange} onKeyUp={handleEnter} fullWidth required />
+                    <Button type='submit' color='primary' variant="contained" onClick={handleClick} style={btnstyle} fullWidth>Sign In</Button>
                 </Paper>
             </Grid>
         </div>
