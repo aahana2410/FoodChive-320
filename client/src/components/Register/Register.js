@@ -1,20 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { Grid, Paper, Avatar, TextField, Button } from '@material-ui/core';
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Grid, Paper, Avatar, TextField, Button } from "@material-ui/core";
+import { Stack } from "@mui/system";
+import { useTheme } from "@mui/material/styles";
 
-import { register, reset } from '../../features/auth/authSlice'
+import { register, reset } from "../../features/auth/authSlice";
+import { Typography } from "@mui/material";
+import { ThemeProvider } from "@emotion/react";
 
 const Register = () => {
-  const paperStyle = { padding: 20, height: '70vh', width: 280, margin: "20px auto" };
-  const avatarStyle = { backgroundColor: '#1bbd7e' };
-  const btnstyle = { margin: '8px 0' };
+  const theme = useTheme();
+  const paperStyle = {
+    padding: 20,
+    height: "70vh",
+    width: 280,
+    margin: "20px auto",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+  };
+  const btnstyle = { margin: "8px 0" };
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const { name, email, password, confirmPassword } = formData;
@@ -32,7 +44,7 @@ const Register = () => {
     }
 
     if (isSuccess || user) {
-      navigate('/');
+      navigate("/");
     }
 
     dispatch(reset());
@@ -42,7 +54,7 @@ const Register = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      console.log('Passwords do not match');
+      console.log("Passwords do not match");
     } else {
       const userData = {
         name,
@@ -63,21 +75,66 @@ const Register = () => {
 
   return (
     <div data-testid="register">
-      <Grid>
-        <Paper elevation={10} style={paperStyle}>
-          <Grid align='center'>
-            <Avatar style={avatarStyle}></Avatar>
-            <h2>Sign Up</h2>
-          </Grid>
-          <TextField name='name' placeholder='Enter name' variant="outlined" onChange={handleChange} fullWidth required />
-          <TextField name='email' placeholder='Enter email' variant="outlined" onChange={handleChange} fullWidth required />
-          <TextField name='password' placeholder='Enter password' type='password' variant="outlined" onChange={handleChange} fullWidth required />
-          <TextField name='confirmPassword' placeholder='Confirm Password' type='password' variant="outlined" onChange={handleChange} fullWidth required />
-          <Button type='submit' color='primary' variant="contained" onClick={handleClick} style={btnstyle} fullWidth>Sign Up</Button>
-        </Paper>
-      </Grid>
+      <ThemeProvider theme={theme}>
+        <Grid>
+          <Paper elevation={10} style={paperStyle}>
+            <Stack align="center" alignItems="center" spacing={1}>
+              <Avatar
+                style={{ backgroundColor: `${theme.palette.secondary.main}` }}
+              ></Avatar>
+              <Typography variant="h4">Sign Up</Typography>
+            </Stack>
+            <Stack spacing={2}>
+              <TextField
+                name="name"
+                placeholder="Enter name"
+                variant="outlined"
+                onChange={handleChange}
+                fullWidth
+                required
+              />
+              <TextField
+                name="email"
+                placeholder="Enter email"
+                variant="outlined"
+                onChange={handleChange}
+                fullWidth
+                required
+              />
+              <TextField
+                name="password"
+                placeholder="Enter password"
+                type="password"
+                variant="outlined"
+                onChange={handleChange}
+                fullWidth
+                required
+              />
+              <TextField
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                type="password"
+                variant="outlined"
+                onChange={handleChange}
+                fullWidth
+                required
+              />
+            </Stack>
+            <Button
+              type="submit"
+              color="secondary"
+              variant="contained"
+              onClick={handleClick}
+              style={btnstyle}
+              fullWidth
+            >
+              Sign Up
+            </Button>
+          </Paper>
+        </Grid>
+      </ThemeProvider>
     </div>
-  )
+  );
 };
 
-export default Register
+export default Register;

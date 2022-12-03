@@ -19,6 +19,7 @@ import {
   Container,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import TuneIcon from "@mui/icons-material/Tune";
 
 function Search() {
   const [inputText, setInputText] = useState("");
@@ -161,6 +162,7 @@ function Search() {
               aria-controls="filters"
               id="filters"
             >
+              <TuneIcon sx={{ marginRight: 1 }} />
               <Typography>Filters</Typography>
             </AccordionSummary>
             <AccordionDetails
