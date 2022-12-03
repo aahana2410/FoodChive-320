@@ -9,9 +9,24 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Navbar from "./components/Navbar/Navbar";
 import Help from "./components/Help/Help";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 function App() {
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#5D781B",
+        contrastText: "#EAEBED",
+      },
+      secondary: {
+        main: "#FBCA6B",
+        contrastText: "#EAEBED",
+      },
+    },
+  });
+
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -25,7 +40,7 @@ function App() {
           <Route exact path="help" element={<Help />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </ThemeProvider>
   );
 }
 

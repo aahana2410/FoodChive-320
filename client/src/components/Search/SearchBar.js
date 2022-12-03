@@ -16,6 +16,12 @@ function SearchBar({ handleKeyUp, handleClick, handleEnter, inputValue }) {
         size="small"
         onClick={handleClick}
         disableElevation={true}
+        style={{
+          borderTopLeftRadius: 20,
+          borderBottomLeftRadius: 20,
+          borderTopRightRadius: 0,
+          borderBottomRightRadius: 0,
+        }}
       >
         <SearchIcon />
       </Button>

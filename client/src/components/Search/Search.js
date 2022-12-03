@@ -1,7 +1,13 @@
 import React from "react";
 import RecipeList from "../RecipeList/RecipeList";
 import SearchBar from "./SearchBar";
-import { cuisine, ingredients, type, skill, dietaryRestrictions } from './filters/index.js';
+import {
+  cuisine,
+  ingredients,
+  type,
+  skill,
+  dietaryRestrictions,
+} from "./filters/index.js";
 import { useState, useEffect } from "react";
 import Multiselect from "multiselect-react-dropdown";
 import {
@@ -14,23 +20,13 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 function Search() {
-  const [inputText, setInputText] = useState([]);
-  const [query, setQuery] = useState([]);
-  const [cuisineFilter, setCuisineFilter] = useState([]);
-  const [ingredientsFilter, setIngredientsFilter] = useState([]);
-  const [foodTypeFilter, setFoodTypeFilter] = useState([]);
-  const [skillFilter, setSkillFilter] = useState([]);
-  const [DRFilter, setDRFilter] = useState([]);
-
-  // initialize each
-  useEffect(() => {
-    setCuisineFilter("");
-    setIngredientsFilter("");
-    setFoodTypeFilter("");
-    setSkillFilter("");
-    setDRFilter("");
-    setQuery("");
-  }, []);
+  const [inputText, setInputText] = useState("");
+  const [query, setQuery] = useState("");
+  const [cuisineFilter, setCuisineFilter] = useState("");
+  const [ingredientsFilter, setIngredientsFilter] = useState("");
+  const [foodTypeFilter, setFoodTypeFilter] = useState("");
+  const [skillFilter, setSkillFilter] = useState("");
+  const [DRFilter, setDRFilter] = useState("");
 
   const changeQuery = () => {
     let sendQuery =
@@ -166,7 +162,9 @@ function Search() {
             >
               <Typography>Filters</Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails
+              sx={{ paddingTop: 0, paddingLeft: 4, paddingRight: 4 }}
+            >
               <div className="checkbox">
                 <Multiselect
                   placeholder="Cuisine"
