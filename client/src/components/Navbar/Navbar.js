@@ -22,7 +22,7 @@ function Navbar() {
     navigate("/");
   };
 
-  const navTabs = ["Discover", "Search", "Saved", "Profile"];
+  const navTabs = ["Discover", "Search", "Saved", "Profile", "Help"];
   const tabIcons = [
     <ExploreIcon />,
     <SearchIcon />,
