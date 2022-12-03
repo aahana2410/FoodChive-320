@@ -11,20 +11,7 @@ import Navbar from "./components/Navbar/Navbar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 function App() {
-  const theme1 = createTheme({
-    palette: {
-      primary: {
-        main: "#436A27",
-        contrastText: "#EAEBED",
-      },
-      secondary: {
-        main: "#D9B953",
-        contrastText: "#EAEBED",
-      },
-    },
-  });
-
-  const theme2 = createTheme({
+  const theme = createTheme({
     palette: {
       primary: {
         main: "#5D781B",
@@ -37,21 +24,8 @@ function App() {
     },
   });
 
-  const theme3 = createTheme({
-    palette: {
-      primary: {
-        main: "#ffcd29",
-        contrastText: "#333333",
-      },
-      secondary: {
-        main: "#FBCA6B",
-        contrastText: "#333333",
-      },
-    },
-  });
-
   return (
-    <ThemeProvider theme={theme2}>
+    <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Navbar />
         <Routes>
