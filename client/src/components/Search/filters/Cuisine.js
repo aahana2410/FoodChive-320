@@ -51,6 +51,16 @@ export const cuisine = [
   },
   {
     cat: 'Cuisine',
+    key: 'Middle-Eastern',
+    display: 'Middle Eastern'
+  },
+  {
+    cat: 'Cuisine',
+    key: 'Indian',
+    display: 'Indian'
+  },
+  {
+    cat: 'Cuisine',
     key: 'Mediterranean',
     display: 'Mediterranean'
   }

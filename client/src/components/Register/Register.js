@@ -54,7 +54,9 @@ const Register = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      console.log("Passwords do not match");
+
+      alert('Passwords do not match');
+
     } else {
       const userData = {
         name,
@@ -71,6 +73,20 @@ const Register = () => {
       ...prevState,
       [e.target.name]: e.target.value,
     }));
+  };
+  let handleEnter = (event) => {
+    if (event.key === "Enter") {
+      if (password !== confirmPassword) {
+        alert('Passwords do not match');
+      } else {
+        const userData = {
+          name,
+          email,
+          password,
+        };
+        dispatch(register(userData));
+      }
+    }
   };
 
   return (

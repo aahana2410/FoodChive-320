@@ -58,10 +58,20 @@ const Login = () => {
   };
 
   const handleChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
+        setFormData((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }))
+    }
+  let handleEnter = (event) => {
+      if (event.key === "Enter") {
+          const userData = {
+              email,
+              password,
+          }
+
+          dispatch(login(userData))
+      }
   };
 
   return (
@@ -89,6 +99,7 @@ const Login = () => {
               type="password"
               variant="outlined"
               onChange={handleChange}
+              onKeyUp={handleEnter}
               fullWidth
               required
             />
