@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Grid, Paper, Avatar, TextField, Button } from "@material-ui/core";
+import { Grid, Paper, Avatar, TextField, Button } from "@mui/material";
 import { Stack } from "@mui/system";
 import { useTheme } from "@mui/material/styles";
 
@@ -54,9 +54,7 @@ const Register = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-
-      alert('Passwords do not match');
-
+      alert("Passwords do not match");
     } else {
       const userData = {
         name,
@@ -77,7 +75,7 @@ const Register = () => {
   let handleEnter = (event) => {
     if (event.key === "Enter") {
       if (password !== confirmPassword) {
-        alert('Passwords do not match');
+        alert("Passwords do not match");
       } else {
         const userData = {
           name,
