@@ -63,10 +63,10 @@ function Navbar() {
               </Button>
             ) : (
               <>
-                <Link to="/Login" style={linkText}>
+                <Link to="/login" style={linkText}>
                   <Button variant="h4">Login</Button>
                 </Link>
-                <Link to="/Register" style={linkText}>
+                <Link to="/register" style={linkText}>
                   <Button variant="h4">Register</Button>
                 </Link>
               </>
