@@ -137,6 +137,7 @@ const Register = () => {
                 type="password"
                 variant="outlined"
                 onChange={handleChange}
+                onKeyUp = {handleEnter}
                 fullWidth
                 required
               />
