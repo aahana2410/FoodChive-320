@@ -68,7 +68,7 @@ const Login = () => {
         if (email === "") {
             alert("Please enter an email");
         }
-        else if (!email.endsWith(".com") || email.indexOf("@") === -1) {
+        else if (email.indexOf("@") === -1) {
             alert("Please enter a valid email");
         }
         else if (password === "") {
