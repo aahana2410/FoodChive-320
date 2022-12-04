@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Paper, Avatar, Button, ThemeProvider } from "@material-ui/core";
+import { Paper, Avatar, Button, ThemeProvider } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { login, reset } from "../../features/auth/authSlice";
 import { Stack } from "@mui/system";
@@ -82,6 +82,7 @@ const Login = () => {
         dispatch(login(userData))
         }
     }
+
 
   return (
     <div data-testid="login">

@@ -37,9 +37,9 @@ function App() {
           <Route exact path="discover" element={<Discover />} />
           <Route exact path="search" element={<Search />} />
           <Route exact path="profile" element={<Profile />} />
+          <Route exact path="help" element={<Help />} />
           <Route exact path="login" element={<Login />} />
           <Route exact path="register" element={<Register />} />
-          <Route exact path="help" element={<Help />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Grid, Paper, Avatar, TextField, Button } from "@material-ui/core";
+import { Grid, Paper, Avatar, TextField, Button } from "@mui/material";
 import { Stack } from "@mui/system";
 import { useTheme } from "@mui/material/styles";
 
@@ -56,7 +56,7 @@ const Register = () => {
   };
   const checkAndSend = () => {
     if (password !== confirmPassword) {
-
+    
       alert('Passwords do not match');
     } 
     else if(name === ""){
