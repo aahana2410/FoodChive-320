@@ -62,15 +62,20 @@ function DiscoverRecipeList() {
     return;
   }, []);
   
-  
+  let message = "";
+  let DRFilter = [];
+
   const search = recipes.filter((recipe) => {
     let foundDR = true;
-      foundDR = true;
       // Filter dietary restrictions
-      let DRFilter = user.dietaryRestrictions;
-      if (DRFilter.length === 1) {
-        foundDR = true;
+      if(user !== null){
+       DRFilter = user.dietaryRestrictions;
       }
+      if (DRFilter.length === 0) {
+         message = "Our recomendation:"
+        return true;
+      }
+    message = "Our Recommendation Based On Your Dietary Restrictions:";
       for (let i = 1; i < DRFilter.length; i++) {
         if (recipe.filters.indexOf(DRFilter[i].toLowerCase()) === -1) {
           foundDR = false;
@@ -111,7 +116,7 @@ function DiscoverRecipeList() {
 
   return (
     <div>
-      <Typography variant="h3">Our Recommendations Based On Your Dietary Restrictions: </Typography>
+      <Typography variant="h3">{message} </Typography>
         {showOne.map((currRecipe) => 
             (
             <RecipeCard
