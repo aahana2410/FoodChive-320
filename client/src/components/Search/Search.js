@@ -19,6 +19,7 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useSelector } from "react-redux";
+import TuneIcon from "@mui/icons-material/Tune";
 
 function Search() {
   const [inputText, setInputText] = useState("");
