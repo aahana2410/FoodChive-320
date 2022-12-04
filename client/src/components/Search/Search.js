@@ -29,10 +29,16 @@ function Search() {
   const [ingredientsFilter, setIngredientsFilter] = useState("");
   const [foodTypeFilter, setFoodTypeFilter] = useState("");
   const [skillFilter, setSkillFilter] = useState("");
-  const [DRFilter, setDRFilter] = useState("");
   const user = useSelector((state) => state.auth.user);
-
-
+  let userDR = "";
+  if (user !== null) {
+    let userRestrictions = user.dietaryRestrictions;
+    for (let i = 0; i < userRestrictions.length; i++) {
+      userDR+= " " + userRestrictions[i];
+    }
+  }
+  const [DRFilter, setDRFilter] = useState(userDR);
+  
   const changeQuery = () => {
     let sendQuery =
       inputText +
