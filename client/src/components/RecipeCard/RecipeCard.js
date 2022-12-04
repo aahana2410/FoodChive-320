@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { useSelector } from "react-redux";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -30,6 +31,7 @@ export default function RecipeCard({
   toggleSnackBar,
 }) {
   const [expanded, setExpanded] = React.useState(false);
+  const user = useSelector((state) => state.auth.user);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -58,7 +60,10 @@ export default function RecipeCard({
             aria-label="add to favorites"
             onClick={async () => {
               let valid = await handleCardClick(recipe);
-              if (valid) {
+              if(user ===null){
+                toggleSnackBar("You are not logged in!");
+              }
+              else if (valid) {
                 toggleSnackBar("Saved Recipe!");
               } else {
                 toggleSnackBar("You already saved this recipe!");

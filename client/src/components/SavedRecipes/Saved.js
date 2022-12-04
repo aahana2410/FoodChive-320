@@ -12,6 +12,8 @@ import {
   Container,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useSelector } from "react-redux";
+
 
 function Search() {
   const [inputText, setInputText] = useState([]);
@@ -21,6 +23,8 @@ function Search() {
   const [foodTypeFilter, setFoodTypeFilter] = useState([]);
   const [skillFilter, setSkillFilter] = useState([]);
   const [DRFilter, setDRFilter] = useState([]);
+  const user = useSelector((state) => state.auth.user);
+
 
   // initialize each
   useEffect(() => {
@@ -148,6 +152,7 @@ function Search() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [DRFilter]);
 
+  if (user !== null) {
   return (
     <div data-testid="search">
       <center>
@@ -234,5 +239,20 @@ function Search() {
       </center>
     </div>
   );
+}
+else{
+
+    return <div>
+      <center>
+        <h2>
+          You Are Not Logged In!
+          <br></br>
+          Go to the Login or Register page to get started and save your favorite recipes!
+        </h2>
+      </center>
+    </div>;
+
+}
+
 }
 export default Search;

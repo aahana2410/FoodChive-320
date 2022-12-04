@@ -159,7 +159,7 @@ function RecipeList(fullQuery) {
   const state = useSelector((state) => state);
   let save = async (recipe) => {
     if(state.auth.user === null){
-      alert("You are not logged in");
+      // do nothing
     }
     else{
     const savedRecipes = state.auth.user.recipes;

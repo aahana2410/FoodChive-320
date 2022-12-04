@@ -48,31 +48,41 @@ const Login = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
+        checkAndSend();
+    }
 
-    const userData = {
-      email,
-      password,
-    };
-
-    dispatch(login(userData));
-  };
 
   const handleChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
-  let handleEnter = (event) => {
-    if (event.key === "Enter") {
-      const userData = {
-        email,
-        password,
-      };
-
-      dispatch(login(userData));
+        setFormData((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }))
     }
-  };
+
+    let handleEnter = (event) => {
+        if (event.key === "Enter") {
+            checkAndSend();
+        }
+    };
+    let checkAndSend = () => {
+        if (email === "") {
+            alert("Please enter an email");
+        }
+        else if (email.indexOf("@") === -1) {
+            alert("Please enter a valid email");
+        }
+        else if (password === "") {
+            alert("Please enter a password");
+        }
+        else{
+        const userData = {
+            email,
+            password,
+        }
+        dispatch(login(userData))
+        }
+    }
+
 
   return (
     <div data-testid="login">
@@ -121,3 +131,4 @@ const Login = () => {
 };
 
 export default Login;
+
