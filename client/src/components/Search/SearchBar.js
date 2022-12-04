@@ -8,7 +8,6 @@ import { Stack } from "@mui/system";
 
 function SearchBar({ handleKeyUp, handleClick, handleEnter, inputValue }) {
   return (
-    // <Container>
     <Stack direction="row" sx={{ marginBottom: 2 }}>
       <Button
         className="buttonRounded"
@@ -36,7 +35,6 @@ function SearchBar({ handleKeyUp, handleClick, handleEnter, inputValue }) {
         size="small"
       />
     </Stack>
-    // </Container>
   );
 }
 
