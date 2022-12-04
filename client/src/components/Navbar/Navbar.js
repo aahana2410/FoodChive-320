@@ -45,7 +45,7 @@ function Navbar() {
               alt="Foodchive logo"
               style={{ minHeight: 32, maxHeight: 64, marginRight: 5 }}
             />
-            <Typography variant="h3">Foodchive</Typography>
+            <Typography variant="h3">FoodChive</Typography>
           </Link>
           <Stack sx={{ marginLeft: "auto" }} spacing={6} direction="row">
             {navTabs.map((tab) => (
