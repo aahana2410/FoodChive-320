@@ -18,6 +18,7 @@ import {
   Container,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useSelector } from "react-redux";
 
 function Search() {
   const [inputText, setInputText] = useState("");
@@ -27,6 +28,8 @@ function Search() {
   const [foodTypeFilter, setFoodTypeFilter] = useState("");
   const [skillFilter, setSkillFilter] = useState("");
   const [DRFilter, setDRFilter] = useState("");
+  const user = useSelector((state) => state.auth.user);
+
 
   const changeQuery = () => {
     let sendQuery =
@@ -144,6 +147,15 @@ function Search() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [DRFilter]);
 
+  let preselect = [];
+  if (user !== null) {
+    const DR = user.dietaryRestrictions;
+    for (let i = 0; i < dietaryRestrictions.length; i++) {
+      if (DR.indexOf(dietaryRestrictions[i].key.toLowerCase()) !== -1) {
+        preselect.push(dietaryRestrictions[i]);
+      }
+    }
+  }
   return (
     <div data-testid="search">
       <center>
@@ -220,6 +232,7 @@ function Search() {
                   onSelect={addFilter}
                   options={dietaryRestrictions}
                   showCheckbox
+                  selectedValues={preselect}
                 />
               </div>
             </AccordionDetails>

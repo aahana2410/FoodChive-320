@@ -36,11 +36,11 @@ function Profile() {
     // UPDATE USER to newuser
   }
 
+  let preselect = [];
   if (user !== null) {
     const email = user.email;
     const name = user.name;
     const DR = user.dietaryRestrictions;
-    let preselect = [];
     for (let i = 0; i < dietaryRestrictions.length; i++) {
       if (DR.indexOf(dietaryRestrictions[i].key.toLowerCase()) !== -1) {
         preselect.push(dietaryRestrictions[i]);

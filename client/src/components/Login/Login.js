@@ -39,12 +39,7 @@ const Login = () => {
     const handleClick = (e) => {
         e.preventDefault()
 
-        const userData = {
-            email,
-            password,
-        }
-
-        dispatch(login(userData))
+        checkAndSend();
     }
 
     const handleChange = (e) => {
@@ -55,14 +50,27 @@ const Login = () => {
     }
     let handleEnter = (event) => {
         if (event.key === "Enter") {
-            const userData = {
-                email,
-                password,
-            }
-
-            dispatch(login(userData))
+            checkAndSend();
         }
     };
+    let checkAndSend = () => {
+        if (email === "") {
+            alert("Please enter an email");
+        }
+        else if (!email.endsWith(".com") || email.indexOf("@") === -1) {
+            alert("Please enter a valid email");
+        }
+        else if (password === "") {
+            alert("Please enter a password");
+        }
+        else{
+        const userData = {
+            email,
+            password,
+        }
+        dispatch(login(userData))
+        }
+    }
 
     return (
         <div data-testid="login">

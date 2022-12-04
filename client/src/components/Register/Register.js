@@ -40,10 +40,25 @@ const Register = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-
+    checkAndSend();
+  };
+  const checkAndSend = () => {
     if (password !== confirmPassword) {
       alert('Passwords do not match');
-    } else {
+    } 
+    else if(name === ""){
+      alert("Please enter a name");
+    }
+    else if(email ===""){
+      alert("Please enter an email");
+    }
+    else if(!email.endsWith(".com") || email.indexOf("@") ===-1){
+      alert("Please enter a valid email");
+    }
+    else if(password ===""){
+      alert("Please enter a password");
+    }
+    else {
       const userData = {
         name,
         email,
@@ -52,26 +67,17 @@ const Register = () => {
 
       dispatch(register(userData));
     }
-  };
-
+  }
   const handleChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
   };
+
   let handleEnter = (event) => {
     if (event.key === "Enter") {
-      if (password !== confirmPassword) {
-        alert('Passwords do not match');
-      } else {
-        const userData = {
-          name,
-          email,
-          password,
-        };
-        dispatch(register(userData));
-      }
+      checkAndSend();
     }
   };
 
