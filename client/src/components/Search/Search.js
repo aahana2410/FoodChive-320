@@ -33,7 +33,7 @@ function Search() {
   if (user !== null) {
     let userRestrictions = JSON.parse(user).dietaryRestrictions;
     for (let i = 0; i < userRestrictions.length; i++) {
-      userDR+= " " + userRestrictions[i];
+      userDR+= " " + userRestrictions[i].toLowerCase();
     }
   }
   const [DRFilter, setDRFilter] = useState(userDR);
