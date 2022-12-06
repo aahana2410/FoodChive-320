@@ -4,12 +4,12 @@ import RecipeCard from "../RecipeCard/RecipeCard";
 import CloseIcon from "@mui/icons-material/Close";
 import { Snackbar, IconButton, Typography } from "@mui/material";
 import { environmentURL } from "../../environementURL";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateUser } from "../../features/auth/authSlice";
 
 function DiscoverRecipeList() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user);
+  const user = localStorage.getItem('user');
  
   
   const [open, setOpen] = useState(false);
@@ -69,7 +69,7 @@ function DiscoverRecipeList() {
     let foundDR = true;
       // Filter dietary restrictions
       if(user !== null){
-       DRFilter = user.dietaryRestrictions;
+       DRFilter = JSON.parse(user).dietaryRestrictions;
       }
       if (DRFilter.length === 0) {
          message = "Our recomendation:"
@@ -91,24 +91,21 @@ function DiscoverRecipeList() {
   showOne.push(search[rand]);
   }
 
-  const state = useSelector((state) => state);
   let save = async (recipe) => {
-    if (state.auth.user === null) {
+    if (user === null) {
       // do nothing
     }
     else {
-      const savedRecipes = state.auth.user.recipes;
-      if (savedRecipes.indexOf(recipe._id) !== -1) {
+      if (JSON.parse(user).recipes.indexOf(recipe._id) !== -1) {
         //already been saved 
         return false;
       }
-
-      let newUser = { ...state.auth.user }; // Clones the user 
+      let newUser = { ...JSON.parse(user) }; // Clones the user 
       let newSaved = [...newUser.recipes];
       newSaved.push(recipe._id);
       newUser.recipes = newSaved;
       await (dispatch(updateUser(newUser)));
-      window.location.reload(false);
+      localStorage.setItem('user', JSON.stringify(newUser))
       return true;
     }
   };
