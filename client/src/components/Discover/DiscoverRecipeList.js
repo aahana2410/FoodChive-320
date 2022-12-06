@@ -6,12 +6,13 @@ import { Snackbar, IconButton, Typography } from "@mui/material";
 import { environmentURL } from "../../environementURL";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../features/auth/authSlice";
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 function DiscoverRecipeList() {
   const dispatch = useDispatch();
   const user = localStorage.getItem('user');
- 
-  
+
+
   const [open, setOpen] = useState(false);
   const [snackBarMessage, setSnackBarMessage] = useState();
   const toggleSnackBar = (message) => {
@@ -22,7 +23,6 @@ function DiscoverRecipeList() {
     if (reason === "clickaway") {
       return;
     }
-
     setOpen(false);
   };
 
@@ -39,8 +39,6 @@ function DiscoverRecipeList() {
     </React.Fragment>
   );
   // SNACKBAR ENDS
-
-
 
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
@@ -61,35 +59,39 @@ function DiscoverRecipeList() {
 
     return;
   }, []);
-  
+
   let message = "";
   let DRFilter = [];
 
   const search = recipes.filter((recipe) => {
     let foundDR = true;
-      // Filter dietary restrictions
-      if(user !== null){
-       DRFilter = JSON.parse(user).dietaryRestrictions;
+    // Filter dietary restrictions
+    if (user !== null) {
+      message = "Our Recommendation Based On Your Dietary Restrictions:";
+      DRFilter = JSON.parse(user).dietaryRestrictions;
+    }
+    else {
+      message = "Our recomendation:"
+      return true;
+    }
+    for (let i = 1; i < DRFilter.length; i++) {
+      if (recipe.filters.indexOf(DRFilter[i].toLowerCase()) === -1) {
+        foundDR = false;
       }
-      if (DRFilter.length === 0) {
-         message = "Our recomendation:"
-        return true;
-      }
-    message = "Our Recommendation Based On Your Dietary Restrictions:";
-      for (let i = 1; i < DRFilter.length; i++) {
-        if (recipe.filters.indexOf(DRFilter[i].toLowerCase()) === -1) {
-          foundDR = false;
-        }
-      }
+    }
     return (foundDR);
   });
 
   let len = search.length;
-  let rand = Math.floor(Math.random() * len);  
+  let rand = Math.floor(Math.random() * len);
   let showOne = [];
-  if(len !== 0){
-  showOne.push(search[rand]);
+  if (len !== 0) {
+    showOne.push(search[rand]);
   }
+
+  let refresh = async () => {
+    window.location.reload();
+  };
 
   let save = async (recipe) => {
     if (user === null) {
@@ -109,29 +111,31 @@ function DiscoverRecipeList() {
       return true;
     }
   };
-  
+ 
+
 
   return (
     <div>
       <Typography variant="h3">{message} </Typography>
-        {showOne.map((currRecipe) => 
-            (
-            <RecipeCard
-              recipe={currRecipe}
-              handleCardClick={save}
-              check={true}
-              toggleSnackBar={toggleSnackBar}
-            ></RecipeCard>
-        )      
+      {showOne.map((currRecipe) =>
+      (
+        <RecipeCard
+          recipe={currRecipe}
+          handleCardClick={save}
+          check={true}
+          toggleSnackBar={toggleSnackBar}
+        ></RecipeCard>
+      )
       )
       }
-        <Snackbar
-          open={open}
-          autoHideDuration={1000}
-          onClose={handleClose}
-          message={snackBarMessage}
-          action={action}
-        />
+      <Snackbar
+        open={open}
+        autoHideDuration={1000}
+        onClose={handleClose}
+        message={snackBarMessage}
+        action={action}
+      />
+      <IconButton onClick={refresh}><RefreshIcon fontSize="large" /></IconButton>
     </div>
   );
 }
