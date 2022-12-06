@@ -11,8 +11,6 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 function DiscoverRecipeList() {
   const dispatch = useDispatch();
   const user = localStorage.getItem('user');
-
-
   const [open, setOpen] = useState(false);
   const [snackBarMessage, setSnackBarMessage] = useState();
   const toggleSnackBar = (message) => {
