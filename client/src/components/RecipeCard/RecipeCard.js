@@ -77,7 +77,11 @@ export default function RecipeCard({
           <IconButton
             title="Delete Recipe"
             aria-label="delete from favorites"
-            onClick={async () => handleCardClick(recipe)}
+            onClick={async () =>{
+              await handleCardClick(recipe);
+              toggleSnackBar("Recipe Deleted");
+            }
+          }
           >
             <DeleteOutlineIcon></DeleteOutlineIcon>
           </IconButton>

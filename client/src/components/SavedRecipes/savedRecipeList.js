@@ -4,6 +4,9 @@ import RecipeCard from "../RecipeCard/RecipeCard";
 import { environmentURL } from "../../environementURL";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../features/auth/authSlice";
+import CloseIcon from "@mui/icons-material/Close";
+import { Snackbar, IconButton } from "@mui/material";
+
 function RecipeList(fullQuery) {
   const dispatch = useDispatch();
   const [recipes, setRecipes] = useState([]);
@@ -25,6 +28,38 @@ function RecipeList(fullQuery) {
 
     return;
   }, []);
+
+  const [open, setOpen] = useState(false);
+  const [snackBarMessage, setSnackBarMessage] = useState();
+
+  const toggleSnackBar = (message) => {
+    setSnackBarMessage(message);
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+  // SNACKBAR ENDS
+
+
   const search = recipes.filter((recipe) => {
     const user = localStorage.getItem('user');
     // Check Search Query
@@ -142,7 +177,6 @@ function RecipeList(fullQuery) {
     newUser.recipes = newSaved;
     await (dispatch(updateUser(newUser)));
     localStorage.setItem('user', JSON.stringify(newUser))
-    window.location.reload();
     return true;
   };
   
@@ -159,9 +193,17 @@ function RecipeList(fullQuery) {
                 recipe={currRecipe}
                 handleCardClick={deleteRecipe}
                 check={false}
+                toggleSnackBar={toggleSnackBar}
               ></RecipeCard>
             </div>
           ))}
+          <Snackbar
+            open={open}
+            autoHideDuration={1000}
+            onClose={handleClose}
+            message={snackBarMessage}
+            action={action}
+          />
         </center>
       </div>
     </div>
