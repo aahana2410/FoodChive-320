@@ -19,7 +19,6 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TuneIcon from "@mui/icons-material/Tune";
-import { useSelector } from "react-redux";
 
 
 function Search() {
@@ -29,10 +28,10 @@ function Search() {
   const [ingredientsFilter, setIngredientsFilter] = useState("");
   const [foodTypeFilter, setFoodTypeFilter] = useState("");
   const [skillFilter, setSkillFilter] = useState("");
-  const user = useSelector((state) => state.auth.user);
+  const user = localStorage.getItem('user');
   let userDR = "";
   if (user !== null) {
-    let userRestrictions = user.dietaryRestrictions;
+    let userRestrictions = JSON.parse(user).dietaryRestrictions;
     for (let i = 0; i < userRestrictions.length; i++) {
       userDR+= " " + userRestrictions[i];
     }
@@ -157,7 +156,7 @@ function Search() {
 
   let preselect = [];
   if (user !== null) {
-    const DR = user.dietaryRestrictions;
+    const DR = JSON.parse(user).dietaryRestrictions;
     for (let i = 0; i < dietaryRestrictions.length; i++) {
       if (DR.indexOf(dietaryRestrictions[i].key.toLowerCase()) !== -1) {
         preselect.push(dietaryRestrictions[i]);
