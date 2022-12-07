@@ -35,6 +35,7 @@ export default function RecipeCard({
 }) {
   const [expanded, setExpanded] = React.useState(false);
   const [anchorPosition, setAnchorPosition] = React.useState(null);
+
   const user = useSelector((state) => state.auth.user);
 
   const handleExpandClick = () => {
@@ -77,6 +78,7 @@ export default function RecipeCard({
             aria-label="add to favorites"
             onClick={async () => {
               let valid = await handleSaveClick(recipe);
+
               if(user ===null){
                 toggleSnackBar("You are not logged in!");
               }

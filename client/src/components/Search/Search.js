@@ -1,8 +1,13 @@
 import React from "react";
-import '../RecipeList/PageStyles.css'
 import RecipeList from "../RecipeList/RecipeList";
 import SearchBar from "./SearchBar";
-import { cuisine, ingredients, type, skill, dietaryRestrictions } from './filters/index.js';
+import {
+  cuisine,
+  ingredients,
+  type,
+  skill,
+  dietaryRestrictions,
+} from "./filters/index.js";
 import { useState, useEffect } from "react";
 import Multiselect from "multiselect-react-dropdown";
 import {
@@ -13,25 +18,20 @@ import {
   Container,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import TuneIcon from "@mui/icons-material/Tune";
+import { useSelector } from "react-redux";
+
 
 function Search() {
-  const [inputText, setInputText] = useState([]);
-  const [query, setQuery] = useState([]);
-  const [cuisineFilter, setCuisineFilter] = useState([]);
-  const [ingredientsFilter, setIngredientsFilter] = useState([]);
-  const [foodTypeFilter, setFoodTypeFilter] = useState([]);
-  const [skillFilter, setSkillFilter] = useState([]);
-  const [DRFilter, setDRFilter] = useState([]);
+  const [inputText, setInputText] = useState("");
+  const [query, setQuery] = useState("");
+  const [cuisineFilter, setCuisineFilter] = useState("");
+  const [ingredientsFilter, setIngredientsFilter] = useState("");
+  const [foodTypeFilter, setFoodTypeFilter] = useState("");
+  const [skillFilter, setSkillFilter] = useState("");
+  const [DRFilter, setDRFilter] = useState("");
+  const user = useSelector((state) => state.auth.user);
 
-  // initialize each
-  useEffect(() => {
-    setCuisineFilter("");
-    setIngredientsFilter("");
-    setFoodTypeFilter("");
-    setSkillFilter("");
-    setDRFilter("");
-    setQuery("");
-  }, []);
 
   const changeQuery = () => {
     let sendQuery =
@@ -149,6 +149,15 @@ function Search() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [DRFilter]);
 
+  let preselect = [];
+  if (user !== null) {
+    const DR = user.dietaryRestrictions;
+    for (let i = 0; i < dietaryRestrictions.length; i++) {
+      if (DR.indexOf(dietaryRestrictions[i].key.toLowerCase()) !== -1) {
+        preselect.push(dietaryRestrictions[i]);
+      }
+    }
+  }
   return (
     <div data-testid="search">
       <center>
@@ -165,9 +174,12 @@ function Search() {
               aria-controls="filters"
               id="filters"
             >
+              <TuneIcon sx={{ marginRight: 1 }} />
               <Typography>Filters</Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails
+              sx={{ paddingTop: 0, paddingLeft: 4, paddingRight: 4 }}
+            >
               <div className="checkbox">
                 <Multiselect
                   placeholder="Cuisine"
@@ -223,6 +235,7 @@ function Search() {
                   onSelect={addFilter}
                   options={dietaryRestrictions}
                   showCheckbox
+                  selectedValues={preselect}
                 />
               </div>
             </AccordionDetails>

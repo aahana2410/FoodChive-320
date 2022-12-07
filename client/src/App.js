@@ -5,11 +5,30 @@ import Search from "./components/Search/Search";
 import Profile from "./components/Profile/Profile";
 import Saved from "./components/SavedRecipes/Saved";
 import Home from "./components/Home/Home";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
 import Navbar from "./components/Navbar/Navbar";
+import Help from "./components/Help/Help";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 function App() {
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#436a27",
+        light: "#719852",
+        dark: "#173f00",
+      },
+      secondary: {
+        main: "#4e276a",
+        light: "#7c5198",
+        dark: "#22003f",
+      },
+    },
+  });
+
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -18,9 +37,12 @@ function App() {
           <Route exact path="discover" element={<Discover />} />
           <Route exact path="search" element={<Search />} />
           <Route exact path="profile" element={<Profile />} />
+          <Route exact path="help" element={<Help />} />
+          <Route exact path="login" element={<Login />} />
+          <Route exact path="register" element={<Register />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </ThemeProvider>
   );
 }
 
