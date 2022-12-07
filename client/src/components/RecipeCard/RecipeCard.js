@@ -50,10 +50,11 @@ export default function RecipeCard({
   };
 
   const open = Boolean(anchorPosition);
+  const expand_title = expanded ? "Close Ingredients" : "Show Ingredients";
 
   return (
     <Card sx={{ maxWidth: 450, bgcolor: "#fafafa" }}>
-      <CardActionArea onClick={handleCardClick}>
+      <CardActionArea title="Show Full Recipe" onClick={handleCardClick}>
         <CardHeader
           sx={{ textOverflow: "ellipsis", overflow: "hidden", display: "block" }}
           title={
@@ -102,8 +103,9 @@ export default function RecipeCard({
           expand={expanded}
           onClick={handleExpandClick}
           aria-expanded={expanded}
+          title={expand_title}
           aria-label="show more"
-        >
+        >      
           <ExpandMoreIcon />
         </ExpandMore>
         <Popover
@@ -112,6 +114,7 @@ export default function RecipeCard({
           anchorReference="anchorPosition"
           anchorPosition={anchorPosition}
           anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          PaperProps={{ style: {width:'100%'}}}
         >
           <Typography align="right">
             {check && (
@@ -162,19 +165,20 @@ export default function RecipeCard({
               <Typography
                 align="center"
                 variant="body1"
-                color="text.secondary"
+                color="text.primary"
                 key={ingredient}
               >
                 {ingredient}
               </Typography>
             );
           })}
-          <Typography align="left" variant="h6"> Instructions </Typography>
+          <Typography align="left" variant="h6" sx={{pl:3}}> Instructions </Typography>
           {recipe.steps.map((step, index) => {
             return (<Typography
               variant="body1"
-              color="text.secondary"
+              color="text.primary"
               key={step}
+              sx={{pl:3, pr:3, pb:2}}
               >
                 {index+1}. {step}
               </Typography>
