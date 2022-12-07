@@ -69,7 +69,7 @@ function Discover() {
       DRFilter = JSON.parse(user).dietaryRestrictions;
     }
     else {
-      message = "Our recomendation:"
+      message = "Our Recommendation:"
       return true;
     }
 
