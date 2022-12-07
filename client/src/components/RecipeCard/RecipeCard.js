@@ -109,18 +109,6 @@ export default function RecipeCard({
               </Typography>
             );
           })}
-          Steps
-          {recipe.steps.map((ingredient) => {
-            return (
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                key={ingredient}
-              >
-                {ingredient}
-              </Typography>
-            );
-          })}
         </CardContent>
       </Collapse>
     </Card>
