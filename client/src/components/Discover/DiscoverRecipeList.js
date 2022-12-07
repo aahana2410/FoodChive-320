@@ -72,7 +72,8 @@ function DiscoverRecipeList() {
       message = "Our recomendation:"
       return true;
     }
-    for (let i = 1; i < DRFilter.length; i++) {
+
+    for (let i = 0; i < DRFilter.length; i++) {
       if (recipe.filters.indexOf(DRFilter[i].toLowerCase()) === -1) {
         foundDR = false;
       }

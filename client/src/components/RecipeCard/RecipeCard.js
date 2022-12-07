@@ -109,7 +109,7 @@ export default function RecipeCard({
               </Typography>
             );
           })}
-          {/* Steps
+          Steps
           {recipe.steps.map((ingredient) => {
             return (
               <Typography
@@ -120,7 +120,7 @@ export default function RecipeCard({
                 {ingredient}
               </Typography>
             );
-          })} */}
+          })}
         </CardContent>
       </Collapse>
     </Card>
