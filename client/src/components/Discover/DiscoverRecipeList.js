@@ -72,7 +72,7 @@ function DiscoverRecipeList() {
        DRFilter = user.dietaryRestrictions;
       }
       if (DRFilter.length === 0) {
-         message = "Our recomendation:"
+         message = "Our recommendation:"
         return true;
       }
     message = "Our Recommendation Based On Your Dietary Restrictions:";
