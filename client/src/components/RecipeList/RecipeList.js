@@ -1,12 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import "./PageStyles.css";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import CloseIcon from "@mui/icons-material/Close";
 import { Snackbar, IconButton, Grid, Typography } from "@mui/material";
 import { environmentURL } from "../../environementURL";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser } from "../../features/auth/authSlice";
 
 function RecipeList(fullQuery) {
+  const dispatch = useDispatch();
+
   // FOR SNACKBAR
   const [open, setOpen] = useState(false);
   const [snackBarMessage, setSnackBarMessage] = useState();
@@ -153,23 +156,28 @@ function RecipeList(fullQuery) {
     );
   });
 
+  const state = useSelector((state) => state);
   let save = async (recipe) => {
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(recipe),
-    };
-    let response = await fetch(
-      `${environmentURL}/savedRecipes`,
-      requestOptions
-    );
-    if (!response.ok) {
-      const message = `You already saved this recipe!`;
-      window.alert(message);
+    if(state.auth.user === null){
+      // do nothing
+    }
+    else{
+    const savedRecipes = state.auth.user.recipes;
+    if (savedRecipes.indexOf(recipe._id) !== -1) {
+      //already been saved 
       return false;
     }
+    
+    let newUser = {...state.auth.user}; // Clones the user 
+    let newSaved = [...newUser.recipes];
+    newSaved.push(recipe._id); 
+    newUser.recipes = newSaved;
+    await(dispatch(updateUser(newUser)));
+    window.location.reload(false);
     return true;
-  };
+  }
+};
+
 
   return (
     <div>
@@ -179,7 +187,7 @@ function RecipeList(fullQuery) {
           <Grid key={currRecipe.name.toLowerCase()} item xs={4}>
             <RecipeCard
               recipe={currRecipe}
-              handleCardClick={save}
+              handleSaveClick={save}
               check={true}
               toggleSnackBar={toggleSnackBar}
             ></RecipeCard>
