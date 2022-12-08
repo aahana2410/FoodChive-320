@@ -182,7 +182,9 @@ function RecipeList(fullQuery) {
       <Paper
         sx={{ marginTop: 5, marginBottom: 5, paddingLeft: 5, paddingRight: 5 }}
       >
-        <Typography variant="h3">Results For: {fullQuery.input}</Typography>
+        <Typography variant="h3">
+          Your Saved Recipes: {fullQuery.input}
+        </Typography>
       </Paper>
       <Grid container spacing={4}>
         {search.map((currRecipe) => (
