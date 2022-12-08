@@ -178,25 +178,22 @@ function RecipeList(fullQuery) {
   };
 
   return (
-    <div data-testid="saved" style={{ width: "75vw" }}>
+    <div style={{ width: "75vw" }}>
       <Paper
         sx={{ marginTop: 5, marginBottom: 5, paddingLeft: 5, paddingRight: 5 }}
       >
-        <Typography variant="h3">
-          Your Saved Recipes: {fullQuery.input}
-        </Typography>
+        <Typography variant="h3">Results For: {fullQuery.input}</Typography>
       </Paper>
       <Grid container spacing={4}>
         {search.map((currRecipe) => (
-          <div key={currRecipe.name} className="card">
-            <br></br>
+          <Grid key={currRecipe.name.toLowerCase()} item xs={4}>
             <RecipeCard
               recipe={currRecipe}
               handleSaveClick={deleteRecipe}
               check={false}
               toggleSnackBar={toggleSnackBar}
             ></RecipeCard>
-          </div>
+          </Grid>
         ))}
         <Snackbar
           open={open}
