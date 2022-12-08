@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateUser } from "../../features/auth/authSlice";
 import { dietaryRestrictions } from '../Search/filters/index.js';
 import Multiselect from "multiselect-react-dropdown";
@@ -8,39 +8,39 @@ import { Container } from "@mui/material";
 
 function Profile() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user);
+  let user = localStorage.getItem('user');
 
   const removeFilter = async (selectedList, selectedItem) => {
-
+    user = localStorage.getItem('user');
     let key = selectedItem.key.toLowerCase();
-    let index = user.dietaryRestrictions.indexOf(key);
-    let newDR = [...user.dietaryRestrictions];
+    let index = JSON.parse(user).dietaryRestrictions.indexOf(key);
+    let newDR = [...JSON.parse(user).dietaryRestrictions];
     newDR.splice(index, 1);
-    let newUser = {...user};
+    let newUser = { ...JSON.parse(user) };
     newUser.dietaryRestrictions = newDR;
     await(dispatch(updateUser(newUser)));
-    window.location.reload(false);
-
+    localStorage.setItem('user', JSON.stringify(newUser));
     // UPDATE USER to newuser
   }
 
   const addFilter = async (selectedList, selectedItem) => {
+    user = localStorage.getItem('user');
     let key = selectedItem.key.toLowerCase();
-    let newDR = [...user.dietaryRestrictions];
+    let newDR = [...JSON.parse(user).dietaryRestrictions];
     newDR.push(key);
-    let newUser = { ...user };
+    let newUser = { ...JSON.parse(user) };
     newUser.dietaryRestrictions = newDR;
     await(dispatch(updateUser(newUser)));
-    window.location.reload(false);
+    localStorage.setItem('user', JSON.stringify(newUser));
 
     // UPDATE USER to newuser
   }
 
   let preselect = [];
   if (user !== null) {
-    const email = user.email;
-    const name = user.name;
-    const DR = user.dietaryRestrictions;
+    const email = JSON.parse(user).email;
+    const name = JSON.parse(user).name;
+    const DR = JSON.parse(user).dietaryRestrictions;
     for (let i = 0; i < dietaryRestrictions.length; i++) {
       if (DR.indexOf(dietaryRestrictions[i].key.toLowerCase()) !== -1) {
         preselect.push(dietaryRestrictions[i]);

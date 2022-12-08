@@ -1,46 +1,46 @@
 export const dietaryRestrictions = [
   {
     cat: 'Dietary Restrictions',
-    key: 'Vegetarian',
+    key: 'vegetarian',
     display: 'Vegetarian'
   },
   {
     cat: 'Dietary Restrictions',
-    key: 'Vegan',
+    key: 'vegan',
     display: 'Vegan'
   },
   {
     cat: 'Dietary Restrictions',
-    key: 'Gluten-Free',
+    key: 'gluten-free',
     display: 'Gluten Free'
   },
   {
     cat: 'Dietary Restrictions',
-    key: 'Dairy-Free',
+    key: 'dairy-free',
     display: 'Dairy Free'
   }, {
     cat: 'Dietary Restrictions',
-    key: 'Kosher',
+    key: 'kosher',
     display: 'Kosher'
   },
   {
     cat: 'Dietary Restrictions',
-    key: 'Keto',
+    key: 'keto',
     display: 'Keto'
   },
   {
     cat: 'Dietary Restrictions',
-    key: 'Soy-Free',
+    key: 'soy-free',
     display: 'Soy Free'
   },
   {
     cat: 'Dietary Restrictions',
-    key: 'Seafood-Free',
+    key: 'seafood-free',
     display: 'Seafood Free'
   },
   {
     cat: 'Dietary Restrictions',
-    key: 'Nut-Free',
+    key: 'nut-free',
     display: 'Nut Free'
   }
 ]
