@@ -46,7 +46,7 @@ function Profile() {
       }
     }
     return (
-      <Paper>
+      <Paper sx={{ padding: 5 }}>
         <center>
           <h2>
             {"Logged In As: "}
