@@ -89,8 +89,10 @@ function Discover() {
   }
 
   let refresh = async () => {
-    window.location.reload();
-  };
+    setSnackBarMessage("");
+    await setOpen(true);
+    setOpen(false);
+    };
 
   let save = async (recipe) => {
     if (user === null) {
