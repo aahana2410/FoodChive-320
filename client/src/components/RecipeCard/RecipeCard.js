@@ -79,7 +79,7 @@ export default function RecipeCard({
             onClick={async () => {
               let valid = await handleSaveClick(recipe);
 
-              if(user ===null){
+              if(user === null){
                 toggleSnackBar("You are not logged in!");
               }
               else if (valid) {
@@ -96,7 +96,10 @@ export default function RecipeCard({
           <IconButton
             title="Delete Recipe"
             aria-label="delete from favorites"
-            onClick={async () => handleSaveClick(recipe)}
+            onClick={async () => {
+              await handleSaveClick(recipe);
+              toggleSnackBar("Recipe Deleted");
+            }}
           >
             <DeleteOutlineIcon></DeleteOutlineIcon>
           </IconButton>
@@ -111,12 +114,12 @@ export default function RecipeCard({
           <ExpandMoreIcon />
         </ExpandMore>
         <Popover
-          open={open} 
+          open={open}
           onClose={handleClose}
           anchorReference="anchorPosition"
           anchorPosition={anchorPosition}
           anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-          PaperProps={{ style: {width:'100%'}}}
+          PaperProps={{ style: { width: '100%' } }}
         >
           <Typography align="right">
             {check && (
@@ -125,7 +128,7 @@ export default function RecipeCard({
                 aria-label="add to favorites"
                 onClick={async () => {
                   let valid = await handleSaveClick(recipe);
-                  if(user ===null){
+                  if (user === null) {
                     toggleSnackBar("You are not logged in!");
                   }
                   else if (valid) {
@@ -142,12 +145,16 @@ export default function RecipeCard({
               <IconButton
                 title="Delete Recipe"
                 aria-label="delete from favorites"
-                onClick={async () => handleSaveClick(recipe)}
+                onClick={async () => {
+                  await handleSaveClick(recipe);
+                  toggleSnackBar("Recipe Deleted!");
+                }}
+                
               >
                 <DeleteOutlineIcon></DeleteOutlineIcon>
               </IconButton>
             )}
-            <IconButton 
+            <IconButton
               title="Close Recipe Page"
               aria-label="close recipe popup"
               onClick={handleClose}
@@ -174,18 +181,18 @@ export default function RecipeCard({
               </Typography>
             );
           })}
-          <Typography align="left" variant="h6" sx={{pl:3}}> Instructions </Typography>
+          <Typography align="left" variant="h6" sx={{ pl: 3 }}> Instructions </Typography>
           {recipe.steps.map((step, index) => {
             return (<Typography
               variant="body1"
               color="text.primary"
               key={step}
-              sx={{pl:3, pr:3, pb:2}}
-              >
-                {index+1}. {step}
-              </Typography>
-              );
-          })} 
+              sx={{ pl: 3, pr: 3, pb: 2 }}
+            >
+              {index + 1}. {step}
+            </Typography>
+            );
+          })}
         </Popover>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>

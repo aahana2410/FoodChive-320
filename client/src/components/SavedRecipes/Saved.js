@@ -12,8 +12,6 @@ import {
   Container,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { useSelector } from "react-redux";
-
 
 function Search() {
   const [inputText, setInputText] = useState([]);
@@ -23,7 +21,7 @@ function Search() {
   const [foodTypeFilter, setFoodTypeFilter] = useState([]);
   const [skillFilter, setSkillFilter] = useState([]);
   const [DRFilter, setDRFilter] = useState([]);
-  const user = useSelector((state) => state.auth.user);
+  const user = localStorage.getItem('user');
 
 
   // initialize each
@@ -153,94 +151,94 @@ function Search() {
   }, [DRFilter]);
 
   if (user !== null) {
-  return (
-    <div data-testid="search">
-      <center>
-        <div>
-          <h2>Your Saved Recipes: </h2>
-        </div>
-        <Container>
-          <SearchBar
-            handleKeyUp={searchBarHandler}
-            handleClick={clickHandler}
-            handleEnter={enterHandler}
-            inputValue={inputText}
-          />
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="filters"
-              id="filters"
-            >
-              <Typography>Filters</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <div className="checkbox">
-                <Multiselect
-                  placeholder="Cuisine"
-                  displayValue="display"
-                  groupBy="cat"
-                  onKeyPressFn={function noRefCheck() { }}
-                  onRemove={removeFilter}
-                  onSearch={function noRefCheck() { }}
-                  onSelect={addFilter}
-                  options={cuisine}
-                  showCheckbox
-                />
-                <Multiselect
-                  placeholder="Ingredients"
-                  displayValue="display"
-                  groupBy="cat"
-                  onKeyPressFn={function noRefCheck() { }}
-                  onRemove={removeFilter}
-                  onSearch={function noRefCheck() { }}
-                  onSelect={addFilter}
-                  options={ingredients}
-                  showCheckbox
-                />
-                <Multiselect
-                  placeholder="Type"
-                  displayValue="display"
-                  groupBy="cat"
-                  onKeyPressFn={function noRefCheck() { }}
-                  onRemove={removeFilter}
-                  onSearch={function noRefCheck() { }}
-                  onSelect={addFilter}
-                  options={type}
-                  showCheckbox
-                />
-                <Multiselect
-                  placeholder="Skill Level"
-                  displayValue="display"
-                  groupBy="cat"
-                  onKeyPressFn={function noRefCheck() { }}
-                  onRemove={removeFilter}
-                  onSearch={function noRefCheck() { }}
-                  onSelect={addFilter}
-                  options={skill}
-                  showCheckbox
-                />
-                <Multiselect
-                  placeholder="Dietary Restrictions"
-                  displayValue="display"
-                  groupBy="cat"
-                  onKeyPressFn={function noRefCheck() { }}
-                  onRemove={removeFilter}
-                  onSearch={function noRefCheck() { }}
-                  onSelect={addFilter}
-                  options={dietaryRestrictions}
-                  showCheckbox
-                />
-              </div>
-            </AccordionDetails>
-          </Accordion>
-        </Container>
-        <RecipeList input={query} />
-      </center>
-    </div>
-  );
-}
-else{
+    return (
+      <div data-testid="search">
+        <center>
+          <div>
+            <h2>Your Saved Recipes: </h2>
+          </div>
+          <Container>
+            <SearchBar
+              handleKeyUp={searchBarHandler}
+              handleClick={clickHandler}
+              handleEnter={enterHandler}
+              inputValue={inputText}
+            />
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="filters"
+                id="filters"
+              >
+                <Typography>Filters</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <div className="checkbox">
+                  <Multiselect
+                    placeholder="Cuisine"
+                    displayValue="display"
+                    groupBy="cat"
+                    onKeyPressFn={function noRefCheck() { }}
+                    onRemove={removeFilter}
+                    onSearch={function noRefCheck() { }}
+                    onSelect={addFilter}
+                    options={cuisine}
+                    showCheckbox
+                  />
+                  <Multiselect
+                    placeholder="Ingredients"
+                    displayValue="display"
+                    groupBy="cat"
+                    onKeyPressFn={function noRefCheck() { }}
+                    onRemove={removeFilter}
+                    onSearch={function noRefCheck() { }}
+                    onSelect={addFilter}
+                    options={ingredients}
+                    showCheckbox
+                  />
+                  <Multiselect
+                    placeholder="Type"
+                    displayValue="display"
+                    groupBy="cat"
+                    onKeyPressFn={function noRefCheck() { }}
+                    onRemove={removeFilter}
+                    onSearch={function noRefCheck() { }}
+                    onSelect={addFilter}
+                    options={type}
+                    showCheckbox
+                  />
+                  <Multiselect
+                    placeholder="Skill Level"
+                    displayValue="display"
+                    groupBy="cat"
+                    onKeyPressFn={function noRefCheck() { }}
+                    onRemove={removeFilter}
+                    onSearch={function noRefCheck() { }}
+                    onSelect={addFilter}
+                    options={skill}
+                    showCheckbox
+                  />
+                  <Multiselect
+                    placeholder="Dietary Restrictions"
+                    displayValue="display"
+                    groupBy="cat"
+                    onKeyPressFn={function noRefCheck() { }}
+                    onRemove={removeFilter}
+                    onSearch={function noRefCheck() { }}
+                    onSelect={addFilter}
+                    options={dietaryRestrictions}
+                    showCheckbox
+                  />
+                </div>
+              </AccordionDetails>
+            </Accordion>
+          </Container>
+          <RecipeList input={query} />
+        </center>
+      </div>
+    );
+  }
+  else {
 
     return <div>
       <center>
@@ -252,7 +250,7 @@ else{
       </center>
     </div>;
 
-}
+  }
 
 }
 export default Search;

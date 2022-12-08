@@ -2,13 +2,13 @@ import React from "react";
 import { useState, useEffect } from "react";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import { environmentURL } from "../../environementURL";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateUser } from "../../features/auth/authSlice";
-
+import CloseIcon from "@mui/icons-material/Close";
+import { Snackbar, IconButton } from "@mui/material";
 
 function RecipeList(fullQuery) {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user);
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     async function getRecipes() {
@@ -29,7 +29,39 @@ function RecipeList(fullQuery) {
     return;
   }, []);
 
+  const [open, setOpen] = useState(false);
+  const [snackBarMessage, setSnackBarMessage] = useState();
+
+  const toggleSnackBar = (message) => {
+    setSnackBarMessage(message);
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+  // SNACKBAR ENDS
+
+
   const search = recipes.filter((recipe) => {
+    const user = localStorage.getItem('user');
     // Check Search Query
     let splitQuery = fullQuery.input.split("\n");
     let query = splitQuery[0];
@@ -44,7 +76,7 @@ function RecipeList(fullQuery) {
     // Check if the recipe is in the users saved list
     let isSaved = false;
     if (user !== null) {
-      if (user.recipes.indexOf(recipe._id) !== -1) {
+      if (JSON.parse(user).recipes.indexOf(recipe._id) !== -1) {
         isSaved = true;
       }
     }
@@ -133,19 +165,22 @@ function RecipeList(fullQuery) {
   });
 
 
+  
   let deleteRecipe = async (recipe) => {
-    // TODO 
-    let newSaved = [...user.recipes]; // Clones the saved recipe list
+    const user = localStorage.getItem('user');
+    let newSaved = [...JSON.parse(user).recipes]; // Clones the saved recipe list
     let index = newSaved.indexOf(recipe._id);
     if (index !== -1) {
       newSaved.splice(index, 1);   // Deletes the recipe id from the saved recipe list
     }
-    let newUser = { ...user };
+    let newUser = { ...JSON.parse(user) }; // Clones the user 
     newUser.recipes = newSaved;
-    // update user to newuser
-    await(dispatch(updateUser(newUser)));
-    window.location.reload(false);
+    await (dispatch(updateUser(newUser)));
+    localStorage.setItem('user', JSON.stringify(newUser))
+    return true;
   };
+  
+
 
   return (
     <div>
@@ -158,9 +193,17 @@ function RecipeList(fullQuery) {
                 recipe={currRecipe}
                 handleSaveClick={deleteRecipe}
                 check={false}
+                toggleSnackBar={toggleSnackBar}
               ></RecipeCard>
             </div>
           ))}
+          <Snackbar
+            open={open}
+            autoHideDuration={1000}
+            onClose={handleClose}
+            message={snackBarMessage}
+            action={action}
+          />
         </center>
       </div>
     </div>
