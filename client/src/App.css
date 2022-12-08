@@ -11,4 +11,18 @@
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
   border-top-right-radius: 20px;
+  background-color: white;
+}
+
+.background {
+  min-height: 90vh;
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("./images/spread-background.jpg");
+  background-repeat: repeat-y;
+}
+
+.sparce {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

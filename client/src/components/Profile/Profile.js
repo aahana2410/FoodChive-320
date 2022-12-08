@@ -1,40 +1,39 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../features/auth/authSlice";
-import { dietaryRestrictions } from '../Search/filters/index.js';
+import { dietaryRestrictions } from "../Search/filters/index.js";
 import Multiselect from "multiselect-react-dropdown";
-import { Container } from "@mui/material";
-
+import { Container, Paper, Typography } from "@mui/material";
 
 function Profile() {
   const dispatch = useDispatch();
-  let user = localStorage.getItem('user');
+  let user = localStorage.getItem("user");
 
   const removeFilter = async (selectedList, selectedItem) => {
-    user = localStorage.getItem('user');
+    user = localStorage.getItem("user");
     let key = selectedItem.key.toLowerCase();
     let index = JSON.parse(user).dietaryRestrictions.indexOf(key);
     let newDR = [...JSON.parse(user).dietaryRestrictions];
     newDR.splice(index, 1);
     let newUser = { ...JSON.parse(user) };
     newUser.dietaryRestrictions = newDR;
-    await(dispatch(updateUser(newUser)));
-    localStorage.setItem('user', JSON.stringify(newUser));
+    await dispatch(updateUser(newUser));
+    localStorage.setItem("user", JSON.stringify(newUser));
     // UPDATE USER to newuser
-  }
+  };
 
   const addFilter = async (selectedList, selectedItem) => {
-    user = localStorage.getItem('user');
+    user = localStorage.getItem("user");
     let key = selectedItem.key.toLowerCase();
     let newDR = [...JSON.parse(user).dietaryRestrictions];
     newDR.push(key);
     let newUser = { ...JSON.parse(user) };
     newUser.dietaryRestrictions = newDR;
-    await(dispatch(updateUser(newUser)));
-    localStorage.setItem('user', JSON.stringify(newUser));
+    await dispatch(updateUser(newUser));
+    localStorage.setItem("user", JSON.stringify(newUser));
 
     // UPDATE USER to newuser
-  }
+  };
 
   let preselect = [];
   if (user !== null) {
@@ -46,47 +45,47 @@ function Profile() {
         preselect.push(dietaryRestrictions[i]);
       }
     }
-    return <div>
-      <center>
-        <h2>
-          {"Logged In As: "}
-          {name}
-          <div>
-            {"Email: "} {email}
-          </div>
-          <br></br>
-          <div>
-            {"Update Your Dietary Restrictions: "}
-          </div>
-        </h2>
-        <Container>
-          <Multiselect
-            placeholder="Dietary Restrictions"
-            displayValue="display"
-            groupBy="cat"
-            onKeyPressFn={function noRefCheck() { }}
-            onRemove={removeFilter}
-            onSearch={function noRefCheck() { }}
-            onSelect={addFilter}
-            options={dietaryRestrictions}
-            showCheckbox
-            selectedValues={preselect}
-          />
-        </Container>
-      </center>
-    </div>;
-
-  }
-  else {
-    return <div>
-      <center>
-        <h2>
-          You Are Not Logged In!
-          <br></br>
-          Go To The Login Or Register Page To Get Started!
-        </h2>
-      </center>
-    </div>;
+    return (
+      <Paper>
+        <center>
+          <h2>
+            {"Logged In As: "}
+            {name}
+            <div>
+              {"Email: "} {email}
+            </div>
+            <br></br>
+            <div>{"Update Your Dietary Restrictions: "}</div>
+          </h2>
+          <Container>
+            <Multiselect
+              placeholder="Dietary Restrictions"
+              displayValue="display"
+              groupBy="cat"
+              onKeyPressFn={function noRefCheck() {}}
+              onRemove={removeFilter}
+              onSearch={function noRefCheck() {}}
+              onSelect={addFilter}
+              options={dietaryRestrictions}
+              showCheckbox
+              selectedValues={preselect}
+            />
+          </Container>
+        </center>
+      </Paper>
+    );
+  } else {
+    return (
+      <Paper>
+        <center>
+          <Typography variant="h2">
+            You Are Not Logged In!
+            <br></br>
+            Go To The Login Or Register Page To Get Started!
+          </Typography>
+        </center>
+      </Paper>
+    );
   }
 }
 

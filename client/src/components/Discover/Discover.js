@@ -2,15 +2,16 @@ import React from "react";
 import { useState, useEffect } from "react";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import CloseIcon from "@mui/icons-material/Close";
-import { Snackbar, IconButton, Typography } from "@mui/material";
+import { Snackbar, IconButton, Typography, Paper } from "@mui/material";
 import { environmentURL } from "../../environementURL";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../features/auth/authSlice";
-import RefreshIcon from '@mui/icons-material/Refresh';
+import RefreshIcon from "@mui/icons-material/Refresh";
+import spread_background from "../../images/spread-background.jpg";
 
 function Discover() {
   const dispatch = useDispatch();
-  const user = localStorage.getItem('user');
+  const user = localStorage.getItem("user");
   const [open, setOpen] = useState(false);
   const [snackBarMessage, setSnackBarMessage] = useState();
   const toggleSnackBar = (message) => {
@@ -67,9 +68,8 @@ function Discover() {
     if (user !== null) {
       message = "Our Recommendation Based On Your Dietary Restrictions:";
       DRFilter = JSON.parse(user).dietaryRestrictions;
-    }
-    else {
-      message = "Our Recommendation:"
+    } else {
+      message = "Our Recommendation:";
       return true;
     }
 
@@ -78,7 +78,7 @@ function Discover() {
         foundDR = false;
       }
     }
-    return (foundDR);
+    return foundDR;
   });
 
   let len = search.length;
@@ -95,49 +95,45 @@ function Discover() {
   let save = async (recipe) => {
     if (user === null) {
       // do nothing
-    }
-    else {
+    } else {
       if (JSON.parse(user).recipes.indexOf(recipe._id) !== -1) {
-        //already been saved 
+        //already been saved
         return false;
       }
-      let newUser = { ...JSON.parse(user) }; // Clones the user 
+      let newUser = { ...JSON.parse(user) }; // Clones the user
       let newSaved = [...newUser.recipes];
       newSaved.push(recipe._id);
       newUser.recipes = newSaved;
-      await (dispatch(updateUser(newUser)));
-      localStorage.setItem('user', JSON.stringify(newUser))
+      await dispatch(updateUser(newUser));
+      localStorage.setItem("user", JSON.stringify(newUser));
       return true;
     }
   };
- 
-
 
   return (
-    <div>
+    <Paper sx={{ padding: 4 }} variant="outlined">
       <center>
-      <Typography variant="h3">{message} </Typography>
-      {showOne.map((currRecipe) =>
-      (
-        <RecipeCard
-          recipe={currRecipe}
-          handleSaveClick={save}
-          check={true}
-          toggleSnackBar={toggleSnackBar}
-        ></RecipeCard>
-      )
-      )
-      }
-      <Snackbar
-        open={open}
-        autoHideDuration={1000}
-        onClose={handleClose}
-        message={snackBarMessage}
-        action={action}
-      />
-      <IconButton onClick={refresh}><RefreshIcon fontSize="large" /></IconButton>
+        <Typography variant="h3">{message} </Typography>
+        {showOne.map((currRecipe) => (
+          <RecipeCard
+            recipe={currRecipe}
+            handleSaveClick={save}
+            check={true}
+            toggleSnackBar={toggleSnackBar}
+          ></RecipeCard>
+        ))}
+        <Snackbar
+          open={open}
+          autoHideDuration={1000}
+          onClose={handleClose}
+          message={snackBarMessage}
+          action={action}
+        />
+        <IconButton onClick={refresh}>
+          <RefreshIcon fontSize="large" />
+        </IconButton>
       </center>
-    </div>
+    </Paper>
   );
 }
 

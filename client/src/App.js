@@ -31,16 +31,58 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Navbar />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="saved" element={<Saved />} />
-          <Route exact path="discover" element={<Discover />} />
-          <Route exact path="search" element={<Search />} />
-          <Route exact path="profile" element={<Profile />} />
-          <Route exact path="help" element={<Help />} />
-          <Route exact path="login" element={<Login />} />
-          <Route exact path="register" element={<Register />} />
-        </Routes>
+        <div className="background">
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={
+                <div className="sparce">
+                  <Home />
+                </div>
+              }
+            />
+            <Route
+              exact
+              path="discover"
+              element={
+                <div className="sparce">
+                  <Discover />
+                </div>
+              }
+            />
+            <Route exact path="saved" element={<Saved />} />
+            <Route exact path="search" element={<Search />} />
+            <Route
+              exact
+              path="profile"
+              element={
+                <div className="sparce">
+                  <Profile />
+                </div>
+              }
+            />
+            <Route exact path="help" element={<Help />} />
+            <Route
+              exact
+              path="login"
+              element={
+                <div className="sparce">
+                  <Login />
+                </div>
+              }
+            />
+            <Route
+              exact
+              path="register"
+              element={
+                <div className="sparce">
+                  <Register />
+                </div>
+              }
+            />
+          </Routes>
+        </div>
       </BrowserRouter>
     </ThemeProvider>
   );

@@ -5,7 +5,7 @@ import { environmentURL } from "../../environementURL";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../features/auth/authSlice";
 import CloseIcon from "@mui/icons-material/Close";
-import { Snackbar, IconButton } from "@mui/material";
+import { Snackbar, IconButton, Grid, Paper, Typography } from "@mui/material";
 
 function RecipeList(fullQuery) {
   const dispatch = useDispatch();
@@ -59,9 +59,8 @@ function RecipeList(fullQuery) {
   );
   // SNACKBAR ENDS
 
-
   const search = recipes.filter((recipe) => {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem("user");
     // Check Search Query
     let splitQuery = fullQuery.input.split("\n");
     let query = splitQuery[0];
@@ -164,48 +163,49 @@ function RecipeList(fullQuery) {
     );
   });
 
-
-  
   let deleteRecipe = async (recipe) => {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem("user");
     let newSaved = [...JSON.parse(user).recipes]; // Clones the saved recipe list
     let index = newSaved.indexOf(recipe._id);
     if (index !== -1) {
-      newSaved.splice(index, 1);   // Deletes the recipe id from the saved recipe list
+      newSaved.splice(index, 1); // Deletes the recipe id from the saved recipe list
     }
-    let newUser = { ...JSON.parse(user) }; // Clones the user 
+    let newUser = { ...JSON.parse(user) }; // Clones the user
     newUser.recipes = newSaved;
-    await (dispatch(updateUser(newUser)));
-    localStorage.setItem('user', JSON.stringify(newUser))
+    await dispatch(updateUser(newUser));
+    localStorage.setItem("user", JSON.stringify(newUser));
     return true;
   };
-  
-
 
   return (
-    <div>
-      <div data-testid="saved">
-        <center>
-          {search.map((currRecipe) => (
-            <div key={currRecipe.name} className="card">
-              <br></br>
-              <RecipeCard
-                recipe={currRecipe}
-                handleSaveClick={deleteRecipe}
-                check={false}
-                toggleSnackBar={toggleSnackBar}
-              ></RecipeCard>
-            </div>
-          ))}
-          <Snackbar
-            open={open}
-            autoHideDuration={1000}
-            onClose={handleClose}
-            message={snackBarMessage}
-            action={action}
-          />
-        </center>
-      </div>
+    <div data-testid="saved" style={{ width: "75vw" }}>
+      <Paper
+        sx={{ marginTop: 5, marginBottom: 5, paddingLeft: 5, paddingRight: 5 }}
+      >
+        <Typography variant="h3">
+          Your Saved Recipes: {fullQuery.input}
+        </Typography>
+      </Paper>
+      <Grid container spacing={4}>
+        {search.map((currRecipe) => (
+          <div key={currRecipe.name} className="card">
+            <br></br>
+            <RecipeCard
+              recipe={currRecipe}
+              handleSaveClick={deleteRecipe}
+              check={false}
+              toggleSnackBar={toggleSnackBar}
+            ></RecipeCard>
+          </div>
+        ))}
+        <Snackbar
+          open={open}
+          autoHideDuration={1000}
+          onClose={handleClose}
+          message={snackBarMessage}
+          action={action}
+        />
+      </Grid>
     </div>
   );
 }
