@@ -96,7 +96,10 @@ export default function RecipeCard({
           <IconButton
             title="Delete Recipe"
             aria-label="delete from favorites"
-            onClick={async () => handleSaveClick(recipe)}
+            onClick={async () => {
+              await handleSaveClick(recipe);
+              toggleSnackBar("Recipe Deleted");
+            }}
           >
             <DeleteOutlineIcon></DeleteOutlineIcon>
           </IconButton>
@@ -142,7 +145,11 @@ export default function RecipeCard({
               <IconButton
                 title="Delete Recipe"
                 aria-label="delete from favorites"
-                onClick={async () => handleSaveClick(recipe)}
+                onClick={async () => {
+                  await handleSaveClick(recipe);
+                  toggleSnackBar("Recipe Deleted!");
+                }}
+                
               >
                 <DeleteOutlineIcon></DeleteOutlineIcon>
               </IconButton>

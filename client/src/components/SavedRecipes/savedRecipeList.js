@@ -191,7 +191,7 @@ function RecipeList(fullQuery) {
               <br></br>
               <RecipeCard
                 recipe={currRecipe}
-                handleCardClick={deleteRecipe}
+                handleSaveClick={deleteRecipe}
                 check={false}
                 toggleSnackBar={toggleSnackBar}
               ></RecipeCard>

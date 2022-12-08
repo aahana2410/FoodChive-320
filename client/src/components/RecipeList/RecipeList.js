@@ -185,7 +185,7 @@ function RecipeList(fullQuery) {
           <Grid key={currRecipe.name.toLowerCase()} item xs={4}>
             <RecipeCard
               recipe={currRecipe}
-              handleCardClick={save}
+              handleSaveClick={save}
               check={true}
               toggleSnackBar={toggleSnackBar}
             ></RecipeCard>

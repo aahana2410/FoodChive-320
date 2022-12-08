@@ -121,7 +121,7 @@ function Discover() {
       (
         <RecipeCard
           recipe={currRecipe}
-          handleCardClick={save}
+          handleSaveClick={save}
           check={true}
           toggleSnackBar={toggleSnackBar}
         ></RecipeCard>
