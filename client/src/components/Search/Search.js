@@ -20,7 +20,6 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TuneIcon from "@mui/icons-material/Tune";
 
-
 function Search() {
   const [inputText, setInputText] = useState("");
   const [query, setQuery] = useState("");
@@ -28,16 +27,16 @@ function Search() {
   const [ingredientsFilter, setIngredientsFilter] = useState("");
   const [foodTypeFilter, setFoodTypeFilter] = useState("");
   const [skillFilter, setSkillFilter] = useState("");
-  const user = localStorage.getItem('user');
+  const user = localStorage.getItem("user");
   let userDR = "";
   if (user !== null) {
     let userRestrictions = JSON.parse(user).dietaryRestrictions;
     for (let i = 0; i < userRestrictions.length; i++) {
-      userDR+= " " + userRestrictions[i].toLowerCase();
+      userDR += " " + userRestrictions[i].toLowerCase();
     }
   }
   const [DRFilter, setDRFilter] = useState(userDR);
-  
+
   const changeQuery = () => {
     let sendQuery =
       inputText +
@@ -164,7 +163,7 @@ function Search() {
     }
   }
   return (
-    <div data-testid="search">
+    <div data-testid="search" style={{ paddingTop: 20 }}>
       <center>
         <Container>
           <SearchBar
@@ -190,9 +189,9 @@ function Search() {
                   placeholder="Cuisine"
                   displayValue="display"
                   groupBy="cat"
-                  onKeyPressFn={function noRefCheck() { }}
+                  onKeyPressFn={function noRefCheck() {}}
                   onRemove={removeFilter}
-                  onSearch={function noRefCheck() { }}
+                  onSearch={function noRefCheck() {}}
                   onSelect={addFilter}
                   options={cuisine}
                   showCheckbox
@@ -201,9 +200,9 @@ function Search() {
                   placeholder="Ingredients"
                   displayValue="display"
                   groupBy="cat"
-                  onKeyPressFn={function noRefCheck() { }}
+                  onKeyPressFn={function noRefCheck() {}}
                   onRemove={removeFilter}
-                  onSearch={function noRefCheck() { }}
+                  onSearch={function noRefCheck() {}}
                   onSelect={addFilter}
                   options={ingredients}
                   showCheckbox
@@ -212,9 +211,9 @@ function Search() {
                   placeholder="Type"
                   displayValue="display"
                   groupBy="cat"
-                  onKeyPressFn={function noRefCheck() { }}
+                  onKeyPressFn={function noRefCheck() {}}
                   onRemove={removeFilter}
-                  onSearch={function noRefCheck() { }}
+                  onSearch={function noRefCheck() {}}
                   onSelect={addFilter}
                   options={type}
                   showCheckbox
@@ -223,9 +222,9 @@ function Search() {
                   placeholder="Skill Level"
                   displayValue="display"
                   groupBy="cat"
-                  onKeyPressFn={function noRefCheck() { }}
+                  onKeyPressFn={function noRefCheck() {}}
                   onRemove={removeFilter}
-                  onSearch={function noRefCheck() { }}
+                  onSearch={function noRefCheck() {}}
                   onSelect={addFilter}
                   options={skill}
                   showCheckbox
@@ -234,9 +233,9 @@ function Search() {
                   placeholder="Dietary Restrictions"
                   displayValue="display"
                   groupBy="cat"
-                  onKeyPressFn={function noRefCheck() { }}
+                  onKeyPressFn={function noRefCheck() {}}
                   onRemove={removeFilter}
-                  onSearch={function noRefCheck() { }}
+                  onSearch={function noRefCheck() {}}
                   onSelect={addFilter}
                   options={dietaryRestrictions}
                   showCheckbox

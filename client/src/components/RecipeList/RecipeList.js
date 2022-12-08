@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import RecipeCard from "../RecipeCard/RecipeCard";
 import CloseIcon from "@mui/icons-material/Close";
-import { Snackbar, IconButton, Grid, Typography } from "@mui/material";
+import { Snackbar, IconButton, Grid, Typography, Paper } from "@mui/material";
 import { environmentURL } from "../../environementURL";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../features/auth/authSlice";
@@ -156,31 +156,33 @@ function RecipeList(fullQuery) {
     );
   });
 
-  const user = localStorage.getItem('user');
+  const user = localStorage.getItem("user");
   let save = async (recipe) => {
-    if(user === null){
+    if (user === null) {
       // do nothing
-    }
-    else{
+    } else {
       if (JSON.parse(user).recipes.indexOf(recipe._id) !== -1) {
-      //already been saved 
-      return false;
+        //already been saved
+        return false;
+      }
+      let newUser = { ...JSON.parse(user) }; // Clones the user
+      let newSaved = [...newUser.recipes];
+      newSaved.push(recipe._id);
+      newUser.recipes = newSaved;
+      await dispatch(updateUser(newUser));
+      localStorage.setItem("user", JSON.stringify(newUser));
+      return true;
     }
-    let newUser = { ...JSON.parse(user) }; // Clones the user 
-    let newSaved = [...newUser.recipes];
-    newSaved.push(recipe._id); 
-    newUser.recipes = newSaved;
-    await(dispatch(updateUser(newUser)));
-    localStorage.setItem('user', JSON.stringify(newUser))
-    return true;
-  }
-};
-
+  };
 
   return (
-    <div>
-      <Typography variant="h3">Results For: {fullQuery.input}</Typography>
-      <Grid container spacing={2}>
+    <div style={{ width: "75vw" }}>
+      <Paper
+        sx={{ marginTop: 5, marginBottom: 5, paddingLeft: 5, paddingRight: 5 }}
+      >
+        <Typography variant="h3">Results For: {fullQuery.input}</Typography>
+      </Paper>
+      <Grid container spacing={4}>
         {search.map((currRecipe) => (
           <Grid key={currRecipe.name.toLowerCase()} item xs={4}>
             <RecipeCard

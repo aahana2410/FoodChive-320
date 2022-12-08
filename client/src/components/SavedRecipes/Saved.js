@@ -1,7 +1,13 @@
 import React from "react";
 import RecipeList from "./savedRecipeList";
 import SearchBar from "../Search/SearchBar";
-import { cuisine, ingredients, type, skill, dietaryRestrictions } from '../Search/filters/index.js';
+import {
+  cuisine,
+  ingredients,
+  type,
+  skill,
+  dietaryRestrictions,
+} from "../Search/filters/index.js";
 import { useState, useEffect } from "react";
 import Multiselect from "multiselect-react-dropdown";
 import {
@@ -10,6 +16,7 @@ import {
   AccordionDetails,
   Typography,
   Container,
+  Paper,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
@@ -21,8 +28,7 @@ function Search() {
   const [foodTypeFilter, setFoodTypeFilter] = useState([]);
   const [skillFilter, setSkillFilter] = useState([]);
   const [DRFilter, setDRFilter] = useState([]);
-  const user = localStorage.getItem('user');
-
+  const user = localStorage.getItem("user");
 
   // initialize each
   useEffect(() => {
@@ -152,11 +158,8 @@ function Search() {
 
   if (user !== null) {
     return (
-      <div data-testid="search">
+      <div data-testid="search" style={{ paddingTop: 20 }}>
         <center>
-          <div>
-            <h2>Your Saved Recipes: </h2>
-          </div>
           <Container>
             <SearchBar
               handleKeyUp={searchBarHandler}
@@ -178,9 +181,9 @@ function Search() {
                     placeholder="Cuisine"
                     displayValue="display"
                     groupBy="cat"
-                    onKeyPressFn={function noRefCheck() { }}
+                    onKeyPressFn={function noRefCheck() {}}
                     onRemove={removeFilter}
-                    onSearch={function noRefCheck() { }}
+                    onSearch={function noRefCheck() {}}
                     onSelect={addFilter}
                     options={cuisine}
                     showCheckbox
@@ -189,9 +192,9 @@ function Search() {
                     placeholder="Ingredients"
                     displayValue="display"
                     groupBy="cat"
-                    onKeyPressFn={function noRefCheck() { }}
+                    onKeyPressFn={function noRefCheck() {}}
                     onRemove={removeFilter}
-                    onSearch={function noRefCheck() { }}
+                    onSearch={function noRefCheck() {}}
                     onSelect={addFilter}
                     options={ingredients}
                     showCheckbox
@@ -200,9 +203,9 @@ function Search() {
                     placeholder="Type"
                     displayValue="display"
                     groupBy="cat"
-                    onKeyPressFn={function noRefCheck() { }}
+                    onKeyPressFn={function noRefCheck() {}}
                     onRemove={removeFilter}
-                    onSearch={function noRefCheck() { }}
+                    onSearch={function noRefCheck() {}}
                     onSelect={addFilter}
                     options={type}
                     showCheckbox
@@ -211,9 +214,9 @@ function Search() {
                     placeholder="Skill Level"
                     displayValue="display"
                     groupBy="cat"
-                    onKeyPressFn={function noRefCheck() { }}
+                    onKeyPressFn={function noRefCheck() {}}
                     onRemove={removeFilter}
-                    onSearch={function noRefCheck() { }}
+                    onSearch={function noRefCheck() {}}
                     onSelect={addFilter}
                     options={skill}
                     showCheckbox
@@ -222,9 +225,9 @@ function Search() {
                     placeholder="Dietary Restrictions"
                     displayValue="display"
                     groupBy="cat"
-                    onKeyPressFn={function noRefCheck() { }}
+                    onKeyPressFn={function noRefCheck() {}}
                     onRemove={removeFilter}
-                    onSearch={function noRefCheck() { }}
+                    onSearch={function noRefCheck() {}}
                     onSelect={addFilter}
                     options={dietaryRestrictions}
                     showCheckbox
@@ -237,20 +240,21 @@ function Search() {
         </center>
       </div>
     );
+  } else {
+    return (
+      <div className="sparce">
+        <Paper>
+          <center>
+            <Typography variant="h2">
+              You Are Not Logged In!
+              <br></br>
+              Go to the Login or Register page to get started and save your
+              favorite recipes!
+            </Typography>
+          </center>
+        </Paper>
+      </div>
+    );
   }
-  else {
-
-    return <div>
-      <center>
-        <h2>
-          You Are Not Logged In!
-          <br></br>
-          Go to the Login or Register page to get started and save your favorite recipes!
-        </h2>
-      </center>
-    </div>;
-
-  }
-
 }
 export default Search;

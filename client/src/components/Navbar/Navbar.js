@@ -8,8 +8,10 @@ import ExploreIcon from "@mui/icons-material/Explore";
 import SearchIcon from "@mui/icons-material/Search";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import HelpIcon from "@mui/icons-material/Help";
 
 import "./Navbar.css";
+import Help from "@mui/icons-material/Help";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -28,6 +30,7 @@ function Navbar() {
     <SearchIcon />,
     <BookmarksIcon />,
     <AccountCircleIcon />,
+    <HelpIcon />,
   ];
   const linkText = {
     textDecoration: "none",
@@ -36,18 +39,21 @@ function Navbar() {
     alignItems: "center",
   };
   return (
-    <Box sx={{ flexGrow: 1, marginBottom: 2 }}>
+    <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar variant="dense" style={{ minHeight: 32, height: 96 }}>
+        <Toolbar
+          variant="dense"
+          style={{ height: "10vh", minHeight: 32, maxHeight: 120 }}
+        >
           <Link to="/" style={linkText}>
             <img
               src={require("../../images/FoodChiveIcon.png")}
               alt="Foodchive logo"
-              style={{ minHeight: 32, maxHeight: 64, marginRight: 5 }}
+              style={{ height: "9vh", maxHeight: 84, marginRight: 5 }}
             />
             <Typography variant="h3">FoodChive</Typography>
           </Link>
-          <Stack sx={{ marginLeft: "auto" }} spacing={6} direction="row">
+          <Stack sx={{ marginLeft: "auto" }} spacing={4} direction="row">
             {navTabs.map((tab) => (
               <Link to={tab.toLowerCase()} style={linkText}>
                 <Button variant="h4">
