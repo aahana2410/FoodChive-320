@@ -1,8 +1,8 @@
 import axios from 'axios'
-
+import { environmentURL } from '../../environementURL'
 // Register user
 const register = async (userData) => {
-  const response = await axios.post('http://localhost:5000/users/register', userData)
+  const response = await axios.post(`${environmentURL}/users/register`, userData)
 
   if (response.data) {
     localStorage.setItem('user', JSON.stringify(response.data))
@@ -13,7 +13,7 @@ const register = async (userData) => {
 
 
 const updateUser = async (userData) => {
-  const response = await axios.post('http://localhost:5000/users/update', userData)
+  const response = await axios.post(`${environmentURL}/users/update`, userData)
   if (response.data) {
     localStorage.setItem('user', JSON.stringify(response.data))
   }
@@ -23,7 +23,7 @@ const updateUser = async (userData) => {
 
 // Login user
 const login = async (userData) => {
-  const response = await axios.post('http://localhost:5000/users/login', userData)
+  const response = await axios.post(`${environmentURL}/users/login`, userData)
 
   if (response.data) {
     localStorage.setItem('user', JSON.stringify(response.data))
