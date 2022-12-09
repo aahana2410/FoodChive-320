@@ -8,7 +8,7 @@ import { Paper, Container } from "@mui/material";
 function Home() {
   return (
     <Container>
-      <Paper sx={{ padding: 5 }} elevation={24} variant="outlined">
+      <Paper sx={{ padding: 5 }} variant="outlined">
         <center>
           <h1>Welcome to FoodChive!</h1>
           <h2>

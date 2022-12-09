@@ -1,8 +1,9 @@
 import React from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../../features/auth/authSlice";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Box, Stack, AppBar, Toolbar, Typography, Button } from "@mui/material";
 import ExploreIcon from "@mui/icons-material/Explore";
 import SearchIcon from "@mui/icons-material/Search";
@@ -11,7 +12,6 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HelpIcon from "@mui/icons-material/Help";
 
 import "./Navbar.css";
-import Help from "@mui/icons-material/Help";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -24,13 +24,13 @@ function Navbar() {
     navigate("/");
   };
 
-  const navTabs = ["Discover", "Search", "Saved", "Profile", "Help"];
+  const navTabs = ["Discover", "Search", "Help", "Saved", "Profile"];
   const tabIcons = [
     <ExploreIcon />,
     <SearchIcon />,
+    <HelpIcon />,
     <BookmarksIcon />,
     <AccountCircleIcon />,
-    <HelpIcon />,
   ];
   const linkText = {
     textDecoration: "none",
@@ -38,43 +38,55 @@ function Navbar() {
     display: "flex",
     alignItems: "center",
   };
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box key="navbar" sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar
           variant="dense"
           style={{ height: "10vh", minHeight: 32, maxHeight: 120 }}
         >
-          <Link to="/" style={linkText}>
+          <NavLink to="/" style={linkText}>
             <img
               src={require("../../images/FoodChiveIcon.png")}
               alt="Foodchive logo"
               style={{ height: "9vh", maxHeight: 84, marginRight: 5 }}
             />
             <Typography variant="h3">FoodChive</Typography>
-          </Link>
-          <Stack sx={{ marginLeft: "auto" }} spacing={4} direction="row">
+          </NavLink>
+          <Stack sx={{ marginLeft: "auto" }} spacing={2} direction="row">
             {navTabs.map((tab) => (
-              <Link to={tab.toLowerCase()} style={linkText}>
+              <NavLink
+                key={tab}
+                style={({ isActive }) => ({
+                  ...linkText,
+                  backgroundImage: isActive
+                    ? "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2))"
+                    : "linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0))",
+                  borderRadius: 5,
+                })}
+                to={tab.toLowerCase()}
+              >
                 <Button variant="h4">
                   <Stack justifyContent="center" alignItems="center">
                     {tabIcons[navTabs.indexOf(tab)]} {tab}
                   </Stack>
                 </Button>
-              </Link>
+              </NavLink>
             ))}
+
             {user ? (
               <Button variant="h4" onClick={onLogout}>
                 Logout
               </Button>
             ) : (
               <>
-                <Link to="/login" style={linkText}>
+                <NavLink to="/login" style={linkText}>
                   <Button variant="h4">Login</Button>
-                </Link>
-                <Link to="/register" style={linkText}>
+                </NavLink>
+                <NavLink to="/register" style={linkText}>
                   <Button variant="h4">Register</Button>
-                </Link>
+                </NavLink>
               </>
             )}
           </Stack>

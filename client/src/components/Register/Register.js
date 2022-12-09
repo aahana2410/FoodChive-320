@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Grid, Paper, Avatar, TextField, Button } from "@mui/material";
+import {
+  Grid,
+  Paper,
+  Avatar,
+  TextField,
+  Button,
+  Fade,
+  CircularProgress,
+} from "@mui/material";
 import { Stack } from "@mui/system";
 import { useTheme } from "@mui/material/styles";
 
@@ -12,15 +20,15 @@ import { ThemeProvider } from "@emotion/react";
 const Register = () => {
   const theme = useTheme();
   const paperStyle = {
-    padding: 20,
+    padding: "5vh 20px 5vh 20px",
     height: "70vh",
     width: 280,
     margin: "20px auto",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
+    alignItems: "center",
   };
-  const btnstyle = { margin: "8px 0" };
 
   const [formData, setFormData] = useState({
     name: "",
@@ -28,6 +36,7 @@ const Register = () => {
     password: "",
     confirmPassword: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const { name, email, password, confirmPassword } = formData;
 
@@ -40,7 +49,8 @@ const Register = () => {
 
   useEffect(() => {
     if (isError) {
-      console.log(message);
+      setLoading(false);
+      alert(message);
     }
 
     if (isSuccess || user) {
@@ -56,22 +66,16 @@ const Register = () => {
   };
   const checkAndSend = () => {
     if (password !== confirmPassword) {
-    
-      alert('Passwords do not match');
-    } 
-    else if(name === ""){
+      alert("Passwords do not match");
+    } else if (name === "") {
       alert("Please enter a name");
-    }
-    else if(email ===""){
+    } else if (email === "") {
       alert("Please enter an email");
-    }
-    else if(email.indexOf("@") ===-1){
+    } else if (email.indexOf("@") === -1) {
       alert("Please enter a valid email");
-    }
-    else if(password ===""){
+    } else if (password === "") {
       alert("Please enter a password");
-    } 
-    else {
+    } else {
       const userData = {
         name,
         email,
@@ -79,8 +83,9 @@ const Register = () => {
       };
 
       dispatch(register(userData));
+      setLoading(true);
     }
-  }
+  };
   const handleChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -137,17 +142,19 @@ const Register = () => {
                 type="password"
                 variant="outlined"
                 onChange={handleChange}
-                onKeyUp = {handleEnter}
+                onKeyUp={handleEnter}
                 fullWidth
                 required
               />
             </Stack>
+            <Fade in={loading} unmountOnExit>
+              <CircularProgress />
+            </Fade>
             <Button
               type="submit"
               color="secondary"
               variant="contained"
               onClick={handleClick}
-              style={btnstyle}
               fullWidth
             >
               Sign Up

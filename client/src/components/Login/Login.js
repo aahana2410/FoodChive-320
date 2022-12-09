@@ -5,25 +5,25 @@ import { Paper, Avatar, Button, ThemeProvider } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { login, reset } from "../../features/auth/authSlice";
 import { Stack } from "@mui/system";
-import { Typography, TextField } from "@mui/material";
+import { Typography, TextField, Fade, CircularProgress } from "@mui/material";
 
 const Login = () => {
   const theme = useTheme();
   const paperStyle = {
-    padding: 20,
+    padding: "10vh 20px 10vh 20px",
     height: "70vh",
     width: 280,
     margin: "20px auto",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
+    alignItems: "center",
   };
-  const btnstyle = { margin: "8px 0" };
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const { email, password } = formData;
 
@@ -48,41 +48,37 @@ const Login = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-        checkAndSend();
-    }
-
+    checkAndSend();
+  };
 
   const handleChange = (e) => {
-        setFormData((prevState) => ({
-            ...prevState,
-            [e.target.name]: e.target.value,
-        }))
-    }
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
-    let handleEnter = (event) => {
-        if (event.key === "Enter") {
-            checkAndSend();
-        }
-    };
-    let checkAndSend = () => {
-        if (email === "") {
-            alert("Please enter an email");
-        }
-        else if (email.indexOf("@") === -1) {
-            alert("Please enter a valid email");
-        }
-        else if (password === "") {
-            alert("Please enter a password");
-        }
-        else{
-        const userData = {
-            email,
-            password,
-        }
-        dispatch(login(userData))
-        }
+  let handleEnter = (event) => {
+    if (event.key === "Enter") {
+      checkAndSend();
     }
-
+  };
+  let checkAndSend = () => {
+    if (email === "") {
+      alert("Please enter an email");
+    } else if (email.indexOf("@") === -1) {
+      alert("Please enter a valid email");
+    } else if (password === "") {
+      alert("Please enter a password");
+    } else {
+      const userData = {
+        email,
+        password,
+      };
+      dispatch(login(userData));
+      setLoading(true);
+    }
+  };
 
   return (
     <div data-testid="login">
@@ -114,12 +110,14 @@ const Login = () => {
               required
             />
           </Stack>
+          <Fade in={loading} unmountOnExit>
+            <CircularProgress />
+          </Fade>
           <Button
             type="submit"
             color="secondary"
             variant="contained"
             onClick={handleClick}
-            style={btnstyle}
             fullWidth
           >
             Sign In
@@ -131,4 +129,3 @@ const Login = () => {
 };
 
 export default Login;
-
