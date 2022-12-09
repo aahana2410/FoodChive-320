@@ -92,7 +92,7 @@ function Discover() {
     setSnackBarMessage("");
     await setOpen(true);
     setOpen(false);
-    };
+  };
 
   let save = async (recipe) => {
     if (user === null) {
@@ -118,6 +118,7 @@ function Discover() {
         <Typography variant="h3">{message} </Typography>
         {showOne.map((currRecipe) => (
           <RecipeCard
+            key={currRecipe.name}
             recipe={currRecipe}
             handleSaveClick={save}
             check={true}
