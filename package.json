@@ -1,5 +1,10 @@
 {
   "dependencies": {
     "react-toastify": "^9.1.1"
+  },
+  "scripts": {
+    "start":"concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "server":"cd server && npm install && npm start && cd ..",
+    "client":"cd client && npm install --legacy-peer-deps && npm start"
   }
 }

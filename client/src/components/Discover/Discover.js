@@ -7,7 +7,6 @@ import { environmentURL } from "../../environementURL";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../features/auth/authSlice";
 import RefreshIcon from "@mui/icons-material/Refresh";
-import spread_background from "../../images/spread-background.jpg";
 
 function Discover() {
   const dispatch = useDispatch();
