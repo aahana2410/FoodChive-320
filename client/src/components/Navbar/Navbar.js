@@ -39,6 +39,14 @@ function Navbar() {
     alignItems: "center",
   };
 
+  const activeTab = ({ isActive }) => ({
+    ...linkText,
+    backgroundImage: isActive
+      ? "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2))"
+      : "linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0))",
+    borderRadius: 5,
+  });
+
   return (
     <Box key="navbar" sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -56,17 +64,7 @@ function Navbar() {
           </NavLink>
           <Stack sx={{ marginLeft: "auto" }} spacing={2} direction="row">
             {navTabs.map((tab) => (
-              <NavLink
-                key={tab}
-                style={({ isActive }) => ({
-                  ...linkText,
-                  backgroundImage: isActive
-                    ? "linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2))"
-                    : "linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0))",
-                  borderRadius: 5,
-                })}
-                to={tab.toLowerCase()}
-              >
+              <NavLink key={tab} style={activeTab} to={tab.toLowerCase()}>
                 <Button variant="h4">
                   <Stack justifyContent="center" alignItems="center">
                     {tabIcons[navTabs.indexOf(tab)]} {tab}
@@ -81,10 +79,10 @@ function Navbar() {
               </Button>
             ) : (
               <>
-                <NavLink to="/login" style={linkText}>
+                <NavLink to="/login" style={activeTab}>
                   <Button variant="h4">Login</Button>
                 </NavLink>
-                <NavLink to="/register" style={linkText}>
+                <NavLink to="/register" style={activeTab}>
                   <Button variant="h4">Register</Button>
                 </NavLink>
               </>
