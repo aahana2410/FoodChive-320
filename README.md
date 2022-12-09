@@ -1,54 +1,31 @@
 # Foodchive
 ## Implemented Features
-- For FoodChive’s beta release, we were not able to fully implement all the features that we had planned, however, we were still able to build out many of the important aspects of the system in addition to a solid architecture that will allow us to be more efficient in developing later on. As of now we currently have:
+- For FoodChive’s 1.0 release, we were able to fully implement all of our planned features. As of now we currently have:
+- Login and Register an account
+- Adding and updating dietary restrictions
 - Routing between different pages
-- A discovery page that is able to fetch recipes and display one at a time (temporarily only showing the first recipe fetched)
+- A discovery page that is able to fetch recipes and display one at a time with refresh option
 - A general feed page that displays all available recipes
 - A search bar in the general feed page that allows the user to sort through recipes
 - A saving functionality that allows users to save recipes from the general feed page
 - A saved recipes page, which allows users to view their previously saved recipes
 - A delete functionality that allows users to delete recipes from the saved recipes page
-
-## Missing Features
-- Due to unexpected complexity of implementing some of the aforementioned features as well as taking some time to refactor our codebase, we were not able to implement all of the planned features. These features include:
-- A functioning filter system
-- Account logins
-- Adding dietary restrictions
-- Updating dietary restrictions
+- A instruction popup that allows users to read the full recipe when clicked
+- A filter system
 
 ## How to Install and Run the Software
-In the zipped beta release, we have provided a folder named ‘FoodChive-320-deployment’. This folder contains the code that we are using to host the web app. In order to host it locally, there are a few steps that you must follow. First, decompress the folder and open it with an IDE of your choice. Make sure you have Node.js installed (found here: https://nodejs.org/en/). 
+In the zipped 1.0 release, we have provided a folder named ‘FoodChive-320-deployment’. This folder contains the code that we are using to host the web app. In order to host it locally, there are a few steps that you must follow. First, decompress the folder and open it with an IDE of your choice. Make sure you have Node.js installed (found here: https://nodejs.org/en/) and Make installed. 
 
 ### Development Environment
-To start, in the server directory, create a .env file. Open the file and add the following code:
-**Contact one of the team members for the link to the database**
-
-Navigate to the client folder and create another .env file in the client directory. Open the file and add the following code:
-NODE_ENV="development"
-
-Next, open up the terminal and run the following commands from the root directory of the repository:
+To start, in the root directory, open up the terminal and type:
 
 ```console
-cd .\server\
-
-npm install 
-
-npm start
+make build
 
 ```
 
-After, open a second terminal and run the following commands:
 
-```console
-cd .\client\
-
-npm install
-
-npm start
-```
-
-
-npm install is used to install all the necessary packages for the build. After this, the app should be in development mode. Open http://localhost:3000 to view it in your browser. The page will reload when you make changes. You may also see temporary lint errors in the console.
+This will create necessary files and use npm install to install all the necessary packages for the build. After this, the app should be in development mode. Open http://localhost:3000 to view it in your browser. The page will reload when you make changes. You may also see temporary lint errors in the console.
 
 ### Front Page URL
 The app is being hosted remotely and can be accessed here: https://foodchive.onrender.com/. 
