@@ -1,4 +1,4 @@
-# Foodchive
+# FoodChive
 ## Implemented Features
 - For FoodChive’s 1.0 release, we were able to fully implement all of our planned features. As of now we currently have:
 - Login and Register an account
