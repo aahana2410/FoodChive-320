@@ -10,6 +10,7 @@ import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HelpIcon from "@mui/icons-material/Help";
 import "./Navbar.css";
+import FoodChiveIcon from "../../images/FoodChiveIcon.png";
 
 // creates the navbar that is on the top of every page in the site
 function Navbar() {
@@ -55,7 +56,7 @@ function Navbar() {
         >
           <NavLink to="/" style={linkText}>
             <img
-              src={require("../../images/FoodChiveIcon.png")}
+              src={FoodChiveIcon}
               alt="Foodchive logo"
               style={{ height: "9vh", maxHeight: 84, marginRight: 5 }}
             />
