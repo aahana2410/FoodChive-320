@@ -46,11 +46,13 @@ const Login = () => {
     dispatch(reset());
   }, [user, isError, isSuccess, message, navigate, dispatch]);
 
+  // handle clicking the login button
   const handleClick = (e) => {
     e.preventDefault();
     checkAndSend();
   };
 
+  // handle typing in any of the input boxes
   const handleChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -58,11 +60,14 @@ const Login = () => {
     }));
   };
 
+  // handles when the enter key is pressed
   let handleEnter = (event) => {
     if (event.key === "Enter") {
       checkAndSend();
     }
   };
+
+  // checks that all information is entered correctly and sends the login request
   let checkAndSend = () => {
     if (email === "") {
       alert("Please enter an email");

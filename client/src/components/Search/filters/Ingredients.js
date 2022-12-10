@@ -1,3 +1,4 @@
+// list of ingredients filters
 export const ingredients = [
   {
     cat: 'Ingredients',

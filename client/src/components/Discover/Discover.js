@@ -17,6 +17,8 @@ function Discover() {
     setSnackBarMessage(message);
     setOpen(true);
   };
+
+  //  closes the recipe pop up
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -24,6 +26,7 @@ function Discover() {
     setOpen(false);
   };
 
+  //sets up the snackbar for on screen pop-ups
   const action = (
     <React.Fragment>
       <IconButton
@@ -38,6 +41,7 @@ function Discover() {
   );
   // SNACKBAR ENDS
 
+  // imports the full list of recipes from the database
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     async function getRecipes() {
@@ -61,6 +65,7 @@ function Discover() {
   let message = "";
   let DRFilter = [];
 
+  // performs the search for recipes that satisfy the dietary restrictions
   const search = recipes.filter((recipe) => {
     let foundDR = true;
     // Filter dietary restrictions
@@ -80,6 +85,7 @@ function Discover() {
     return foundDR;
   });
 
+  // since discover page only should show 1 recipe at a time, this builds the 1 recipe array to show
   let len = search.length;
   let rand = Math.floor(Math.random() * len);
   let showOne = [];
@@ -87,12 +93,14 @@ function Discover() {
     showOne.push(search[rand]);
   }
 
+  // handles pressing the refresh button to view a new recipe on the page
   let refresh = async () => {
     setSnackBarMessage("");
     await setOpen(true);
     setOpen(false);
   };
 
+  // handles saving the recipe 
   let save = async (recipe) => {
     if (user === null) {
       // do nothing

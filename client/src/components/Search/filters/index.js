@@ -1,3 +1,4 @@
+// exports all filters 
 export { cuisine } from './Cuisine.js';
 export { dietaryRestrictions } from './DietaryRestrictions.js';
 export { ingredients } from './Ingredients.js';

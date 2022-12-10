@@ -11,7 +11,7 @@ const register = async (userData) => {
   return response.data
 }
 
-
+// handles updating the user
 const updateUser = async (userData) => {
   const response = await axios.post(`${environmentURL}/users/update`, userData)
   if (response.data) {

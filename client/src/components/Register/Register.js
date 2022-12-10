@@ -60,10 +60,13 @@ const Register = () => {
     dispatch(reset());
   }, [user, isError, isSuccess, message, navigate, dispatch]);
 
+  // handles when the sign up button is pressed
   const handleClick = (e) => {
     e.preventDefault();
     checkAndSend();
   };
+
+  // checks the input in all fields and if correct sends the register request
   const checkAndSend = () => {
     if (password !== confirmPassword) {
       alert("Passwords do not match");
@@ -86,6 +89,8 @@ const Register = () => {
       setLoading(true);
     }
   };
+  
+  // handles the input in each text field
   const handleChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -93,6 +98,7 @@ const Register = () => {
     }));
   };
 
+  // handles when enter is pressed
   let handleEnter = (event) => {
     if (event.key === "Enter") {
       checkAndSend();

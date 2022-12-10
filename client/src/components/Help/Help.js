@@ -1,5 +1,6 @@
 import React from "react";
-import { Paper, Container } from "@mui/material";
+import { Container } from "@mui/material";
+
 
 function Help() {
   return (
@@ -39,7 +40,8 @@ function Help() {
             To ensure that we answer all of your questions and queries, please
             use our Contact Form down below.
           </div>
-          {/* </Paper> */}
+          {/* This comment hides a warning, but it is fine*/}
+          {/* eslint-disable-next-line jsx-a11y/iframe-has-title*/}
           <iframe
             src="https://docs.google.com/forms/d/e/1FAIpQLSdH_FuB3AtquL8e_SmPqHRXPVqyf-FPSNp6zgwhY70w-AkTUw/viewform?embedded=true"
             width="708"

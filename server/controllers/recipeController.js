@@ -2,6 +2,7 @@ import asyncHandler from 'express-async-handler';
 
 import Recipe from "../models/recipeModel.js";
 
+// function to get recipes from the database
 export const getRecipes = asyncHandler(async (req, res) => {
   try {
     const recipes = await Recipe.find();

@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import asyncHandler from 'express-async-handler';
-
 import User from "../models/userModel.js";
 
+// function to send register 
 export const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -50,6 +50,7 @@ export const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
+// function to send the login
 export const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
@@ -76,6 +77,7 @@ export const getUser = asyncHandler(async (req, res) => {
   res.status(200).json(req.user);
 });
 
+//function to update the user
 export const updateUser = asyncHandler(async (req, res) => {
   const updatedUser = await User.findByIdAndUpdate(req.body._id, req.body, {
     new: true,

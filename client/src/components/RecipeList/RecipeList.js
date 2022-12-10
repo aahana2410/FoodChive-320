@@ -7,6 +7,7 @@ import { environmentURL } from "../../environementURL";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../features/auth/authSlice";
 
+// the helper file for the search page, which reads and filters the full recipe database
 function RecipeList(fullQuery) {
   const dispatch = useDispatch();
 
@@ -14,16 +15,17 @@ function RecipeList(fullQuery) {
   const [open, setOpen] = useState(false);
   const [snackBarMessage, setSnackBarMessage] = useState();
 
+  // handles showing a message when a recipe card is clicked
   const toggleSnackBar = (message) => {
     setSnackBarMessage(message);
     setOpen(true);
   };
 
+  // handles closing a recipe view
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
-
     setOpen(false);
   };
 
@@ -41,6 +43,7 @@ function RecipeList(fullQuery) {
   );
   // SNACKBAR ENDS
 
+  // loads in the recipes from the database 
   const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     async function getRecipes() {
@@ -61,6 +64,7 @@ function RecipeList(fullQuery) {
     return;
   }, []);
 
+  //searches and filters the recipes that were loaded in
   const search = recipes.filter((recipe) => {
     // Check Search Query
     let splitQuery = fullQuery.input.split("\n");
@@ -156,6 +160,7 @@ function RecipeList(fullQuery) {
     );
   });
 
+  // handles saving a recipe
   const user = localStorage.getItem("user");
   let save = async (recipe) => {
     if (user === null) {

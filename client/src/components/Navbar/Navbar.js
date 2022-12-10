@@ -9,9 +9,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HelpIcon from "@mui/icons-material/Help";
-
 import "./Navbar.css";
 
+// creates the navbar that is on the top of every page in the site
 function Navbar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();

@@ -1,3 +1,4 @@
+// list of dietary restriction filters 
 export const dietaryRestrictions = [
   {
     cat: 'Dietary Restrictions',

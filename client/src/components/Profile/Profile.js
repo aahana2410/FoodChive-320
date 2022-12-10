@@ -9,6 +9,7 @@ function Profile() {
   const dispatch = useDispatch();
   let user = localStorage.getItem("user");
 
+  // handles when the user wants to remove a saved dietary restriction 
   const removeFilter = async (selectedList, selectedItem) => {
     user = localStorage.getItem("user");
     let key = selectedItem.key.toLowerCase();
@@ -19,9 +20,9 @@ function Profile() {
     newUser.dietaryRestrictions = newDR;
     await dispatch(updateUser(newUser));
     localStorage.setItem("user", JSON.stringify(newUser));
-    // UPDATE USER to newuser
   };
 
+  // handles when the user wants to add a new dietary restriction
   const addFilter = async (selectedList, selectedItem) => {
     user = localStorage.getItem("user");
     let key = selectedItem.key.toLowerCase();
@@ -31,8 +32,6 @@ function Profile() {
     newUser.dietaryRestrictions = newDR;
     await dispatch(updateUser(newUser));
     localStorage.setItem("user", JSON.stringify(newUser));
-
-    // UPDATE USER to newuser
   };
 
   let preselect = [];

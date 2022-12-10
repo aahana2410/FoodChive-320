@@ -16,6 +16,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import CloseIcon from '@mui/icons-material/Close';
 import { useSelector } from "react-redux";
 
+// handles expanding the card to full screen to view full recipe
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -27,6 +28,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
+// creates the recipe card that each recipe is view as across the site
 export default function RecipeCard({
   recipe,
   handleSaveClick,
@@ -38,14 +40,17 @@ export default function RecipeCard({
 
   const user = useSelector((state) => state.auth.user);
 
+  // handles expanding to view the ingredients
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
+  //handles the click to open the expanded view to see the whole recipe 
   const handleCardClick = () => {
-    setAnchorPosition({top: 0, left: 500});
+    setAnchorPosition({ top: 0, left: 500 });
   };
 
+  // handles closing the open full recipe view
   const handleClose = () => {
     setAnchorPosition(null);
   };
@@ -79,7 +84,7 @@ export default function RecipeCard({
             onClick={async () => {
               let valid = await handleSaveClick(recipe);
 
-              if(user === null){
+              if (user === null) {
                 toggleSnackBar("You are not logged in!");
               }
               else if (valid) {
@@ -110,7 +115,7 @@ export default function RecipeCard({
           aria-expanded={expanded}
           title={expand_title}
           aria-label="show more"
-        >      
+        >
           <ExpandMoreIcon />
         </ExpandMore>
         <Popover
@@ -149,7 +154,7 @@ export default function RecipeCard({
                   await handleSaveClick(recipe);
                   toggleSnackBar("Recipe Deleted!");
                 }}
-                
+
               >
                 <DeleteOutlineIcon></DeleteOutlineIcon>
               </IconButton>

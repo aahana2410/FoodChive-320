@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Help from "./components/Help/Help";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+// sets themes across the site
 function App() {
   const theme = createTheme({
     palette: {
