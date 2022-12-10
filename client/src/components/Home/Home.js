@@ -13,7 +13,7 @@ function Home() {
           <h1>Welcome to FoodChive!</h1>
           <h2>
             <br></br>
-            Our goal is to help you find your all your favorite recipes!
+            Our goal is to help you find all your favorite recipes!
             <br></br>
             <br></br>
             <ExploreIcon fontSize="large"></ExploreIcon>
