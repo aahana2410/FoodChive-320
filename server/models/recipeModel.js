@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+// model for recipes recieved from the database
 const recipeSchema = mongoose.Schema(
   {
     _id: String,

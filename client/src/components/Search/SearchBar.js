@@ -6,6 +6,7 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import { Stack } from "@mui/system";
 
+// the search bar that is used across the site
 function SearchBar({ handleKeyUp, handleClick, handleEnter, inputValue }) {
   return (
     <Stack direction="row" sx={{ marginBottom: 2 }}>

@@ -7,9 +7,12 @@ import { updateUser } from "../../features/auth/authSlice";
 import CloseIcon from "@mui/icons-material/Close";
 import { Snackbar, IconButton, Grid, Paper, Typography } from "@mui/material";
 
+// this file handles the loading and filtering for the saved recipes
 function RecipeList(fullQuery) {
   const dispatch = useDispatch();
   const [recipes, setRecipes] = useState([]);
+
+  //loads in all recipes from the database
   useEffect(() => {
     async function getRecipes() {
       const response = await fetch(`${environmentURL}/recipes`, {
@@ -32,16 +35,17 @@ function RecipeList(fullQuery) {
   const [open, setOpen] = useState(false);
   const [snackBarMessage, setSnackBarMessage] = useState();
 
+  // handles the message that pops up when clicking save
   const toggleSnackBar = (message) => {
     setSnackBarMessage(message);
     setOpen(true);
   };
 
+  // handles closing the full recipe pop up
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
-
     setOpen(false);
   };
 
@@ -59,6 +63,7 @@ function RecipeList(fullQuery) {
   );
   // SNACKBAR ENDS
 
+  // handles the search and filtering of the saved recipes
   const search = recipes.filter((recipe) => {
     const user = localStorage.getItem("user");
     // Check Search Query
@@ -163,6 +168,7 @@ function RecipeList(fullQuery) {
     );
   });
 
+  // handles deleting a recipe from the users saved
   let deleteRecipe = async (recipe) => {
     const user = localStorage.getItem("user");
     let newSaved = [...JSON.parse(user).recipes]; // Clones the saved recipe list

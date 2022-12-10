@@ -1,3 +1,4 @@
+// list of cuisine filters
 export const cuisine = [
   {
     cat: 'Cuisine',

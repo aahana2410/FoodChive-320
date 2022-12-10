@@ -1,3 +1,4 @@
+// list of type filters 
 export const type = [
   {
     cat: 'Type',

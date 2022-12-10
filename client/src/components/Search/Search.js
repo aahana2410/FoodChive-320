@@ -20,6 +20,7 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import TuneIcon from "@mui/icons-material/Tune";
 
+// search page
 function Search() {
   const [inputText, setInputText] = useState("");
   const [query, setQuery] = useState("");
@@ -37,6 +38,7 @@ function Search() {
   }
   const [DRFilter, setDRFilter] = useState(userDR);
 
+  // update the query with the search query and filters
   const changeQuery = () => {
     let sendQuery =
       inputText +
@@ -58,13 +60,16 @@ function Search() {
     setInputText(event.target.value);
   };
 
+  //handle pressing enter 
   let enterHandler = (event) => {
     if (event.key === "Enter") changeQuery();
   };
+
   // handle the search button
   let clickHandler = () => {
     changeQuery();
   };
+  
   // handle adding a filter
   let addFilter = (selectedList, selectedItem) => {
     switch (selectedItem.cat) {

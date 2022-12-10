@@ -1,3 +1,4 @@
+//list of skill filters 
 export const skill = [
   {
     cat: 'Skill Level',

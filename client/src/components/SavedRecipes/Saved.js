@@ -20,7 +20,7 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-function Search() {
+function Saved() {
   const [inputText, setInputText] = useState([]);
   const [query, setQuery] = useState([]);
   const [cuisineFilter, setCuisineFilter] = useState([]);
@@ -40,6 +40,7 @@ function Search() {
     setQuery("");
   }, []);
 
+  // handles updating the query to filter 
   const changeQuery = () => {
     let sendQuery =
       inputText +
@@ -257,4 +258,4 @@ function Search() {
     );
   }
 }
-export default Search;
+export default Saved;
